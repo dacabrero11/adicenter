@@ -1,0 +1,157 @@
+"use client";
+
+import Image from "next/image";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { preguntasRapidas, respuestaGenerica, responderJimmy, saludoInicial } from "@/data/jimmy-guion";
+
+type Msg = { id: number; rol: "bot" | "user"; texto: string };
+
+export type JimmyWidgetHandle = { abrir: () => void };
+
+export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_, ref) {
+  const [open, setOpen] = useState(false);
+  const [escribiendo, setEscribiendo] = useState(false);
+  const [msgs, setMsgs] = useState<Msg[]>([]);
+  const [valor, setValor] = useState("");
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const idRef = useRef(0);
+  const inputRef = useRef<HTMLInputElement>(null);
+  // ref, no state: no debe disparar un segundo paso del efecto ni cancelar su propio timeout
+  const iniciadoRef = useRef(false);
+
+  useImperativeHandle(ref, () => ({
+    abrir: () => setOpen(true),
+  }));
+
+  useEffect(() => {
+    if (!open) return;
+    inputRef.current && setTimeout(() => inputRef.current?.focus(), 350);
+    if (iniciadoRef.current) return;
+    iniciadoRef.current = true;
+    const t = setTimeout(() => push("bot", saludoInicial), 350);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+
+  useEffect(() => {
+    bodyRef.current?.scrollTo({ top: bodyRef.current.scrollHeight, behavior: "smooth" });
+  }, [msgs, escribiendo]);
+
+  function push(rol: "bot" | "user", texto: string) {
+    idRef.current += 1;
+    setMsgs((m) => [...m, { id: idRef.current, rol, texto }]);
+  }
+
+  function enviar(texto: string) {
+    const t = texto.trim();
+    if (!t) return;
+    push("user", t);
+    setValor("");
+    setEscribiendo(true);
+    setTimeout(() => {
+      setEscribiendo(false);
+      push("bot", responderJimmy(t) ?? respuestaGenerica);
+    }, 700 + Math.random() * 500);
+  }
+
+  return (
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        aria-label="Preguntarle a Jimmy"
+        className={`fixed bottom-5.5 right-5.5 z-90 flex items-center gap-3 rounded-full border border-cyan/40 bg-navy py-2.5 pl-3 pr-5 shadow-[0_18px_44px_-16px_rgba(1,35,135,.95)] transition-all duration-300 hover:-translate-y-0.75 hover:scale-102 hover:shadow-[0_24px_54px_-16px_rgba(1,183,222,.6)] max-[560px]:rounded-full max-[560px]:p-2 ${
+          open ? "pointer-events-none scale-90 opacity-0" : ""
+        }`}
+      >
+        <span className="relative h-[46px] w-[46px] flex-none rounded-full shadow-[inset_0_0_0_1px_rgba(255,255,255,.22)] max-[560px]:h-[52px] max-[560px]:w-[52px]">
+          <Image src="/images/jimmy-face.png" alt="" fill sizes="52px" className="rounded-full object-cover" />
+          <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-navy bg-[#25D07A]" />
+        </span>
+        <span className="text-left leading-tight max-[560px]:hidden">
+          <strong className="block text-[13.5px] font-semibold">Pregúntele a Jimmy</strong>
+          <small className="font-mono-adi block text-[9px] uppercase tracking-[0.13em] text-sky">Técnico en línea</small>
+        </span>
+      </button>
+
+      <div
+        role="dialog"
+        aria-label="Jimmy, técnico de ADICENTER"
+        className={`fixed bottom-5.5 right-5.5 z-95 flex h-[558px] max-h-[calc(100vh-44px)] w-[378px] max-w-[calc(100vw-32px)] flex-col overflow-hidden rounded-[10px] border border-cyan/28 bg-navy-900 shadow-[0_40px_90px_-30px_rgba(0,0,0,.85)] transition-all duration-350 max-[560px]:inset-x-3 max-[560px]:bottom-3 max-[560px]:h-[calc(100vh-90px)] max-[560px]:w-auto ${
+          open ? "opacity-100" : "pointer-events-none translate-y-5 scale-95 opacity-0"
+        }`}
+      >
+        <div className="flex items-center gap-3 border-b border-white/12 bg-[linear-gradient(120deg,var(--navy),var(--navy-800))] px-4.5 py-4">
+          <span className="relative h-[42px] w-[42px] flex-none rounded-full">
+            <Image src="/images/jimmy-face.png" alt="" fill sizes="42px" className="rounded-full object-cover" />
+            <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-navy bg-[#25D07A]" />
+          </span>
+          <span className="flex-1 leading-snug">
+            <strong className="block text-[14.5px]">Jimmy · Técnico ADICENTER</strong>
+            <small className="font-mono-adi block text-[9.5px] uppercase tracking-[0.12em] text-[#7DE2AE]">
+              En línea · responde al instante
+            </small>
+          </span>
+          <button onClick={() => setOpen(false)} aria-label="Cerrar" className="rounded p-1.5 text-white/55 transition-colors hover:bg-white/9 hover:text-white">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div ref={bodyRef} className="flex flex-1 flex-col gap-3.5 overflow-y-auto px-4.5 py-5">
+          {msgs.map((m) => (
+            <div
+              key={m.id}
+              className={`animate-msg-in max-w-[86%] rounded-xl px-3.75 py-3 text-sm leading-relaxed [&_b]:font-semibold ${
+                m.rol === "user"
+                  ? "self-end rounded-br-[3px] bg-cyan font-medium text-navy-950 [&_b]:text-navy"
+                  : "self-start rounded-bl-[3px] border border-white/12 bg-white/7 [&_b]:text-sky"
+              }`}
+              dangerouslySetInnerHTML={{ __html: m.texto }}
+            />
+          ))}
+          {escribiendo && (
+            <div className="flex gap-1 self-start rounded-xl rounded-bl-[3px] bg-white/7 px-4 py-3.5">
+              <i className="blink-dot h-1.5 w-1.5 rounded-full bg-sky" />
+              <i className="blink-dot h-1.5 w-1.5 rounded-full bg-sky [animation-delay:.18s]" />
+              <i className="blink-dot h-1.5 w-1.5 rounded-full bg-sky [animation-delay:.36s]" />
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-wrap gap-1.75 px-4.5 pb-3.5">
+          {preguntasRapidas.map((q) => (
+            <button
+              key={q.label}
+              onClick={() => enviar(q.texto)}
+              className="font-mono-adi rounded-full border border-cyan/40 px-3.25 py-1.75 text-[9.5px] uppercase tracking-[0.1em] text-sky transition-colors hover:bg-cyan hover:text-navy-950"
+            >
+              {q.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex gap-2.25 border-t border-white/12 bg-black/25 px-4 py-3.5">
+          <input
+            ref={inputRef}
+            value={valor}
+            onChange={(e) => setValor(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && enviar(valor)}
+            placeholder="Escríbale a Jimmy…"
+            aria-label="Mensaje"
+            className="flex-1 rounded-full border border-white/12 bg-white/6 px-4 py-2.75 focus:border-cyan focus:outline-none"
+          />
+          <button
+            onClick={() => enviar(valor)}
+            aria-label="Enviar"
+            className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-cyan text-navy-950 transition-transform hover:-rotate-12 hover:scale-106 hover:bg-white"
+          >
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </>
+  );
+});

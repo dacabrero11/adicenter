@@ -1,0 +1,40 @@
+"use client";
+
+import { useRef } from "react";
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
+import { Sistemas } from "@/components/Sistemas";
+import { JimmySection } from "@/components/JimmySection";
+import { Catalogo } from "@/components/Catalogo";
+import { Selector } from "@/components/Selector";
+import { ProgramaObra } from "@/components/ProgramaObra";
+import { FieldBand } from "@/components/FieldBand";
+import { Proyectos } from "@/components/Proyectos";
+import { Proceso } from "@/components/Proceso";
+import { Cotizar } from "@/components/Cotizar";
+import { Footer } from "@/components/Footer";
+import { JimmyWidget, type JimmyWidgetHandle } from "@/components/JimmyWidget";
+
+export default function Home() {
+  const jimmyRef = useRef<JimmyWidgetHandle>(null);
+  const abrirJimmy = () => jimmyRef.current?.abrir();
+
+  return (
+    <>
+      <Header />
+      <div id="top" />
+      <Hero />
+      <Sistemas />
+      <JimmySection onAskJimmy={abrirJimmy} />
+      <Catalogo />
+      <Selector />
+      <ProgramaObra />
+      <FieldBand />
+      <Proyectos onAskJimmy={abrirJimmy} />
+      <Proceso />
+      <Cotizar />
+      <Footer />
+      <JimmyWidget ref={jimmyRef} />
+    </>
+  );
+}
