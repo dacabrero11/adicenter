@@ -4,8 +4,8 @@ export const saludoInicial =
   "Buenas, soy <b>Jimmy</b>. Ando en las obras de ADICENTER y también aquí.<br/><br/>Puedo ayudarle a escoger el sistema correcto, calcular el rendimiento por m² o arrancar su cotización. ¿Qué superficie está tratando?";
 
 export const preguntasRapidas = [
+  { label: "Reparación", texto: "Tengo una columna con el acero expuesto" },
   { label: "Techo filtrando", texto: "Mi techo de lámina está filtrando" },
-  { label: "Rendimiento", texto: "¿Cuánto rinde el impermeabilizante por galón?" },
   { label: "Cotizar m²", texto: "Necesito precio para 1200 m²" },
   { label: "Crédito obra", texto: "¿Manejan crédito para constructoras?" },
 ];
@@ -16,12 +16,12 @@ export const guion: Entrada[] = [
   {
     claves: ["lamina", "lámina", "techo", "filtr", "gotea", "tornillo", "traslape", "bodega"],
     respuesta:
-      "Techo de lámina filtrando casi siempre es <b>traslapes y tornillería</b>, no la lámina en sí.<br/><br/>El sistema que recomendamos es: tratamiento de óxido, sellado con ADISEAL PU-40, refuerzo de juntas con malla y dos capas de <b>ADIFLEX 400</b> reflectivo.<br/><br/>¿Cuántos m² aproximados tiene la cubierta?",
+      "Techo de lámina filtrando casi siempre es <b>traslapes y tornillería</b>, no la lámina en sí.<br/><br/>El sistema que recomendamos es: tratamiento de óxido, sello de puntos activos con <b>VELOSIT® PC 221/222</b> y dos capas de <b>VELOSIT® WP 120</b> flexible.<br/><br/>¿Cuántos m² aproximados tiene la cubierta?",
   },
   {
     claves: ["rinde", "rendimiento", "galon", "galón", "litro", "cuanto cubre", "cubre"],
     respuesta:
-      "Depende del sistema:<br/><br/>• <b>ADIFLEX 400</b> — 1.2 m²/L por capa (van dos capas)<br/>• <b>ADITHANE PU-1</b> — 1.0 kg/m² en dos manos<br/>• <b>ADISEAL CT-2</b> — 1.5 kg por m² y por mm de espesor<br/><br/>Sobre lámina o superficie porosa se calcula un 10–15% adicional. ¿Sobre qué superficie va a aplicar?",
+      "El rendimiento exacto depende del producto — trabajamos con <b>Sika®</b> y <b>Velosit® (Alemania)</b>, y cada línea trae su propia ficha técnica con el consumo por m².<br/><br/>Sobre lámina o superficie porosa siempre se calcula un 10–15% adicional. Dígame la superficie y le confirmo el consumo exacto con la ficha del producto.",
   },
   {
     claves: ["precio", "costo", "cotiz", "cuanto vale", "m2", "m²", "presupuest"],
@@ -36,27 +36,32 @@ export const guion: Entrada[] = [
   {
     claves: ["piso", "epoxico", "epóxico", "industrial", "montacarga", "planta", "autonivel"],
     respuesta:
-      "Para piso industrial trabajamos <b>ADIPOX SL-100</b>, autonivelante de 100% sólidos, entre 1.5 y 3 mm de espesor y resistencia sobre 75 MPa.<br/><br/>Lo crítico ahí es la preparación: sin granallado o escarificado el sistema se despega. ¿El piso actual tiene brillo, polvo o desprendimiento?",
+      "Para piso industrial trabajamos el sistema epóxico <b>Sikadur®</b>: puente de adherencia más capa epóxica de alta resistencia.<br/><br/>Lo crítico ahí es la preparación: sin granallado o escarificado el sistema se despega. ¿El piso actual tiene brillo, polvo o desprendimiento?",
   },
   {
     claves: ["cisterna", "tanque", "agua potable", "sotano", "sótano", "muro", "presion negativa", "presión negativa"],
     respuesta:
-      "Para contacto con agua potable usamos <b>ADISEAL CT-2</b>, cementicio de dos componentes, apto certificado y con desempeño bajo presión negativa.<br/><br/>Antes de recubrir hay que sellar pasamuros y juntas frías, que es donde se pierde el trabajo. ¿La cisterna está en operación o vacía?",
+      "Para contacto con agua potable usamos <b>VELOSIT® WP 101</b>, lechada cementicia de alta resistencia con desempeño bajo presión negativa.<br/><br/>Antes de recubrir hay que sellar pasamuros y juntas frías con <b>VELOSIT® PC 221</b>, que es donde se pierde el trabajo. ¿La cisterna está en operación o vacía?",
   },
   {
     claves: ["aditivo", "concreto", "mezcla", "fisura", "fragua", "planta", "resistencia"],
     respuesta:
-      "En la línea de aditivos lo más pedido es <b>ADIMIX HR-5</b> (reductor de alto rango, ASTM C494 Tipo F) y <b>ADIFIBER PP-12</b> para control de fisuración por retracción.<br/><br/>Si el colado es en planta podemos apoyar con la dosificación. ¿Qué volumen de concreto está manejando?",
+      "En aditivos trabajamos el <b>aditivo cristalino líquido VELOSIT®</b>, que impermeabiliza y plastifica la mezcla desde la planta.<br/><br/>Si el colado es en planta podemos apoyar con la dosificación. ¿Qué volumen de concreto está manejando?",
   },
   {
     claves: ["garantia", "garantía", "poliza", "póliza", "dura", "vida util", "vida útil"],
     respuesta:
-      "La garantía se emite por escrito sobre el <b>sistema completo</b>, no sobre el balde suelto, y está condicionada a que la aplicación sea supervisada por nuestro técnico.<br/><br/>Vida útil según sistema: acrílico 5–7 años, poliuretánico 10–12 años, cementicio hasta 12 años. ¿Le interesa que agendemos la visita de diagnóstico?",
+      "La garantía se emite por escrito sobre el <b>sistema completo</b>, no sobre el balde suelto, y está condicionada a que la aplicación sea supervisada por nuestro técnico.<br/><br/>La vida útil exacta depende de la línea (Sika® o Velosit®) y queda especificada en la ficha técnica. ¿Le interesa que agendemos la visita de diagnóstico?",
   },
   {
     claves: ["visita", "tecnico", "técnico", "diagnostico", "diagnóstico", "agendar", "ir a ver"],
     respuesta:
       "La visita de diagnóstico es <b>sin costo en proyectos desde 300 m²</b>. Incluye levantamiento, prueba de humedad y adherencia, y el acta con la especificación del sistema.<br/><br/>Déjeme su nombre, teléfono y el municipio del proyecto y se lo agendo con el asesor de su zona.",
+  },
+  {
+    claves: ["reparacion", "reparación", "reforzamiento", "acero expuesto", "columna", "viga", "corrosion", "corrosión", "concreto dañado", "disgregado"],
+    respuesta:
+      "Reparación y reforzamiento es <b>lo que más hacemos</b>.<br/><br/>El sistema típico es: picado y saneo del concreto dañado, protección anticorrosiva del acero expuesto con <b>SikaTop® Armatec®-110 EpoCem®</b> y mortero estructural <b>Sika MonoTop®</b> o <b>VELOSIT® RM 202</b>.<br/><br/>¿La estructura tiene acero de refuerzo visible o es solo desprendimiento superficial de concreto?",
   },
   {
     claves: ["envio", "envío", "despacho", "entrega", "tegucigalpa", "san pedro", "sps"],

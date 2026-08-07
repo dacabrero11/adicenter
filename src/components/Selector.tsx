@@ -6,6 +6,12 @@ import { opcionesSuperficie, sistemas, type SistemaKey } from "@/data/sistemas";
 import { Button } from "./Button";
 
 const ICONOS: Record<SistemaKey, React.ReactNode> = {
+  reparacion: (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <path d="M14 2v6h6M9 15l2 2 4-4" />
+    </svg>
+  ),
   lamina: (
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
       <path d="M2 18l4-12M8 18l4-12M14 18l4-12M20 18l2-6M2 18h20" />
@@ -29,7 +35,7 @@ const ICONOS: Record<SistemaKey, React.ReactNode> = {
 };
 
 export function Selector() {
-  const [sel, setSel] = useState<SistemaKey>("lamina");
+  const [sel, setSel] = useState<SistemaKey>("reparacion");
   const s = sistemas[sel];
 
   return (
@@ -108,15 +114,18 @@ export function Selector() {
                 <div className="mt-6.5 flex flex-wrap gap-6.5">
                   {[
                     [s.rendimiento, "Rendimiento"],
-                    [s.vidaUtil, "Vida útil estimada"],
+                    [s.vidaUtil, "Comportamiento"],
                     [s.tiempo, "Tiempo de obra"],
                   ].map(([v, l]) => (
                     <div key={l}>
-                      <div className="font-display text-[26px] leading-none text-hivis-soft">{v}</div>
+                      <div className="font-display text-[22px] leading-none text-hivis-soft sm:text-[26px]">{v}</div>
                       <div className="font-mono-adi mt-1.5 text-[9.5px] uppercase tracking-[0.14em] text-white/50">{l}</div>
                     </div>
                   ))}
                 </div>
+                <p className="font-mono-adi mt-3 text-[9px] uppercase tracking-[0.1em] text-white/35">
+                  Cifras de referencia · se confirman con la ficha técnica de la marca antes de cotizar
+                </p>
 
                 <Button href="#cotizar" className="mt-7 w-full">Cotizar este sistema</Button>
               </div>

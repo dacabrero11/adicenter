@@ -24,9 +24,9 @@ export function Catalogo() {
             con su ficha.
           </h2>
           <p className="mt-5 max-w-[62ch] text-[17px] text-white/66">
-            Rendimientos reales, presentaciones disponibles y norma de referencia. Sin letra
-            chiquita: si un sistema no aplica para su superficie, se lo decimos antes de
-            facturar.
+            Trabajamos con las líneas de <b className="font-semibold text-white">Sika®</b> y{" "}
+            <b className="font-semibold text-white">Velosit® (Alemania)</b>. Cada producto con su
+            marca, familia y uso típico — la ficha técnica exacta se confirma antes de cotizar.
           </p>
         </div>
 
@@ -57,16 +57,25 @@ export function Catalogo() {
                 key={p.nombre}
                 className="group relative flex flex-col overflow-hidden rounded-[4px] border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.015))] px-6 py-6.5 transition-all duration-400 hover:-translate-y-1.25 hover:border-cyan/55 hover:bg-[linear-gradient(160deg,rgba(1,183,222,.11),rgba(255,255,255,.02))]"
               >
-                <span className="font-mono-adi text-[9.5px] uppercase tracking-[0.18em] text-cyan">{p.familia}</span>
+                <span
+                  className={`font-mono-adi absolute right-4 top-4 rounded-full px-2.5 py-1 text-[8.5px] uppercase tracking-[0.14em] ${
+                    p.marca === "Sika" ? "bg-cyan/15 text-cyan" : "bg-hivis/15 text-hivis-soft"
+                  }`}
+                >
+                  {p.marca}
+                </span>
+                <span className="font-mono-adi pr-16 text-[9.5px] uppercase tracking-[0.18em] text-cyan">{p.familia}</span>
                 <h4 className="font-display mt-3 mb-2 text-[21px] tracking-[-0.01em]">{p.nombre}</h4>
                 <p className="flex-1 text-[14.5px] text-white/60">{p.descripcion}</p>
                 <div className="mt-5 border-t border-dashed border-white/16 pt-3.5">
-                  {p.specs.map(([k, v]) => (
-                    <div key={k} className="font-mono-adi flex justify-between gap-3 py-1.25 text-[10.5px] uppercase tracking-[0.06em] text-white/50">
-                      <span>{k}</span>
-                      <b className="font-medium text-white">{v}</b>
-                    </div>
-                  ))}
+                  {p.specs
+                    .filter(([k]) => k !== "Marca")
+                    .map(([k, v]) => (
+                      <div key={k} className="font-mono-adi flex justify-between gap-3 py-1.25 text-[10.5px] uppercase tracking-[0.06em] text-white/50">
+                        <span className="flex-none">{k}</span>
+                        <b className="min-w-0 flex-1 text-right font-medium text-white">{v}</b>
+                      </div>
+                    ))}
                 </div>
                 <div className="mt-5 flex gap-2">
                   <a href="#cotizar" className="font-mono-adi inline-flex items-center gap-1.5 py-2.75 text-[10.5px] uppercase tracking-[0.12em] text-sky transition-all hover:gap-2.75">

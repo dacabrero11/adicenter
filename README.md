@@ -40,6 +40,25 @@ npm run start
 `npm run build` debe pasar sin errores antes de cualquier push (regla
 estándar de BLITZ).
 
+## Actualización — catálogo con marcas reales (Sika® + Velosit®)
+
+Por indicación directa de Jaime Cabrero (dueño de ADICENTER), el catálogo dejó de usar
+productos ficticios y ahora referencia productos reales de dos marcas:
+
+- **Sika®** (mex.sika.com) — especialmente la línea de Reparación y Reforzamiento
+- **Velosit® GmbH & Co. KG** (Alemania) — impermeabilizantes cementicios y cristalinos
+
+"Reparación y Reforzamiento" se destacó como línea principal en `Sistemas.tsx` porque
+Jaime indicó explícitamente que es lo que más hacen.
+
+**Importante — confirmar con el cliente antes de publicar:**
+- Verificar si ADICENTER es distribuidor autorizado de Sika/Velosit o solo utiliza sus
+  productos — el sitio usa la frase "trabajamos con productos de", no "distribuidor
+  oficial", hasta confirmar el estatus real
+- Los specs en `productos.ts` son cualitativos (marca, uso típico) donde no había datos
+  numéricos verificados de la ficha técnica oficial — completar con las fichas reales
+  de Sika/Velosit antes de publicar cifras de rendimiento exactas
+
 ## Pendientes antes de producción real
 
 - [ ] Reemplazar los placeholders de `src/data/proyectos.ts` (campo

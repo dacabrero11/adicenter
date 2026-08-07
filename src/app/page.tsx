@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { MarcasStrip } from "@/components/MarcasStrip";
 import { Sistemas } from "@/components/Sistemas";
 import { JimmySection } from "@/components/JimmySection";
 import { Catalogo } from "@/components/Catalogo";
@@ -24,6 +25,7 @@ export default function Home() {
       <Header />
       <div id="top" />
       <Hero />
+      <MarcasStrip />
       <Sistemas />
       <JimmySection onAskJimmy={abrirJimmy} />
       <Catalogo />

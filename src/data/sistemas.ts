@@ -1,4 +1,4 @@
-export type SistemaKey = "lamina" | "losa" | "piso" | "cisterna";
+export type SistemaKey = "lamina" | "losa" | "piso" | "cisterna" | "reparacion";
 
 export type Sistema = {
   key: SistemaKey;
@@ -13,6 +13,7 @@ export type Sistema = {
 };
 
 export const opcionesSuperficie: { key: SistemaKey; label: string; hint: string }[] = [
+  { key: "reparacion", label: "Reparación estructural", hint: "Acero expuesto, concreto disgregado, columnas o vigas dañadas" },
   { key: "lamina", label: "Techo de lámina", hint: "Corrosión, traslapes filtrando, calor excesivo en bodega" },
   { key: "losa", label: "Losa de concreto", hint: "Manchas de humedad en cielo, fisuras, empozamiento" },
   { key: "piso", label: "Piso industrial", hint: "Desgaste, polvo de concreto, tránsito de montacargas" },
@@ -20,55 +21,72 @@ export const opcionesSuperficie: { key: SistemaKey; label: string; hint: string 
 ];
 
 export const sistemas: Record<SistemaKey, Sistema> = {
+  reparacion: {
+    key: "reparacion",
+    label: "Reparación estructural",
+    hint: "",
+    titulo: "Sistema de reparación y reforzamiento",
+    descripcion:
+      "Saneo del concreto disgregado, protección anticorrosiva del acero expuesto y mortero de reparación estructural. Es el sistema que más aplicamos — devuelve capacidad de carga sin necesidad de demoler.",
+    pasos: [
+      ["01", "Picado y saneo de concreto disgregado hasta llegar a sustrato sano"],
+      ["02", "Limpieza y protección del acero con SikaTop® Armatec®-110 EpoCem®"],
+      ["03", "Aplicación de mortero estructural Sika MonoTop®-412 S o VELOSIT® RM 202"],
+      ["04", "Sello y acabado con recubrimiento de protección según exposición"],
+    ],
+    rendimiento: "Según espesor",
+    vidaUtil: "Estructural",
+    tiempo: "3 – 7 días",
+  },
   lamina: {
     key: "lamina",
     label: "Techo de lámina",
     hint: "",
     titulo: "Sistema reflectivo para cubierta metálica",
     descripcion:
-      "Tratamiento de corrosión, sellado de traslapes con malla embebida y dos capas de membrana acrílica reflectiva. Baja la temperatura interna de la bodega y detiene la filtración en los tornillos.",
+      "Tratamiento de corrosión, sellado de traslapes y dos capas de lechada impermeabilizante cementicia flexible. Baja la temperatura interna de la bodega y detiene la filtración en los tornillos.",
     pasos: [
       ["01", "Lavado a presión y tratamiento de puntos de óxido"],
-      ["02", "Sellado de traslapes y tornillería con ADISEAL PU-40"],
-      ["03", "Refuerzo de juntas con ADIMESH 60 embebido"],
-      ["04", "Dos capas de ADIFLEX 400 en sentido cruzado"],
+      ["02", "Sellado de traslapes y tornillería"],
+      ["03", "Sello de filtraciones activas con VELOSIT® PC 221/222"],
+      ["04", "Dos capas de VELOSIT® WP 120 en sentido cruzado"],
     ],
-    rendimiento: "1.2 m²/L",
-    vidaUtil: "5 – 7 años",
+    rendimiento: "Según ficha técnica",
+    vidaUtil: "Alta flexibilidad",
     tiempo: "4 – 8 días",
   },
   losa: {
     key: "losa",
     label: "Losa de concreto",
     hint: "",
-    titulo: "Sistema poliuretánico para losa expuesta",
+    titulo: "Sistema cristalino para losa expuesta",
     descripcion:
-      "Corrección de pendientes y fisuras, imprimante penetrante y membrana poliuretánica con refuerzo en todo el perímetro y bajantes. Pensado para losa que además se camina.",
+      "Corrección de fisuras, mortero de reparación con terminado liso y sello por cristalización. Pensado para losa que además se camina.",
     pasos: [
-      ["01", "Reparación de fisuras y perfilado de pendientes"],
-      ["02", "Imprimante ADIPOX PRIMER-E sobre concreto seco"],
-      ["03", "Refuerzo perimetral y en bajantes con ADIMESH 60"],
-      ["04", "Dos manos de ADITHANE PU-1 más acabado reflectivo"],
+      ["01", "Reparación de fisuras con VELOSIT® RM 211"],
+      ["02", "Perfilado de pendientes y bajantes"],
+      ["03", "Impermeabilización cristalina VELOSIT® CW 111"],
+      ["04", "Prueba de encharcamiento antes de entregar"],
     ],
-    rendimiento: "1.0 kg/m²",
-    vidaUtil: "10 – 12 años",
-    tiempo: "6 – 10 días",
+    rendimiento: "Según espesor",
+    vidaUtil: "Larga duración",
+    tiempo: "5 – 9 días",
   },
   piso: {
     key: "piso",
     label: "Piso industrial",
     hint: "",
-    titulo: "Piso epóxico autonivelante industrial",
+    titulo: "Piso epóxico de alta resistencia",
     descripcion:
-      "Preparación mecánica del sustrato, imprimante epóxico y capa autonivelante con demarcación de rutas. Diseñado para tránsito de montacargas y lavado frecuente.",
+      "Preparación mecánica del sustrato, puente de adherencia y sistema epóxico Sikadur® para tránsito de montacargas y lavado frecuente.",
     pasos: [
       ["01", "Escarificado o granallado del concreto"],
-      ["02", "Reparación de juntas con ADIPOX MORTAR-HD"],
-      ["03", "Imprimante ADIPOX PRIMER-E"],
-      ["04", "Autonivelante ADIPOX SL-100 y demarcación"],
+      ["02", "Reparación de juntas con mortero Sika MonoTop®"],
+      ["03", "Puente de adherencia Sikadur®-32 Gel"],
+      ["04", "Sistema epóxico Sikadur® y demarcación"],
     ],
-    rendimiento: "1.5 – 3 mm",
-    vidaUtil: "8 – 10 años",
+    rendimiento: "Según espesor",
+    vidaUtil: "Alta resistencia",
     tiempo: "8 – 14 días",
   },
   cisterna: {
@@ -77,15 +95,15 @@ export const sistemas: Record<SistemaKey, Sistema> = {
     hint: "",
     titulo: "Sistema cementicio para contacto con agua",
     descripcion:
-      "Recubrimiento cementicio de dos componentes apto para agua potable, con sellado de pasamuros y juntas frías. Trabaja también bajo presión negativa en sótanos.",
+      "Recubrimiento cementicio de alta resistencia apto para agua potable, con sellado de pasamuros y juntas frías. Trabaja también bajo presión negativa en sótanos.",
     pasos: [
       ["01", "Saneo de concreto suelto y apertura de juntas frías"],
-      ["02", "Sellado de pasamuros y filtraciones activas"],
-      ["03", "Dos capas cruzadas de ADISEAL CT-2"],
+      ["02", "Sellado de pasamuros y filtraciones activas con VELOSIT® PC 221"],
+      ["03", "Dos capas cruzadas de VELOSIT® WP 101"],
       ["04", "Prueba de estanqueidad de 72 horas"],
     ],
-    rendimiento: "1.5 kg/m²·mm",
-    vidaUtil: "12 años",
+    rendimiento: "Según espesor",
+    vidaUtil: "Alta resistencia",
     tiempo: "5 – 9 días",
   },
 };

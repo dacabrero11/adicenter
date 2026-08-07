@@ -18,7 +18,7 @@ export const proyectos: Proyecto[] = [
     ubicacion: "Villanueva, Cortés · 2025",
     nombre: "Nave industrial",
     descripcion:
-      "Reimpermeabilización de cubierta metálica con ADIFLEX 400 reflectivo y refuerzo de todos los traslapes, sin paro de producción.",
+      "Impermeabilización de cubierta metálica con VELOSIT® WP 120 flexible y sello de traslapes, sin paro de producción.",
     stats: [
       ["9,400", "m² intervenidos"],
       ["14", "días de obra"],
@@ -32,7 +32,7 @@ export const proyectos: Proyecto[] = [
     ubicacion: "Tegucigalpa, F.M. · 2025",
     nombre: "Centro de distribución",
     descripcion:
-      "Piso epóxico autonivelante ADIPOX SL-100 grado industrial, con demarcación de rutas y zonas de carga.",
+      "Piso epóxico Sikadur® grado industrial, con demarcación de rutas y zonas de carga.",
     stats: [
       ["3,100", "m² intervenidos"],
       ["11", "días de obra"],
@@ -46,7 +46,7 @@ export const proyectos: Proyecto[] = [
     ubicacion: "San Pedro Sula, Cortés · 2024",
     nombre: "Torre residencial",
     descripcion:
-      "Reductor de agua de alto rango ADIMIX HR-5 y control de fisuración en colados masivos de fundación, con dosificación en planta.",
+      "Aditivo cristalino VELOSIT® y control de fisuración en colados masivos de fundación, con dosificación en planta.",
     stats: [
       ["640", "m³ de concreto"],
       ["6", "colados"],
@@ -60,7 +60,7 @@ export const proyectos: Proyecto[] = [
     ubicacion: "Comayagua · 2024",
     nombre: "Cisterna municipal",
     descripcion:
-      "Recubrimiento cementicio ADISEAL CT-2 apto para contacto con agua potable, con sellado de pasamuros y prueba de estanqueidad de 72 horas.",
+      "Recubrimiento cementicio VELOSIT® WP 101 apto para contacto con agua potable, con sellado de pasamuros y prueba de estanqueidad de 72 horas.",
     stats: [
       ["780", "m² intervenidos"],
       ["0", "filtraciones"],
@@ -74,7 +74,7 @@ export const proyectos: Proyecto[] = [
     ubicacion: "La Ceiba, Atlántida · 2023",
     nombre: "Bodega refrigerada",
     descripcion:
-      "Losa con humedad recurrente: corrección de pendientes y membrana poliuretánica ADITHANE PU-1 con refuerzo perimetral y en bajantes.",
+      "Losa con humedad recurrente: corrección de pendientes y sello cristalino VELOSIT® CW 111 con refuerzo perimetral y en bajantes.",
     stats: [
       ["2,200", "m² intervenidos"],
       ["3", "años sin reporte"],
