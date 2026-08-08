@@ -1,19 +1,13 @@
 import { Button } from "./Button";
 import { CrossSection } from "./CrossSection";
-
-const STATS = [
-  ["18", "Años en el mercado hondureño"],
-  ["1.2M", "m² impermeabilizados"],
-  ["340+", "Obras acompañadas en sitio"],
-  ["72", "Productos con ficha técnica"],
-] as const;
+import { StatsCounter } from "./StatsCounter";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden pt-[70px] md:pt-[100px] lg:pt-[120px]">
       <div className="absolute inset-0 z-0">
         <div
-          className="absolute -inset-[20%]"
+          className="animate-mesh absolute -inset-[20%]"
           style={{
             background:
               "radial-gradient(60% 55% at 78% 12%,rgba(1,183,222,.30),transparent 62%),radial-gradient(50% 60% at 8% 78%,rgba(1,35,135,.85),transparent 66%),radial-gradient(40% 40% at 50% 110%,rgba(255,106,19,.14),transparent 70%),linear-gradient(170deg,var(--navy-900),var(--navy-950))",
@@ -52,18 +46,7 @@ export function Hero() {
       </div>
 
       <div className="relative z-2 border-y border-white/10 bg-navy-950/50">
-        <div className="mx-auto grid max-w-[1220px] grid-cols-2 md:grid-cols-4">
-          {STATS.map(([n, l], i) => (
-            <div key={l} className={`border-white/10 px-4 py-7.5 md:px-6.5 ${i < 3 ? "md:border-r" : ""} ${i % 2 === 0 ? "border-r" : ""} max-[560px]:border-r-0 max-[560px]:border-b`}>
-              <div className="font-display text-[30px] leading-none text-white sm:text-[38px] lg:text-[44px]">
-                {n}
-              </div>
-              <div className="font-mono-adi mt-2.25 text-[9.5px] uppercase tracking-[0.1em] text-white/55 sm:text-[10px]">
-                {l}
-              </div>
-            </div>
-          ))}
-        </div>
+        <StatsCounter />
       </div>
     </section>
   );

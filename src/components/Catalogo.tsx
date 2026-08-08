@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { filtrosServicios, servicios } from "@/data/servicios";
+import { Reveal } from "./Reveal";
 
 const ICONOS: Record<string, React.ReactNode> = {
   cfrp: (
@@ -89,9 +90,11 @@ export function Catalogo() {
         </div>
 
         <div className="grid grid-cols-1 gap-4.5 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((s) => (
-            <article
+          {items.map((s, i) => (
+            <Reveal
               key={s.nombre}
+              index={i}
+              as="article"
               className="group flex flex-col rounded-[4px] border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.015))] px-6 py-6.5 transition-all duration-400 hover:-translate-y-1.25 hover:border-cyan/55 hover:bg-[linear-gradient(160deg,rgba(1,183,222,.11),rgba(255,255,255,.02))]"
             >
               <span className="mb-4 text-cyan">{ICONOS[s.icono]}</span>
@@ -111,7 +114,7 @@ export function Catalogo() {
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
               </a>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>

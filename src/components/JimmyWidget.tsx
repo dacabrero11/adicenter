@@ -18,6 +18,22 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
   const inputRef = useRef<HTMLInputElement>(null);
   // ref, no state: no debe disparar un segundo paso del efecto ni cancelar su propio timeout
   const iniciadoRef = useRef(false);
+  const [pulse, setPulse] = useState(false);
+
+  // pulso de atención periódico cuando el chat está cerrado
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const interval = setInterval(() => {
+      setOpen((isOpen) => {
+        if (!isOpen) {
+          setPulse(true);
+          setTimeout(() => setPulse(false), 950);
+        }
+        return isOpen;
+      });
+    }, 38000);
+    return () => clearInterval(interval);
+  }, []);
 
   useImperativeHandle(ref, () => ({
     abrir: () => setOpen(true),
@@ -61,7 +77,7 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
         aria-label="Preguntarle a Jimmy"
         className={`fixed bottom-5.5 right-5.5 z-90 flex items-center gap-3 rounded-full border border-cyan/40 bg-navy py-2.5 pl-3 pr-5 shadow-[0_18px_44px_-16px_rgba(1,35,135,.95)] transition-all duration-300 hover:-translate-y-0.75 hover:scale-102 hover:shadow-[0_24px_54px_-16px_rgba(1,183,222,.6)] max-[560px]:rounded-full max-[560px]:p-2 ${
           open ? "pointer-events-none scale-90 opacity-0" : ""
-        }`}
+        } ${pulse ? "animate-jimmy-attention" : ""}`}
       >
         <span className="relative h-[46px] w-[46px] flex-none rounded-full shadow-[inset_0_0_0_1px_rgba(255,255,255,.22)] max-[560px]:h-[52px] max-[560px]:w-[52px]">
           <Image src="/images/jimmy-face.png" alt="" fill sizes="52px" className="rounded-full object-cover" />

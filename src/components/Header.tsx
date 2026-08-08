@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./Button";
 
 const LINKS = [
@@ -18,6 +18,22 @@ const LINKS = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 30);
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
@@ -36,9 +52,22 @@ export function Header() {
       </div>
 
       <header className="sticky top-0 z-50 border-b border-white/10 bg-navy-900/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-[78px] max-w-[1220px] items-center justify-between gap-4.5 px-6">
+        <div
+          className={`mx-auto flex max-w-[1220px] items-center justify-between gap-4.5 px-6 transition-[height] duration-300 ease-out ${
+            scrolled ? "h-[60px]" : "h-[78px]"
+          }`}
+        >
           <Link href="#top" className="flex min-w-0 flex-1 items-center gap-3 overflow-hidden">
-            <Image src="/images/logo.png" alt="ADICENTER" width={46} height={35} className="w-[46px] h-auto drop-shadow-[0_3px_12px_rgba(1,183,222,0.35)] flex-none" priority />
+            <Image
+              src="/images/logo.png"
+              alt="ADICENTER"
+              width={46}
+              height={35}
+              className={`h-auto flex-none drop-shadow-[0_3px_12px_rgba(1,183,222,0.35)] transition-[width] duration-300 ${
+                scrolled ? "w-[34px]" : "w-[46px]"
+              }`}
+              priority
+            />
             <span className="leading-tight min-w-0 overflow-hidden">
               <strong className="block font-display text-[19px] md:text-[22px] whitespace-nowrap">
                 ADI<span className="text-cyan">CENTER</span>

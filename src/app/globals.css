@@ -142,6 +142,59 @@ body {
 
 input, select, textarea { font-size: 16px; }
 
+
+/* ============================================================
+   ANIMACIONES DE VIDA DEL SITIO
+   ============================================================ */
+
+/* respiración de la cuadrícula tipo plano */
+@keyframes grid-drift {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 52px 52px, 52px 52px; }
+}
+.blueprint-grid { animation: grid-drift 34s linear infinite; }
+
+@keyframes grid-drift-dark {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 26px 26px, 26px 26px; }
+}
+.blueprint-grid-dark { animation: grid-drift-dark 26s linear infinite; }
+
+/* deriva lenta del mesh de gradientes del hero */
+@keyframes mesh-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-1.5%, 1.5%) scale(1.03); }
+  66% { transform: translate(1.5%, -1%) scale(1.02); }
+}
+.animate-mesh { animation: mesh-drift 22s ease-in-out infinite; }
+
+/* fade + subida para el reveal por scroll */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal-hidden { opacity: 0; transform: translateY(22px); }
+.reveal-shown {
+  animation: fade-up 0.7s cubic-bezier(0.22, 0.85, 0.3, 1) forwards;
+}
+
+/* cross-fade del panel de resultado del selector */
+@keyframes panel-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-panel-fade { animation: panel-fade-in 0.45s cubic-bezier(0.22, 0.85, 0.3, 1); }
+
+/* pulso de atención del lanzador de Jimmy */
+@keyframes jimmy-attention {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  18% { transform: scale(1.09) rotate(-2deg); }
+  36% { transform: scale(0.97) rotate(1deg); }
+  54% { transform: scale(1.05) rotate(-1deg); }
+  72% { transform: scale(1) rotate(0deg); }
+}
+.animate-jimmy-attention { animation: jimmy-attention 0.9s ease-in-out; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

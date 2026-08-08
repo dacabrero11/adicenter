@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { proyectos } from "@/data/proyectos";
 import { Button } from "./Button";
+import { Reveal } from "./Reveal";
 
 export function Proyectos({ onAskJimmy }: { onAskJimmy: () => void }) {
   return (
@@ -25,9 +26,11 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: () => void }) {
           </div>
 
           <div className="grid grid-cols-1 gap-5.5 sm:grid-cols-2 lg:grid-cols-3">
-            {proyectos.map((p) => (
-              <article
+            {proyectos.map((p, i) => (
+              <Reveal
                 key={p.nombre}
+                index={i}
+                as="article"
                 className="group flex flex-col overflow-hidden rounded-[4px] border border-navy/[.14] bg-white transition-all duration-400 hover:-translate-y-1.5 hover:border-cyan/55 hover:shadow-[0_30px_62px_-34px_rgba(1,35,135,.5)]"
               >
                 <div className="relative aspect-[16/10] w-full overflow-hidden">
@@ -59,7 +62,7 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: () => void }) {
                     ))}
                   </div>
                 </div>
-              </article>
+              </Reveal>
             ))}
           </div>
 

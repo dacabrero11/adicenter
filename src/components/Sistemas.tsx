@@ -1,3 +1,5 @@
+import { Reveal } from "./Reveal";
+
 const PILARES = [
   {
     color: "#FF6A13",
@@ -72,9 +74,11 @@ export function Sistemas() {
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-            {PILARES.map((p) => (
-              <article
+            {PILARES.map((p, i) => (
+              <Reveal
                 key={p.titulo}
+                index={i}
+                as="article"
                 className={`group relative overflow-hidden rounded-[4px] border bg-white p-7.5 pb-7 transition-all duration-400 hover:-translate-y-1.5 hover:border-transparent hover:shadow-[0_28px_60px_-34px_rgba(1,35,135,.55)] ${
                   p.destacado ? "border-hivis/40 shadow-[0_18px_44px_-30px_rgba(255,106,19,.55)]" : "border-navy/[.14]"
                 }`}
@@ -101,7 +105,7 @@ export function Sistemas() {
                     </li>
                   ))}
                 </ul>
-              </article>
+              </Reveal>
             ))}
           </div>
         </div>

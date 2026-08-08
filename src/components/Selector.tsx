@@ -84,7 +84,7 @@ export function Selector() {
                 className="absolute inset-0"
                 style={{ background: "radial-gradient(70% 60% at 90% 0%,rgba(1,183,222,.22),transparent 65%)" }}
               />
-              <div className="relative z-2">
+              <div key={s.key} className="animate-panel-fade relative z-2">
                 <div className="mb-4.5 flex items-center gap-3.25">
                   <Image
                     src="/images/jimmy-face.png"

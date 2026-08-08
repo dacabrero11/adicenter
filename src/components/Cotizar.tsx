@@ -71,7 +71,7 @@ export function Cotizar() {
               </label>
               <textarea
                 placeholder="Ej. Bodega de 1,200 m² con lámina filtrando en los traslapes desde la temporada pasada…"
-                className="min-h-[96px] w-full resize-y rounded-[4px] border border-white/12 bg-black/28 px-3.5 py-3.25 transition-colors focus:border-cyan focus:bg-cyan/7 focus:outline-none"
+                className="min-h-[96px] w-full resize-y rounded-[4px] border border-white/12 bg-black/28 px-3.5 py-3.25 transition-all focus:border-cyan focus:bg-cyan/7 focus:outline-none focus:shadow-[0_0_0_4px_rgba(1,183,222,.22)]"
               />
             </div>
             <button
@@ -96,7 +96,7 @@ function Field({ label, ...props }: { label: string } & React.InputHTMLAttribute
       <label className="font-mono-adi mb-2 block text-[10px] uppercase tracking-[0.15em] text-white/50">{label}</label>
       <input
         {...props}
-        className="w-full rounded-[4px] border border-white/12 bg-black/28 px-3.5 py-3.25 transition-colors focus:border-cyan focus:bg-cyan/7 focus:outline-none"
+        className="w-full rounded-[4px] border border-white/12 bg-black/28 px-3.5 py-3.25 transition-all focus:border-cyan focus:bg-cyan/7 focus:outline-none focus:shadow-[0_0_0_4px_rgba(1,183,222,.22)]"
       />
     </div>
   );
@@ -106,7 +106,7 @@ function SelectField({ label, options }: { label: string; options: string[] }) {
   return (
     <div>
       <label className="font-mono-adi mb-2 block text-[10px] uppercase tracking-[0.15em] text-white/50">{label}</label>
-      <select className="w-full rounded-[4px] border border-white/12 bg-black/28 px-3.5 py-3.25 transition-colors focus:border-cyan focus:bg-cyan/7 focus:outline-none">
+      <select className="w-full rounded-[4px] border border-white/12 bg-black/28 px-3.5 py-3.25 transition-all focus:border-cyan focus:bg-cyan/7 focus:outline-none focus:shadow-[0_0_0_4px_rgba(1,183,222,.22)]">
         {options.map((o) => (
           <option key={o} className="bg-navy-900">
             {o}
