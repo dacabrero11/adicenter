@@ -8,6 +8,7 @@ import { Sistemas } from "@/components/Sistemas";
 import { JimmySection } from "@/components/JimmySection";
 import { Catalogo } from "@/components/Catalogo";
 import { Selector } from "@/components/Selector";
+import { Tecnologias } from "@/components/Tecnologias";
 import { ProgramaObra } from "@/components/ProgramaObra";
 import { FieldBand } from "@/components/FieldBand";
 import { Proyectos } from "@/components/Proyectos";
@@ -30,6 +31,7 @@ export default function Home() {
       <JimmySection onAskJimmy={abrirJimmy} />
       <Catalogo />
       <Selector />
+      <Tecnologias />
       <ProgramaObra />
       <FieldBand />
       <Proyectos onAskJimmy={abrirJimmy} />

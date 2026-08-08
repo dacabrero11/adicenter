@@ -118,7 +118,7 @@ export function Selector() {
                     [s.tiempo, "Tiempo de obra"],
                   ].map(([v, l]) => (
                     <div key={l}>
-                      <div className="font-display text-[22px] leading-none text-hivis-soft sm:text-[26px]">{v}</div>
+                      <div className="font-display text-[22px] leading-none text-white sm:text-[26px]">{v}</div>
                       <div className="font-mono-adi mt-1.5 text-[9.5px] uppercase tracking-[0.14em] text-white/50">{l}</div>
                     </div>
                   ))}
