@@ -41,20 +41,6 @@ const PILARES = [
     ],
     destacado: false,
   },
-  {
-    color: "#0A2461",
-    idx: "04 — Línea D",
-    titulo: "Aditivos para concreto",
-    texto:
-      "Aditivos que corrigen el comportamiento de la mezcla desde la planta: impermeabilización integral por cristalización y control de trabajabilidad.",
-    specs: [
-      ["Formato", "Líquido"],
-      ["Función", "Impermeabilizante + plastificante"],
-      ["Aplicación", "Dosificación en planta"],
-      ["Origen", "Velosit® Alemania"],
-    ],
-    destacado: false,
-  },
 ] as const;
 
 export function Sistemas() {
@@ -68,7 +54,7 @@ export function Sistemas() {
       <section id="sistemas" className="py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
           <div className="mb-14 max-w-[760px]">
-            <span className="eyebrow on-light">Cuatro líneas · un solo criterio técnico</span>
+            <span className="eyebrow on-light">Tres líneas · un solo criterio técnico</span>
             <h2 className="font-display mt-4.5 text-[30px] text-ink sm:text-[40px] lg:text-[54px]">
               No vendemos
               <br />
@@ -85,7 +71,7 @@ export function Sistemas() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {PILARES.map((p) => (
               <article
                 key={p.titulo}
@@ -107,7 +93,7 @@ export function Sistemas() {
                 </span>
                 <h3 className="font-display mt-4 mb-3 text-[20px] text-ink sm:text-[23px]">{p.titulo}</h3>
                 <p className="max-w-[62ch] text-[15px] text-ink-soft">{p.texto}</p>
-                <ul className="mt-5.5 grid grid-cols-1 gap-x-6 border-t border-navy/[.14] pt-4 sm:grid-cols-2">
+                <ul className="mt-5.5 grid grid-cols-1 gap-x-6 border-t border-navy/[.14] pt-4">
                   {p.specs.map(([k, v]) => (
                     <li key={k} className="font-mono-adi flex justify-between gap-3.5 py-2 text-[11px] uppercase tracking-[0.05em] text-ink-soft">
                       <span className="flex-none">{k}</span>

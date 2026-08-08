@@ -40,6 +40,28 @@ npm run start
 `npm run build` debe pasar sin errores antes de cualquier push (regla
 estándar de BLITZ).
 
+## Actualización — servicios reales, proyectos reales, énfasis en Reparación
+
+Segunda ronda de cambios, a partir de 3 presentaciones PPT que Jaime compartió
+(AdiCenter_2026_Testimonial, AdiCenter-1, CFRP__2026):
+
+- **"Catálogo Técnico" ahora muestra servicios, no productos.** 8 servicios reales
+  (`src/data/servicios.ts`): CFRP, grouting, inyección epóxica, impermeabilización de
+  losas/tanques/muros, sello de juntas, pisos.
+- **"Tres líneas" volvió a 3 pilares** — se quitó "Aditivos para concreto" de
+  `Sistemas.tsx`; Reparación y Reforzamiento sigue destacada como pilar 01.
+- **Sección Proyectos con fotos reales de obra**, extraídas de los PPT y optimizadas en
+  `public/images/proyectos/`. Nombres genéricos en proyectos privados por pedido
+  explícito de Jaime (a los dueños no les gusta que se sepa que su edificio necesitó
+  refuerzo — afecta el alquiler). Se mantuvo el nombre real solo en proyectos públicos
+  con valor de vitrina (Aeropuerto Internacional Palmerola).
+- **El corte transversal del hero se agrandó** — la columna del diagrama pasó de
+  `.94fr` a `1.14fr`–`1.2fr` según el ancho de pantalla.
+
+Quedan sin usar en el código: `productos.ts` (catálogo Sika/Velosit de la ronda
+anterior) — no se borró por si se quiere volver a usar como página de catálogo técnico
+aparte del listado de servicios.
+
 ## Actualización — catálogo con marcas reales (Sika® + Velosit®)
 
 Por indicación directa de Jaime Cabrero (dueño de ADICENTER), el catálogo dejó de usar

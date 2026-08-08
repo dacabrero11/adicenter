@@ -1,98 +1,116 @@
 export type Proyecto = {
   tag: string;
-  tagVariant: "default" | "ba"; // ba = antes/después (naranja)
-  placeholderLabel: string;
+  tagVariant: "default" | "ba";
   ubicacion: string;
   nombre: string;
   descripcion: string;
   stats: [string, string][];
-  /** Ruta de la foto real cuando exista. Si es null, se muestra el placeholder. */
-  imagen: string | null;
+  imagen: string;
 };
 
 export const proyectos: Proyecto[] = [
   {
+    tag: "Refuerzo estructural",
+    tagVariant: "default",
+    ubicacion: "Tegucigalpa, F.M.",
+    nombre: "Torre de Oficinas",
+    descripcion:
+      "Encapsulado de columnas con sistema SikaWrap® de fibra de carbono, para aumento de carga y actualización sísmica sin demoler.",
+    stats: [
+      ["21", "columnas reforzadas"],
+      ["2", "capas de fibra"],
+    ],
+    imagen: "/images/proyectos/torre-oficinas.jpg",
+  },
+  {
+    tag: "Refuerzo estructural",
+    tagVariant: "default",
+    ubicacion: "Zona industrial",
+    nombre: "Planta Industrial",
+    descripcion:
+      "Refuerzo con platinas SikaCarbodur® en el piso de una planta de tratamiento de agua, por insuficiencia de sección original.",
+    stats: [
+      ["196", "ml de platina"],
+      ["S502", "línea SikaCarbodur®"],
+    ],
+    imagen: "/images/proyectos/planta-industrial.jpg",
+  },
+  {
+    tag: "Refuerzo estructural",
+    tagVariant: "default",
+    ubicacion: "Comayagua",
+    nombre: "Aeropuerto Internacional Palmerola",
+    descripcion:
+      "Refuerzo estructural con platinas SikaCarbodur® S502 en losas de concreto, como parte de la actualización de cargas del proyecto.",
+    stats: [
+      ["252", "ml de platina"],
+      ["S502", "línea SikaCarbodur®"],
+    ],
+    imagen: "/images/proyectos/aeropuerto-palmerola.jpg",
+  },
+  {
+    tag: "Refuerzo estructural",
+    tagVariant: "default",
+    ubicacion: "Villanueva / Santa Marta, Cortés",
+    nombre: "Subestación Eléctrica",
+    descripcion:
+      "Refuerzo estructural en dos plantas eléctricas de la misma constructora, con evaluación previa y modelo de carga en sitio.",
+    stats: [
+      ["2", "plantas reforzadas"],
+      ["CFRP", "sistema aplicado"],
+    ],
+    imagen: "/images/proyectos/subestacion-electrica.jpg",
+  },
+  {
+    tag: "Grouting",
+    tagVariant: "default",
+    ubicacion: "Tegucigalpa, F.M.",
+    nombre: "Torre Corporativa",
+    descripcion:
+      "Grouting cementicio en placas base y refuerzo con fibra de carbono en columnas de niveles superiores.",
+    stats: [
+      ["2", "servicios combinados"],
+      ["Cementicio", "grout sin contracción"],
+    ],
+    imagen: "/images/proyectos/torre-corporativa.jpg",
+  },
+  {
     tag: "Antes / Después",
     tagVariant: "ba",
-    placeholderLabel: "Cubierta metálica",
-    ubicacion: "Villanueva, Cortés · 2025",
-    nombre: "Nave industrial",
+    ubicacion: "San Pedro Sula, Cortés",
+    nombre: "Centro Comercial",
     descripcion:
-      "Impermeabilización de cubierta metálica con VELOSIT® WP 120 flexible y sello de traslapes, sin paro de producción.",
+      "Impermeabilización de losa de techo con sistema acrílico reflectivo, sobre un área expuesta a lluvia directa todo el año.",
     stats: [
-      ["9,400", "m² intervenidos"],
-      ["14", "días de obra"],
+      ["Acrílico", "sistema aplicado"],
+      ["Techo", "losa expuesta"],
     ],
-    imagen: null,
-  },
-  {
-    tag: "Piso epóxico",
-    tagVariant: "default",
-    placeholderLabel: "Piso terminado",
-    ubicacion: "Tegucigalpa, F.M. · 2025",
-    nombre: "Centro de distribución",
-    descripcion:
-      "Piso epóxico Sikadur® grado industrial, con demarcación de rutas y zonas de carga.",
-    stats: [
-      ["3,100", "m² intervenidos"],
-      ["11", "días de obra"],
-    ],
-    imagen: null,
-  },
-  {
-    tag: "Aditivos",
-    tagVariant: "default",
-    placeholderLabel: "Colado en sitio",
-    ubicacion: "San Pedro Sula, Cortés · 2024",
-    nombre: "Torre residencial",
-    descripcion:
-      "Aditivo cristalino VELOSIT® y control de fisuración en colados masivos de fundación, con dosificación en planta.",
-    stats: [
-      ["640", "m³ de concreto"],
-      ["6", "colados"],
-    ],
-    imagen: null,
-  },
-  {
-    tag: "Agua potable",
-    tagVariant: "default",
-    placeholderLabel: "Interior de cisterna",
-    ubicacion: "Comayagua · 2024",
-    nombre: "Cisterna municipal",
-    descripcion:
-      "Recubrimiento cementicio VELOSIT® WP 101 apto para contacto con agua potable, con sellado de pasamuros y prueba de estanqueidad de 72 horas.",
-    stats: [
-      ["780", "m² intervenidos"],
-      ["0", "filtraciones"],
-    ],
-    imagen: null,
+    imagen: "/images/proyectos/centro-comercial.jpg",
   },
   {
     tag: "Antes / Después",
     tagVariant: "ba",
-    placeholderLabel: "Losa expuesta",
-    ubicacion: "La Ceiba, Atlántida · 2023",
-    nombre: "Bodega refrigerada",
+    ubicacion: "Tegucigalpa, F.M.",
+    nombre: "Cisterna Municipal",
     descripcion:
-      "Losa con humedad recurrente: corrección de pendientes y sello cristalino VELOSIT® CW 111 con refuerzo perimetral y en bajantes.",
+      "Impermeabilización de cisterna con SikaTop® Seal 107, cementicio apto para contacto con agua potable.",
     stats: [
-      ["2,200", "m² intervenidos"],
-      ["3", "años sin reporte"],
+      ["SikaTop® Seal 107", "producto aplicado"],
+      ["Agua potable", "uso certificado"],
     ],
-    imagen: null,
+    imagen: "/images/proyectos/cisterna-municipal.jpg",
   },
   {
-    tag: "Grado alimenticio",
+    tag: "Pisos",
     tagVariant: "default",
-    placeholderLabel: "Área de proceso",
-    ubicacion: "Choloma, Cortés · 2023",
-    nombre: "Planta de alimentos",
+    ubicacion: "San Pedro Sula, Cortés",
+    nombre: "Piso Industrial",
     descripcion:
-      "Sistema epóxico grado alimenticio con media caña sanitaria en encuentros, resistente a lavado a presión y a químicos de limpieza.",
+      "Recubrimiento epóxico de piso para planta de producción, aplicado sobre concreto preparado mecánicamente.",
     stats: [
-      ["1,450", "m² intervenidos"],
-      ["72 h", "puesta en servicio"],
+      ["Epóxico", "sistema aplicado"],
+      ["Planta", "uso industrial"],
     ],
-    imagen: null,
+    imagen: "/images/proyectos/piso-industrial.jpg",
   },
 ];

@@ -22,7 +22,7 @@ export function Hero() {
         <div className="blueprint-grid absolute inset-0" />
       </div>
 
-      <div className="relative z-2 mx-auto grid max-w-[1220px] grid-cols-1 items-center gap-14 px-6 pb-14 lg:grid-cols-[1.06fr_.94fr]">
+      <div className="relative z-2 mx-auto grid max-w-[1220px] grid-cols-1 items-center gap-14 px-6 pb-14 lg:grid-cols-[.86fr_1.14fr] xl:grid-cols-[.8fr_1.2fr]">
         <div>
           <span className="eyebrow">Centro de aditivos, epóxicos e impermeabilizantes · Honduras</span>
           <h1 className="font-display mt-5.5 text-[38px] leading-[0.92] sm:text-[52px] lg:text-[72px] xl:text-[80px]">
