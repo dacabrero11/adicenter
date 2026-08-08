@@ -18,26 +18,33 @@ export function Hero() {
 
       <div className="relative z-2 mx-auto grid max-w-[1220px] grid-cols-1 items-center gap-14 px-6 pb-14 lg:grid-cols-[.86fr_1.14fr] xl:grid-cols-[.8fr_1.2fr]">
         <div>
-          <span className="eyebrow">Centro de aditivos, epóxicos e impermeabilizantes · Honduras</span>
+          <span className="eyebrow hero-line" style={{ animationDelay: "0.05s" }}>Centro de aditivos, epóxicos e impermeabilizantes · Honduras</span>
           <h1 className="font-display mt-5.5 text-[38px] leading-[0.92] sm:text-[52px] lg:text-[72px] xl:text-[80px]">
-            El concreto
+            <span className="hero-line" style={{ animationDelay: "0.15s" }}>
+              El concreto
+            </span>
             <br />
-            <span className="text-cyan">no falla solo.</span>
+            <span className="hero-line text-cyan" style={{ animationDelay: "0.35s" }}>
+              no falla solo.
+            </span>
             <br />
-            <span className="text-transparent [-webkit-text-stroke:1.4px_rgba(255,255,255,.45)]">
+            <span
+              className="hero-line stroke-live text-transparent [-webkit-text-stroke:1.4px_rgba(255,255,255,.32)]"
+              style={{ animationDelay: "0.55s" }}
+            >
               Falla sin sistema.
             </span>
           </h1>
-          <p className="mt-6 max-w-[53ch] text-base text-white/74 sm:text-[18.5px]">
+          <p className="hero-line mt-6 max-w-[53ch] text-base text-white/74 sm:text-[18.5px]" style={{ animationDelay: "0.75s" }}>
             Formulamos, suministramos y supervisamos en sitio los sistemas que impermeabilizan
             techos, endurecen pisos industriales y corrigen el concreto antes de que el problema
             cueste una obra completa.
           </p>
-          <div className="mt-9 flex flex-wrap gap-3.5">
+          <div className="hero-line mt-9 flex flex-wrap gap-3.5" style={{ animationDelay: "0.9s" }}>
             <Button href="#cotizar">Cotizar mi proyecto</Button>
             <Button href="#catalogo" variant="ghost">Ver catálogo técnico</Button>
           </div>
-          <div className="font-mono-adi mt-5 flex items-center gap-2.5 text-[11px] uppercase tracking-[0.1em] text-white/50">
+          <div className="hero-line font-mono-adi mt-5 flex items-center gap-2.5 text-[11px] uppercase tracking-[0.1em] text-white/50" style={{ animationDelay: "1.05s" }}>
             <span className="dot-live" /> Respuesta a cotizaciones en menos de 2 horas hábiles
           </div>
         </div>

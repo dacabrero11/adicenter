@@ -63,14 +63,15 @@ export function Header() {
               alt="ADICENTER"
               width={46}
               height={35}
-              className={`h-auto flex-none drop-shadow-[0_3px_12px_rgba(1,183,222,0.35)] transition-[width] duration-300 ${
+              className={`logo-live h-auto flex-none transition-[width] duration-300 ${
                 scrolled ? "w-[34px]" : "w-[46px]"
               }`}
               priority
             />
             <span className="leading-tight min-w-0 overflow-hidden">
-              <strong className="block font-display text-[19px] md:text-[22px] whitespace-nowrap">
+              <strong className="relative block font-display text-[19px] md:text-[22px] whitespace-nowrap">
                 ADI<span className="text-cyan">CENTER</span>
+                <span className="wordmark-shine" aria-hidden="true">ADICENTER</span>
               </strong>
               <small className="block font-mono-adi text-[7.6px] md:text-[8.5px] tracking-[0.13em] uppercase text-white/50 whitespace-normal md:whitespace-nowrap leading-snug">
                 Aditivos · Epóxicos · Impermeabilizantes

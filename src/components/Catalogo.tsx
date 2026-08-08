@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { filtrosServicios, servicios } from "@/data/servicios";
 import { Reveal } from "./Reveal";
+import { SectionBg } from "./SectionBg";
 
 const ICONOS: Record<string, React.ReactNode> = {
   cfrp: (
@@ -57,8 +58,8 @@ export function Catalogo() {
   );
 
   return (
-    <section id="catalogo" className="relative overflow-hidden bg-navy-900 py-19 lg:py-30">
-      <div className="blueprint-grid absolute inset-0" style={{ opacity: 0.6 }} />
+    <section id="catalogo" className="relative overflow-hidden py-19 lg:py-30">
+      <SectionBg tone="dark" />
       <div className="relative z-2 mx-auto max-w-[1220px] px-6">
         <div className="mb-14 max-w-[760px]">
           <span className="eyebrow">Catálogo de servicios</span>
@@ -95,7 +96,7 @@ export function Catalogo() {
               key={s.nombre}
               index={i}
               as="article"
-              className="group flex flex-col rounded-[4px] border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.015))] px-6 py-6.5 transition-all duration-400 hover:-translate-y-1.25 hover:border-cyan/55 hover:bg-[linear-gradient(160deg,rgba(1,183,222,.11),rgba(255,255,255,.02))]"
+              className="card-live border-breathe group flex flex-col rounded-[4px] border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.015))] px-6 py-6.5 transition-all duration-400 hover:-translate-y-1.25 hover:border-cyan/55 hover:bg-[linear-gradient(160deg,rgba(1,183,222,.11),rgba(255,255,255,.02))]"
             >
               <span className="mb-4 text-cyan">{ICONOS[s.icono]}</span>
               <h4 className="font-display mb-2 text-[19px] tracking-[-0.01em]">{s.nombre}</h4>

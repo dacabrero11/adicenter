@@ -57,7 +57,24 @@ function StatItem({ s, active, i }: { s: Stat; active: boolean; i: number }) {
 
 export function StatsCounter() {
   const ref = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // el conteo solo arranca cuando el usuario efectivamente hizo scroll
+  useEffect(() => {
+    if (window.scrollY > 10) {
+      setScrolled(true);
+      return;
+    }
+    function onScroll() {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+        window.removeEventListener("scroll", onScroll);
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
@@ -66,7 +83,7 @@ export function StatsCounter() {
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            setActive(true);
+            setVisible(true);
             io.unobserve(el);
           }
         });
@@ -76,6 +93,8 @@ export function StatsCounter() {
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+  const active = visible && scrolled;
 
   return (
     <div ref={ref} className="mx-auto grid max-w-[1220px] grid-cols-2 md:grid-cols-4">

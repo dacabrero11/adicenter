@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { opcionesSuperficie, sistemas, type SistemaKey } from "@/data/sistemas";
 import { Button } from "./Button";
+import { SectionBg } from "./SectionBg";
 
 const ICONOS: Record<SistemaKey, React.ReactNode> = {
   reparacion: (
@@ -39,8 +40,9 @@ export function Selector() {
   const s = sistemas[sel];
 
   return (
-    <div className="bg-paper text-ink">
-      <section id="selector" className="py-19 lg:py-30">
+    <div className="relative text-ink">
+      <SectionBg tone="light" />
+      <section id="selector" className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
           <div className="mb-14 max-w-[760px]">
             <span className="eyebrow on-light">Selector de sistema</span>
@@ -63,10 +65,10 @@ export function Selector() {
                   <button
                     key={o.key}
                     onClick={() => setSel(o.key)}
-                    className={`rounded-[4px] border p-5.5 text-left transition-all duration-300 hover:-translate-y-0.75 ${
+                    className={`card-live relative rounded-[4px] border p-5.5 text-left transition-all duration-300 hover:-translate-y-0.75 ${
                       on
                         ? "border-navy bg-navy text-white shadow-[0_20px_44px_-24px_rgba(1,35,135,.8)]"
-                        : "border-navy/[.14] bg-white hover:border-cyan"
+                        : "card-live-light border-navy/[.14] bg-white/85 backdrop-blur-sm hover:border-cyan"
                     }`}
                   >
                     <span className="mb-3.5 block text-cyan">{ICONOS[o.key]}</span>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Button } from "./Button";
+import { SectionBg } from "./SectionBg";
 
 const HACE = [
   {
@@ -38,12 +39,8 @@ const HACE = [
 
 export function JimmySection({ onAskJimmy }: { onAskJimmy: () => void }) {
   return (
-    <section id="jimmy" className="relative overflow-hidden bg-[linear-gradient(155deg,#DCEEFB_0%,#F4F7FB_46%,#E4EFF9_100%)] text-ink">
-      <div className="blueprint-grid-dark absolute inset-0" style={{ opacity: 0.9 }} />
-      <div
-        className="absolute -left-[8%] -bottom-[42%] aspect-square w-[52%] rounded-full"
-        style={{ background: "radial-gradient(circle,rgba(1,183,222,.28),transparent 66%)" }}
-      />
+    <section id="jimmy" className="relative overflow-hidden text-ink">
+      <SectionBg tone="light" />
 
       <div className="relative z-2 mx-auto grid max-w-[1220px] grid-cols-1 items-center gap-12 px-6 py-19 lg:grid-cols-[.82fr_1.18fr] lg:py-24">
         <div className="flex flex-col items-center">
@@ -79,7 +76,7 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: () => void }) {
 
           <div className="mt-8 grid grid-cols-1 gap-px border border-navy/[.14] bg-navy/[.14] sm:grid-cols-3">
             {HACE.map((h) => (
-              <div key={h.titulo} className="bg-white px-5 py-5.5">
+              <div key={h.titulo} className="card-live card-live-light relative bg-white px-5 py-5.5">
                 <span className="mb-3.5 block text-cyan">{h.icon}</span>
                 <strong className="font-display block text-[14px] text-ink">{h.titulo}</strong>
                 <small className="mt-2 block text-[13px] leading-relaxed text-ink-soft">{h.texto}</small>

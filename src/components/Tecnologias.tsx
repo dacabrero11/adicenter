@@ -1,9 +1,12 @@
 import { tecnologias } from "@/data/tecnologias";
+import { Reveal } from "./Reveal";
+import { SectionBg } from "./SectionBg";
 
 export function Tecnologias() {
   return (
-    <div className="bg-paper text-ink">
-      <section className="py-19 lg:py-30">
+    <div className="relative text-ink">
+      <SectionBg tone="light" />
+      <section className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
           <div className="mb-14 max-w-[760px]">
             <span className="eyebrow on-light">Cinco formas de impermeabilizar</span>
@@ -19,10 +22,12 @@ export function Tecnologias() {
           </div>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {tecnologias.map((t) => (
-              <article
+            {tecnologias.map((t, i) => (
+              <Reveal
                 key={t.nombre}
-                className="group flex flex-col rounded-[4px] border border-navy/[.14] bg-white p-6.5 transition-all duration-400 hover:-translate-y-1.5 hover:border-cyan/55 hover:shadow-[0_28px_60px_-34px_rgba(1,35,135,.5)]"
+                index={i}
+                as="article"
+                className="card-live card-live-light group flex flex-col rounded-[4px] border border-navy/[.14] bg-white/85 p-6.5 backdrop-blur-sm transition-all duration-400 hover:-translate-y-1.5 hover:border-cyan/55 hover:shadow-[0_28px_60px_-34px_rgba(1,35,135,.5)]"
               >
                 <span className="font-mono-adi self-start rounded-full bg-navy/[.06] px-3 py-1.25 text-[9.5px] uppercase tracking-[0.14em] text-navy-500">
                   {t.etiqueta}
@@ -38,7 +43,7 @@ export function Tecnologias() {
                     {t.referencia}
                   </div>
                 </div>
-              </article>
+              </Reveal>
             ))}
           </div>
         </div>

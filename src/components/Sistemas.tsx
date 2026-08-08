@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal";
+import { SectionBg } from "./SectionBg";
 
 const PILARES = [
   {
@@ -47,13 +48,14 @@ const PILARES = [
 
 export function Sistemas() {
   return (
-    <div className="bg-paper text-ink relative">
-      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" className="-mb-1.5 block w-full">
-        <path d="M0 90 L0 46 C 200 -8, 420 78, 700 40 C 960 6, 1180 74, 1440 30 L1440 90 Z" fill="var(--paper)" />
+    <div className="relative text-ink">
+      <SectionBg tone="light" />
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" className="relative z-2 -mb-1.5 block w-full">
+        <path d="M0 90 L0 46 C 200 -8, 420 78, 700 40 C 960 6, 1180 74, 1440 30 L1440 90 Z" fill="#EEF4FB" />
         <path d="M0 46 C 200 -8, 420 78, 700 40 C 960 6, 1180 74, 1440 30" stroke="var(--cyan)" strokeWidth={2} fill="none" opacity={0.55} />
       </svg>
 
-      <section id="sistemas" className="py-19 lg:py-30">
+      <section id="sistemas" className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
           <div className="mb-14 max-w-[760px]">
             <span className="eyebrow on-light">Tres líneas · un solo criterio técnico</span>
@@ -79,7 +81,7 @@ export function Sistemas() {
                 key={p.titulo}
                 index={i}
                 as="article"
-                className={`group relative overflow-hidden rounded-[4px] border bg-white p-7.5 pb-7 transition-all duration-400 hover:-translate-y-1.5 hover:border-transparent hover:shadow-[0_28px_60px_-34px_rgba(1,35,135,.55)] ${
+                className={`card-live card-live-light group relative overflow-hidden rounded-[4px] border bg-white/85 backdrop-blur-sm p-7.5 pb-7 transition-all duration-400 hover:-translate-y-1.5 hover:border-transparent hover:shadow-[0_28px_60px_-34px_rgba(1,35,135,.55)] ${
                   p.destacado ? "border-hivis/40 shadow-[0_18px_44px_-30px_rgba(255,106,19,.55)]" : "border-navy/[.14]"
                 }`}
               >

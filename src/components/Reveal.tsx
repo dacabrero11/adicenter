@@ -19,10 +19,20 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setShown(true);
       return;
     }
+
+    // si el elemento ya está dentro (o por encima de) la ventana al montar,
+    // se muestra de inmediato — evita tarjetas que quedan invisibles para siempre
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.92) {
+      setShown(true);
+      return;
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -32,10 +42,17 @@ export function Reveal({
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" }
     );
     io.observe(el);
-    return () => io.disconnect();
+
+    // red de seguridad: si por cualquier motivo no disparó, se revela igual
+    const fallback = setTimeout(() => setShown(true), 2500);
+
+    return () => {
+      io.disconnect();
+      clearTimeout(fallback);
+    };
   }, []);
 
   const Comp = Tag as "div";
@@ -43,7 +60,7 @@ export function Reveal({
     <Comp
       ref={ref}
       className={`${shown ? "reveal-shown" : "reveal-hidden"} ${className}`}
-      style={{ animationDelay: shown ? `${Math.min(index, 10) * 90}ms` : undefined }}
+      style={{ animationDelay: shown ? `${Math.min(index, 10) * 80}ms` : undefined }}
     >
       {children}
     </Comp>
