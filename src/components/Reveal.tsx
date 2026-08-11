@@ -25,14 +25,9 @@ export function Reveal({
       return;
     }
 
-    // si el elemento ya está dentro (o por encima de) la ventana al montar,
-    // se muestra de inmediato — evita tarjetas que quedan invisibles para siempre
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.92) {
-      setShown(true);
-      return;
-    }
-
+    // el propio IntersectionObserver dispara con el estado actual apenas se
+    // observa — si el elemento ya está en pantalla, entrega isIntersecting:true
+    // de inmediato. No hace falta chequeo manual ni temporizador de respaldo.
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -42,17 +37,14 @@ export function Reveal({
           }
         });
       },
-      { threshold: 0, rootMargin: "0px 0px -8% 0px" }
+      // margen amplio en ambos sentidos: aunque el usuario haga un salto de
+      // scroll grande (PageDown, enlace de ancla), el elemento sigue cayendo
+      // dentro de la zona vigilada y no se queda pegado a "oculto"
+      { threshold: 0, rootMargin: "160px 0px 160px 0px" }
     );
     io.observe(el);
 
-    // red de seguridad: si por cualquier motivo no disparó, se revela igual
-    const fallback = setTimeout(() => setShown(true), 2500);
-
-    return () => {
-      io.disconnect();
-      clearTimeout(fallback);
-    };
+    return () => io.disconnect();
   }, []);
 
   const Comp = Tag as "div";

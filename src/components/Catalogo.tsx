@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { filtrosServicios, servicios } from "@/data/servicios";
 import { Reveal } from "./Reveal";
 import { SectionBg } from "./SectionBg";
+import { InView } from "./InView";
 
 const ICONOS: Record<string, React.ReactNode> = {
   cfrp: (
@@ -58,7 +59,7 @@ export function Catalogo() {
   );
 
   return (
-    <section id="catalogo" className="cv-section relative overflow-hidden py-19 lg:py-30">
+    <InView as="section" id="catalogo" className="cv-section relative overflow-hidden py-19 lg:py-30">
       <SectionBg tone="dark" />
       <div className="relative z-2 mx-auto max-w-[1220px] px-6">
         <div className="mb-14 max-w-[760px]">
@@ -119,6 +120,6 @@ export function Catalogo() {
           ))}
         </div>
       </div>
-    </section>
+    </InView>
   );
 }

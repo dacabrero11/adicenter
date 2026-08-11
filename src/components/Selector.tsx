@@ -5,6 +5,7 @@ import { useState } from "react";
 import { opcionesSuperficie, sistemas, type SistemaKey } from "@/data/sistemas";
 import { Button } from "./Button";
 import { SectionBg } from "./SectionBg";
+import { InView } from "./InView";
 
 const ICONOS: Record<SistemaKey, React.ReactNode> = {
   reparacion: (
@@ -40,7 +41,7 @@ export function Selector() {
   const s = sistemas[sel];
 
   return (
-    <div className="cv-section relative text-ink">
+    <InView className="cv-section relative text-ink">
       <SectionBg tone="light" />
       <section id="selector" className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
@@ -135,6 +136,6 @@ export function Selector() {
           </div>
         </div>
       </section>
-    </div>
+    </InView>
   );
 }

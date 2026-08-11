@@ -1,11 +1,7 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-
 /**
- * Fondo ambiental animado para secciones.
- * Las animaciones (orbes, cuadrícula) se pausan por CSS cuando la sección
- * no está en pantalla — evita gastar GPU/CPU en contenido que no se ve.
+ * Fondo ambiental de una sección. Las animaciones (orbes, cuadrícula) están
+ * pausadas por defecto vía CSS y solo corren cuando un ancestro <InView>
+ * marca data-inview="true" — ver InView.tsx.
  */
 export function SectionBg({
   tone = "light",
@@ -15,30 +11,9 @@ export function SectionBg({
   grid?: boolean;
 }) {
   const isLight = tone === "light";
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => setInView(e.isIntersecting));
-      },
-      { rootMargin: "200px 0px 200px 0px", threshold: 0 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
 
   return (
-    <div
-      ref={ref}
-      data-inview={inView}
-      className="pointer-events-none absolute inset-0 overflow-hidden"
-      aria-hidden="true"
-    >
-      {/* base */}
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       <div
         className="absolute inset-0"
         style={{
@@ -47,8 +22,6 @@ export function SectionBg({
             : "linear-gradient(165deg,var(--navy-900),var(--navy-950))",
         }}
       />
-
-      {/* orbes de luz en deriva (pausados fuera de pantalla) */}
       <div
         className="orb orb-a"
         style={{
@@ -73,7 +46,6 @@ export function SectionBg({
             : "radial-gradient(circle,rgba(1,35,135,.45),rgba(1,35,135,.12) 40%,transparent 62%)",
         }}
       />
-      {/* cuadrícula de plano en deriva (pausada fuera de pantalla) */}
       {grid && <div className={isLight ? "blueprint-grid-dark" : "blueprint-grid"} />}
     </div>
   );

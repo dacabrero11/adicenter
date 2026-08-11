@@ -3,10 +3,11 @@ import { proyectos } from "@/data/proyectos";
 import { Button } from "./Button";
 import { Reveal } from "./Reveal";
 import { SectionBg } from "./SectionBg";
+import { InView } from "./InView";
 
 export function Proyectos({ onAskJimmy }: { onAskJimmy: () => void }) {
   return (
-    <div className="cv-section relative text-ink">
+    <InView className="cv-section relative text-ink">
       <SectionBg tone="light" />
       <section id="proyectos" className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
@@ -82,6 +83,6 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: () => void }) {
           </div>
         </div>
       </section>
-    </div>
+    </InView>
   );
 }

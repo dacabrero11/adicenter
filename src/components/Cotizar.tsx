@@ -4,6 +4,8 @@ const CHECK = (
   </svg>
 );
 
+import { Reveal } from "./Reveal";
+
 export function Cotizar() {
   return (
     <section id="cotizar" className="cv-section relative overflow-hidden bg-navy-900 py-19 lg:py-30">
@@ -30,11 +32,16 @@ export function Cotizar() {
                 "Visita técnica sin costo en proyectos desde 300 m²",
                 "Fichas técnicas y hojas de seguridad de todo lo cotizado",
                 "Despacho a Tegucigalpa, SPS y zona norte en 24–48 h",
-              ].map((t) => (
-                <li key={t} className="flex gap-3.5 border-t border-white/12 py-3.75 text-[15px] text-white/76 first:border-t-0">
+              ].map((t, i) => (
+                <Reveal
+                  key={t}
+                  index={i}
+                  as="li"
+                  className="flex gap-3.5 border-t border-white/12 py-3.75 text-[15px] text-white/76 first:border-t-0"
+                >
                   {CHECK}
                   <span>{t}</span>
-                </li>
+                </Reveal>
               ))}
             </ul>
           </div>

@@ -55,6 +55,8 @@ const BENEFICIOS = [
   },
 ];
 
+import { Reveal } from "./Reveal";
+
 export function ProgramaObra() {
   return (
     <section id="obra" className="cv-section relative overflow-hidden bg-[linear-gradient(150deg,var(--navy),var(--navy-950)_72%)] py-19 lg:py-30">
@@ -82,12 +84,12 @@ export function ProgramaObra() {
           </div>
 
           <div className="grid grid-cols-1 gap-px sm:grid-cols-2">
-            {BENEFICIOS.map((b) => (
-              <div key={b.titulo} className="bg-navy-950 px-6.5 py-7 transition-colors duration-350 hover:bg-navy-800">
+            {BENEFICIOS.map((b, i) => (
+              <Reveal key={b.titulo} index={i} className="bg-navy-950 px-6.5 py-7 transition-colors duration-350 hover:bg-navy-800">
                 <span className="mb-4 block text-hivis">{b.icon}</span>
                 <strong className="font-display block text-[15.5px] tracking-[0.005em]">{b.titulo}</strong>
                 <small className="mt-2.25 block text-[13.5px] leading-relaxed text-white/58">{b.texto}</small>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

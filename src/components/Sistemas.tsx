@@ -1,5 +1,6 @@
 import { Reveal } from "./Reveal";
 import { SectionBg } from "./SectionBg";
+import { InView } from "./InView";
 
 const PILARES = [
   {
@@ -48,7 +49,7 @@ const PILARES = [
 
 export function Sistemas() {
   return (
-    <div className="cv-section relative text-ink">
+    <InView className="cv-section relative text-ink">
       <SectionBg tone="light" />
       <svg viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" className="relative z-2 -mb-1.5 block w-full">
         <path d="M0 90 L0 46 C 200 -8, 420 78, 700 40 C 960 6, 1180 74, 1440 30 L1440 90 Z" fill="#EEF4FB" />
@@ -112,6 +113,6 @@ export function Sistemas() {
           </div>
         </div>
       </section>
-    </div>
+    </InView>
   );
 }

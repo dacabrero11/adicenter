@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button } from "./Button";
 import { SectionBg } from "./SectionBg";
+import { InView } from "./InView";
 
 const HACE = [
   {
@@ -39,7 +40,7 @@ const HACE = [
 
 export function JimmySection({ onAskJimmy }: { onAskJimmy: () => void }) {
   return (
-    <section id="jimmy" className="cv-section relative overflow-hidden text-ink">
+    <InView as="section" id="jimmy" className="cv-section relative overflow-hidden text-ink">
       <SectionBg tone="light" />
 
       <div className="relative z-2 mx-auto grid max-w-[1220px] grid-cols-1 items-center gap-12 px-6 py-19 lg:grid-cols-[.82fr_1.18fr] lg:py-24">
@@ -92,6 +93,6 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: () => void }) {
           </div>
         </div>
       </div>
-    </section>
+    </InView>
   );
 }
