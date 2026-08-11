@@ -198,15 +198,13 @@ input, select, textarea { font-size: 16px; }
 }
 .animate-panel-fade { animation: panel-fade-in 0.45s cubic-bezier(0.22, 0.85, 0.3, 1); }
 
-/* pulso de atención del lanzador de Jimmy */
-@keyframes jimmy-attention {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  18% { transform: scale(1.09) rotate(-2deg); }
-  36% { transform: scale(0.97) rotate(1deg); }
-  54% { transform: scale(1.05) rotate(-1deg); }
-  72% { transform: scale(1) rotate(0deg); }
+/* glow de atención del lanzador de Jimmy — solo luz, sin movimiento */
+@keyframes jimmy-glow {
+  0%, 100% { box-shadow: 0 18px 44px -16px rgba(1, 35, 135, 0.95), 0 0 0 0 rgba(1, 183, 222, 0); }
+  40% { box-shadow: 0 18px 44px -16px rgba(1, 35, 135, 0.95), 0 0 28px 10px rgba(1, 183, 222, 0.55); }
+  100% { box-shadow: 0 18px 44px -16px rgba(1, 35, 135, 0.95), 0 0 0 0 rgba(1, 183, 222, 0); }
 }
-.animate-jimmy-attention { animation: jimmy-attention 0.9s ease-in-out; }
+.animate-jimmy-attention { animation: jimmy-glow 1.8s ease-in-out; }
 
 
 /* ============================================================
