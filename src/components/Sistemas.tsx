@@ -48,7 +48,7 @@ const PILARES = [
 
 export function Sistemas() {
   return (
-    <div className="relative text-ink">
+    <div className="cv-section relative text-ink">
       <SectionBg tone="light" />
       <svg viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" className="relative z-2 -mb-1.5 block w-full">
         <path d="M0 90 L0 46 C 200 -8, 420 78, 700 40 C 960 6, 1180 74, 1440 30 L1440 90 Z" fill="#EEF4FB" />
@@ -81,7 +81,7 @@ export function Sistemas() {
                 key={p.titulo}
                 index={i}
                 as="article"
-                className={`card-live card-live-light group relative overflow-hidden rounded-[4px] border bg-white/85 backdrop-blur-sm p-7.5 pb-7 transition-all duration-400 hover:-translate-y-1.5 hover:border-transparent hover:shadow-[0_28px_60px_-34px_rgba(1,35,135,.55)] ${
+                className={`card-live card-live-light group relative overflow-hidden rounded-[4px] border bg-white p-7.5 pb-7 transition-all duration-400 hover:-translate-y-1.5 hover:border-transparent hover:shadow-[0_28px_60px_-34px_rgba(1,35,135,.55)] ${
                   p.destacado ? "border-hivis/40 shadow-[0_18px_44px_-30px_rgba(255,106,19,.55)]" : "border-navy/[.14]"
                 }`}
               >

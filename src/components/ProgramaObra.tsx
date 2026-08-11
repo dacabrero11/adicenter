@@ -57,7 +57,7 @@ const BENEFICIOS = [
 
 export function ProgramaObra() {
   return (
-    <section id="obra" className="relative overflow-hidden bg-[linear-gradient(150deg,var(--navy),var(--navy-950)_72%)] py-19 lg:py-30">
+    <section id="obra" className="cv-section relative overflow-hidden bg-[linear-gradient(150deg,var(--navy),var(--navy-950)_72%)] py-19 lg:py-30">
       <div
         className="absolute inset-0 opacity-35"
         style={{ background: "repeating-linear-gradient(115deg,transparent 0 26px,rgba(1,183,222,.055) 26px 27px)" }}

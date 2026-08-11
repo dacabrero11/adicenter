@@ -1,6 +1,11 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 /**
  * Fondo ambiental animado para secciones.
- * `tone` define la paleta: claro (secciones paper) u oscuro (secciones navy).
+ * Las animaciones (orbes, cuadrícula) se pausan por CSS cuando la sección
+ * no está en pantalla — evita gastar GPU/CPU en contenido que no se ve.
  */
 export function SectionBg({
   tone = "light",
@@ -10,9 +15,29 @@ export function SectionBg({
   grid?: boolean;
 }) {
   const isLight = tone === "light";
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => setInView(e.isIntersecting));
+      },
+      { rootMargin: "200px 0px 200px 0px", threshold: 0 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div
+      ref={ref}
+      data-inview={inView}
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+      aria-hidden="true"
+    >
       {/* base */}
       <div
         className="absolute inset-0"
@@ -23,18 +48,17 @@ export function SectionBg({
         }}
       />
 
-      {/* orbes de luz en deriva */}
+      {/* orbes de luz en deriva (pausados fuera de pantalla) */}
       <div
         className="orb orb-a"
         style={{
           top: "-14%",
           left: "-8%",
-          width: "46%",
+          width: "52%",
           aspectRatio: "1",
-          filter: "blur(80px)",
           background: isLight
-            ? "radial-gradient(circle,rgba(1,183,222,.24),transparent 68%)"
-            : "radial-gradient(circle,rgba(1,183,222,.20),transparent 68%)",
+            ? "radial-gradient(circle,rgba(1,183,222,.20),rgba(1,183,222,.06) 40%,transparent 62%)"
+            : "radial-gradient(circle,rgba(1,183,222,.17),rgba(1,183,222,.05) 40%,transparent 62%)",
         }}
       />
       <div
@@ -42,32 +66,15 @@ export function SectionBg({
         style={{
           bottom: "-20%",
           right: "-10%",
-          width: "52%",
+          width: "58%",
           aspectRatio: "1",
-          filter: "blur(90px)",
           background: isLight
-            ? "radial-gradient(circle,rgba(1,35,135,.16),transparent 66%)"
-            : "radial-gradient(circle,rgba(1,35,135,.55),transparent 66%)",
+            ? "radial-gradient(circle,rgba(1,35,135,.13),rgba(1,35,135,.04) 40%,transparent 62%)"
+            : "radial-gradient(circle,rgba(1,35,135,.45),rgba(1,35,135,.12) 40%,transparent 62%)",
         }}
       />
-      <div
-        className="orb orb-c"
-        style={{
-          top: "38%",
-          right: "22%",
-          width: "30%",
-          aspectRatio: "1",
-          filter: "blur(75px)",
-          background: isLight
-            ? "radial-gradient(circle,rgba(255,106,19,.09),transparent 70%)"
-            : "radial-gradient(circle,rgba(255,106,19,.13),transparent 70%)",
-        }}
-      />
-
-      {/* cuadrícula de plano en deriva */}
-      {grid && (
-        <div className={`absolute inset-0 ${isLight ? "blueprint-grid-dark" : "blueprint-grid"}`} />
-      )}
+      {/* cuadrícula de plano en deriva (pausada fuera de pantalla) */}
+      {grid && <div className={isLight ? "blueprint-grid-dark" : "blueprint-grid"} />}
     </div>
   );
 }

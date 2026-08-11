@@ -83,7 +83,7 @@ export function Proceso() {
   }, []);
 
   return (
-    <div className="relative text-ink">
+    <div className="cv-section relative text-ink">
       <SectionBg tone="light" />
       <section id="proceso" className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">

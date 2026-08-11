@@ -6,7 +6,7 @@ import { SectionBg } from "./SectionBg";
 
 export function Proyectos({ onAskJimmy }: { onAskJimmy: () => void }) {
   return (
-    <div className="relative text-ink">
+    <div className="cv-section relative text-ink">
       <SectionBg tone="light" />
       <section id="proyectos" className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
@@ -33,7 +33,7 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: () => void }) {
                 key={p.nombre}
                 index={i}
                 as="article"
-                className="card-live card-live-light group flex flex-col overflow-hidden rounded-[4px] border border-navy/[.14] bg-white/90 backdrop-blur-sm transition-all duration-400 hover:-translate-y-1.5 hover:border-cyan/55 hover:shadow-[0_30px_62px_-34px_rgba(1,35,135,.5)]"
+                className="card-live card-live-light group flex flex-col overflow-hidden rounded-[4px] border border-navy/[.14] bg-white transition-all duration-400 hover:-translate-y-1.5 hover:border-cyan/55 hover:shadow-[0_30px_62px_-34px_rgba(1,35,135,.5)]"
               >
                 <div className="relative aspect-[16/10] w-full overflow-hidden">
                   <Image

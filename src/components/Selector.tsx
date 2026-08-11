@@ -40,7 +40,7 @@ export function Selector() {
   const s = sistemas[sel];
 
   return (
-    <div className="relative text-ink">
+    <div className="cv-section relative text-ink">
       <SectionBg tone="light" />
       <section id="selector" className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
@@ -68,7 +68,7 @@ export function Selector() {
                     className={`card-live relative rounded-[4px] border p-5.5 text-left transition-all duration-300 hover:-translate-y-0.75 ${
                       on
                         ? "border-navy bg-navy text-white shadow-[0_20px_44px_-24px_rgba(1,35,135,.8)]"
-                        : "card-live-light border-navy/[.14] bg-white/85 backdrop-blur-sm hover:border-cyan"
+                        : "card-live-light border-navy/[.14] bg-white hover:border-cyan"
                     }`}
                   >
                     <span className="mb-3.5 block text-cyan">{ICONOS[o.key]}</span>

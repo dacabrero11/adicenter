@@ -4,7 +4,7 @@ import { SectionBg } from "./SectionBg";
 
 export function Tecnologias() {
   return (
-    <div className="relative text-ink">
+    <div className="cv-section relative text-ink">
       <SectionBg tone="light" />
       <section className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
@@ -27,7 +27,7 @@ export function Tecnologias() {
                 key={t.nombre}
                 index={i}
                 as="article"
-                className="card-live card-live-light group flex flex-col rounded-[4px] border border-navy/[.14] bg-white/85 p-6.5 backdrop-blur-sm transition-all duration-400 hover:-translate-y-1.5 hover:border-cyan/55 hover:shadow-[0_28px_60px_-34px_rgba(1,35,135,.5)]"
+                className="card-live card-live-light group flex flex-col rounded-[4px] border border-navy/[.14] bg-white/85 p-6.5 transition-all duration-400 hover:-translate-y-1.5 hover:border-cyan/55 hover:shadow-[0_28px_60px_-34px_rgba(1,35,135,.5)]"
               >
                 <span className="font-mono-adi self-start rounded-full bg-navy/[.06] px-3 py-1.25 text-[9.5px] uppercase tracking-[0.14em] text-navy-500">
                   {t.etiqueta}

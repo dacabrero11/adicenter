@@ -30,7 +30,7 @@ export function Hero() {
             <br />
             <span
               className="hero-line stroke-live text-transparent [-webkit-text-stroke:1.4px_rgba(255,255,255,.32)]"
-              style={{ animationDelay: "0.55s" }}
+              style={{ animationDelay: "0.55s, 1.45s" }}
             >
               Falla sin sistema.
             </span>

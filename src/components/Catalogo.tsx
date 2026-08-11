@@ -58,7 +58,7 @@ export function Catalogo() {
   );
 
   return (
-    <section id="catalogo" className="relative overflow-hidden py-19 lg:py-30">
+    <section id="catalogo" className="cv-section relative overflow-hidden py-19 lg:py-30">
       <SectionBg tone="dark" />
       <div className="relative z-2 mx-auto max-w-[1220px] px-6">
         <div className="mb-14 max-w-[760px]">

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function FieldBand() {
   return (
-    <section className="relative overflow-hidden bg-navy-950">
+    <section className="cv-section relative overflow-hidden bg-navy-950">
       <Image
         src="/images/obra-hero.jpg"
         alt="Aplicación de membrana impermeabilizante en cubierta"

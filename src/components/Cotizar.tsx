@@ -6,7 +6,7 @@ const CHECK = (
 
 export function Cotizar() {
   return (
-    <section id="cotizar" className="relative overflow-hidden bg-navy-900 py-19 lg:py-30">
+    <section id="cotizar" className="cv-section relative overflow-hidden bg-navy-900 py-19 lg:py-30">
       <div className="relative z-2 mx-auto max-w-[1220px] px-6">
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[.85fr_1.15fr]">
           <div>

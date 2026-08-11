@@ -147,18 +147,31 @@ input, select, textarea { font-size: 16px; }
    ANIMACIONES DE VIDA DEL SITIO
    ============================================================ */
 
-/* respiración de la cuadrícula tipo plano */
+/* respiración de la cuadrícula tipo plano — vía transform, no background-position */
 @keyframes grid-drift {
-  0% { background-position: 0 0, 0 0; }
-  100% { background-position: 52px 52px, 52px 52px; }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-52px, -52px, 0); }
 }
-.blueprint-grid { animation: grid-drift 34s linear infinite; }
-
+.blueprint-grid {
+  position: absolute;
+  inset: -52px;
+  animation: grid-drift 34s linear infinite paused;
+  will-change: transform;
+}
 @keyframes grid-drift-dark {
-  0% { background-position: 0 0, 0 0; }
-  100% { background-position: 26px 26px, 26px 26px; }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-26px, -26px, 0); }
 }
-.blueprint-grid-dark { animation: grid-drift-dark 26s linear infinite; }
+.blueprint-grid-dark {
+  position: absolute;
+  inset: -26px;
+  animation: grid-drift-dark 26s linear infinite paused;
+  will-change: transform;
+}
+[data-inview="true"] .blueprint-grid,
+[data-inview="true"] .blueprint-grid-dark {
+  animation-play-state: running;
+}
 
 /* deriva lenta del mesh de gradientes del hero */
 @keyframes mesh-drift {
@@ -221,9 +234,14 @@ input, select, textarea { font-size: 16px; }
   pointer-events: none;
   will-change: transform;
 }
-.orb-a { animation: orb-a 26s ease-in-out infinite; }
-.orb-b { animation: orb-b 33s ease-in-out infinite; }
-.orb-c { animation: orb-c 21s ease-in-out infinite; }
+.orb-a { animation: orb-a 26s ease-in-out infinite paused; }
+.orb-b { animation: orb-b 33s ease-in-out infinite paused; }
+.orb-c { animation: orb-c 21s ease-in-out infinite paused; }
+[data-inview="true"] .orb-a,
+[data-inview="true"] .orb-b,
+[data-inview="true"] .orb-c {
+  animation-play-state: running;
+}
 
 /* barrido de luz continuo dentro de las tarjetas */
 @keyframes card-sweep {
@@ -244,17 +262,26 @@ input, select, textarea { font-size: 16px; }
   background: linear-gradient(90deg, transparent, rgba(1, 183, 222, 0.13), transparent);
 }
 
-/* respiración del borde de las tarjetas */
-@keyframes border-breathe {
-  0%, 100% { border-color: rgba(255, 255, 255, 0.12); }
-  50% { border-color: rgba(1, 183, 222, 0.34); }
+/* respiración del borde — capa superpuesta con opacidad (GPU), no border-color */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
 }
-.border-breathe { animation: border-breathe 5.5s ease-in-out infinite; }
-@keyframes border-breathe-light {
-  0%, 100% { border-color: rgba(1, 35, 135, 0.14); }
-  50% { border-color: rgba(1, 183, 222, 0.42); }
+.border-breathe { position: relative; }
+.border-breathe::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid var(--cyan);
+  opacity: 0;
+  pointer-events: none;
+  animation: glow-pulse 5.5s ease-in-out infinite paused;
+  will-change: opacity;
 }
-.border-breathe-light { animation: border-breathe-light 5.5s ease-in-out infinite; }
+[data-inview="true"] .border-breathe::before {
+  animation-play-state: running;
+}
 
 /* ============================================================
    LOGO DEL NAVBAR
@@ -310,7 +337,13 @@ input, select, textarea { font-size: 16px; }
   0%, 100% { -webkit-text-stroke-color: rgba(255, 255, 255, 0.32); }
   50% { -webkit-text-stroke-color: rgba(1, 183, 222, 0.75); }
 }
-.stroke-live { animation: stroke-pulse 4.5s ease-in-out infinite; }
+/* combinada con hero-line-in en una sola declaración: dos "animation" por
+   separado se pisan entre sí (el shorthand reemplaza, no se suma) */
+.hero-line.stroke-live {
+  animation:
+    hero-line-in 0.9s cubic-bezier(0.22, 0.85, 0.3, 1) forwards,
+    stroke-pulse 4.5s ease-in-out infinite;
+}
 
 /* ============================================================
    PROCESO — línea de avance
@@ -337,6 +370,13 @@ input, select, textarea { font-size: 16px; }
   100% { box-shadow: 0 0 0 0 rgba(1, 183, 222, 0); }
 }
 .node-ring { animation: node-ring 3s ease-out infinite; }
+
+
+/* el navegador deja de renderizar y animar contenido lejos del viewport */
+.cv-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 900px;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -38,15 +38,34 @@ export function CrossSection() {
   const stainRef = useRef<SVGEllipseElement>(null);
   const idxRef = useRef(0);
   const reduced = useRef(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const inViewRef = useRef(true);
 
   useEffect(() => {
     setCompacto(window.matchMedia("(max-width:780px)").matches);
     reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced.current) return;
 
+    // el ciclo se detiene por completo cuando el diagrama sale de pantalla —
+    // sin esto, la animación (y los filtros que dispara) siguen consumiendo
+    // recursos para siempre aunque el usuario ya haya scrolleado lejos
+    const el = wrapRef.current;
+    let io: IntersectionObserver | undefined;
+    if (el) {
+      io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => (inViewRef.current = e.isIntersecting)),
+        { threshold: 0 }
+      );
+      io.observe(el);
+    }
+
     let timeout: ReturnType<typeof setTimeout>;
 
     function ciclo() {
+      if (!inViewRef.current) {
+        timeout = setTimeout(ciclo, 600);
+        return;
+      }
       const idx = idxRef.current;
       setActive(idx);
 
@@ -97,11 +116,14 @@ export function CrossSection() {
     }
 
     timeout = setTimeout(ciclo, 1150);
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      io?.disconnect();
+    };
   }, []);
 
   return (
-    <div className="relative aspect-[620/468] w-full" aria-hidden="true">
+    <div ref={wrapRef} className="relative aspect-[620/468] w-full" aria-hidden="true">
       <svg viewBox="0 0 620 468" className="h-full w-full overflow-visible">
         <defs>
           <linearGradient id="gTop" x1="0" y1="0" x2="1" y2="0">
