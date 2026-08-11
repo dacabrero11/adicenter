@@ -65,20 +65,23 @@ export function StatsCounter() {
   const [visible, setVisible] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // el conteo solo arranca cuando el usuario efectivamente hizo scroll al menos una vez
+  // Antes el conteo esperaba a que el usuario hiciera scroll, porque la barra
+  // vivía bajo el pliegue. Con el hero nuevo puede quedar visible ya al cargar,
+  // así que en ese caso arranca sola tras el ensamblaje del bloque.
   useEffect(() => {
-    if (window.scrollY > 10) {
-      setScrolled(true);
-      return;
-    }
+    const t = setTimeout(() => setScrolled(true), 2600);
     function onScroll() {
       if (window.scrollY > 10) {
         setScrolled(true);
+        clearTimeout(t);
         window.removeEventListener("scroll", onScroll);
       }
     }
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   // sin unobserve: cada vez que el bloque de stats reaparece, vuelve a contar

@@ -40,6 +40,34 @@ npm run start
 `npm run build` debe pasar sin errores antes de cualquier push (regla
 estándar de BLITZ).
 
+## Hero — bloque de 6 capas
+
+El hero se reconstruyó con los 6 renders de capa como assets independientes
+(`public/images/hero/layer-1..6.webp`), animados para ensamblarse.
+
+**Calibración del apilado.** Las capas comparten escala y perspectiva y están
+centradas en el mismo punto, así que apilarlas es solo desplazamiento vertical.
+Se midió el grosor real de cada asset y se acumuló de abajo hacia arriba; el
+resultado vive en `CAPAS[].fy` (`HeroBlock.tsx`) como porcentaje de la propia
+altura de la imagen, de modo que la composición escala sin deformarse.
+
+**Diferencia conocida con `master-block.webp`.** Los 6 renders individuales
+tienen una perspectiva algo más ancha y plana que el bloque maestro, que es más
+profundo y compacto. Es una diferencia de los assets de origen, no de la
+composición: igualarla exigiría deformar las imágenes, cosa que el brief
+prohíbe. El apilado sí reproduce el orden, proporción relativa y lectura de
+bloque único. `master-block.webp` queda como referencia.
+
+**capa 6 no venía transparente** (llegó renderizada sobre fondo negro). Se
+recortó separando el bloque del fondo por varianza local de textura — el fondo
+es un degradado liso y el bloque tiene grano — porque el umbral por luminancia
+se comía la cara lateral oscura.
+
+**Rendimiento.** Solo se animan `transform` y `opacity`. Nada de `filter: blur`
+ni `backdrop-filter` en el bloque: ya costaron caro antes en este proyecto. El
+parallax interpola en `requestAnimationFrame` y se apaga en dispositivos
+táctiles y con `prefers-reduced-motion`.
+
 ## Actualización — servicios reales, proyectos reales, énfasis en Reparación
 
 Segunda ronda de cambios, a partir de 3 presentaciones PPT que Jaime compartió
