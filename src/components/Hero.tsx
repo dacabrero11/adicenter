@@ -1,6 +1,7 @@
 import { Button } from "./Button";
 import { CrossSection } from "./CrossSection";
 import { StatsCounter } from "./StatsCounter";
+import { RevealRepeat } from "./RevealRepeat";
 
 export function Hero() {
   return (
@@ -17,7 +18,7 @@ export function Hero() {
       </div>
 
       <div className="relative z-2 mx-auto grid max-w-[1220px] grid-cols-1 items-center gap-14 px-6 pb-14 lg:grid-cols-[.86fr_1.14fr] xl:grid-cols-[.8fr_1.2fr]">
-        <div>
+        <RevealRepeat>
           <span className="eyebrow hero-line" style={{ animationDelay: "0.05s" }}>Centro de aditivos, epóxicos e impermeabilizantes · Honduras</span>
           <h1 className="font-display mt-5.5 text-[38px] leading-[0.92] sm:text-[52px] lg:text-[72px] xl:text-[80px]">
             <span className="hero-line" style={{ animationDelay: "0.15s" }}>
@@ -47,7 +48,7 @@ export function Hero() {
           <div className="hero-line font-mono-adi mt-5 flex items-center gap-2.5 text-[11px] uppercase tracking-[0.1em] text-white/50" style={{ animationDelay: "1.05s" }}>
             <span className="dot-live" /> Respuesta a cotizaciones en menos de 2 horas hábiles
           </div>
-        </div>
+        </RevealRepeat>
 
         <CrossSection />
       </div>

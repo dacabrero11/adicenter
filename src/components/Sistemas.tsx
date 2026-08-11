@@ -58,7 +58,7 @@ export function Sistemas() {
 
       <section id="sistemas" className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
-          <div className="mb-14 max-w-[760px]">
+          <Reveal as="div" className="mb-14 max-w-[760px]">
             <span className="eyebrow on-light">Tres líneas · un solo criterio técnico</span>
             <h2 className="font-display mt-4.5 text-[30px] text-ink sm:text-[40px] lg:text-[54px]">
               No vendemos
@@ -74,7 +74,7 @@ export function Sistemas() {
               <b className="font-semibold text-navy">Velosit® (Alemania)</b>, que es la única
               forma de que la garantía signifique algo cuando llega la temporada de lluvia.
             </p>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {PILARES.map((p, i) => (

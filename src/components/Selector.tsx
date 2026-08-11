@@ -1,5 +1,6 @@
 "use client";
 
+import { Reveal } from "./Reveal";
 import Image from "next/image";
 import { useState } from "react";
 import { opcionesSuperficie, sistemas, type SistemaKey } from "@/data/sistemas";
@@ -45,7 +46,7 @@ export function Selector() {
       <SectionBg tone="light" />
       <section id="selector" className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
-          <div className="mb-14 max-w-[760px]">
+          <Reveal as="div" className="mb-14 max-w-[760px]">
             <span className="eyebrow on-light">Selector de sistema</span>
             <h2 className="font-display mt-4.5 text-[30px] text-ink sm:text-[40px] lg:text-[54px]">
               Dígame qué
@@ -56,17 +57,17 @@ export function Selector() {
               Elija la superficie del proyecto y le mostramos el sistema recomendado, el orden de
               aplicación y el rendimiento estimado antes de que nos escriba.
             </p>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 items-start gap-9 lg:grid-cols-[.95fr_1.05fr]">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {opcionesSuperficie.map((o) => {
+              {opcionesSuperficie.map((o, i) => {
                 const on = o.key === sel;
                 return (
-                  <button
-                    key={o.key}
+                  <Reveal key={o.key} index={i} as="div">
+                    <button
                     onClick={() => setSel(o.key)}
-                    className={`card-live relative rounded-[4px] border p-5.5 text-left transition-all duration-300 hover:-translate-y-0.75 ${
+                    className={`card-live relative w-full rounded-[4px] border p-5.5 text-left transition-all duration-300 hover:-translate-y-0.75 ${
                       on
                         ? "border-navy bg-navy text-white shadow-[0_20px_44px_-24px_rgba(1,35,135,.8)]"
                         : "card-live-light border-navy/[.14] bg-white hover:border-cyan"
@@ -78,6 +79,7 @@ export function Selector() {
                       {o.hint}
                     </small>
                   </button>
+                  </Reveal>
                 );
               })}
             </div>

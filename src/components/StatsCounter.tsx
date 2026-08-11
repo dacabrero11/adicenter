@@ -11,10 +11,15 @@ const STATS: Stat[] = [
   { value: 72, label: "Servicios con ficha técnica" },
 ];
 
+// active=true dispara el conteo hasta el valor final; active=false lo reinicia
+// a 0 para que la próxima vez que vuelva a entrar en pantalla se repita
 function useCountUp(target: number, decimals: number, active: boolean, duration = 1500) {
   const [val, setVal] = useState(0);
   useEffect(() => {
-    if (!active) return;
+    if (!active) {
+      setVal(0);
+      return;
+    }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setVal(target);
       return;
@@ -60,7 +65,7 @@ export function StatsCounter() {
   const [visible, setVisible] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // el conteo solo arranca cuando el usuario efectivamente hizo scroll
+  // el conteo solo arranca cuando el usuario efectivamente hizo scroll al menos una vez
   useEffect(() => {
     if (window.scrollY > 10) {
       setScrolled(true);
@@ -76,18 +81,12 @@ export function StatsCounter() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // sin unobserve: cada vez que el bloque de stats reaparece, vuelve a contar
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            setVisible(true);
-            io.unobserve(el);
-          }
-        });
-      },
+      (entries) => entries.forEach((e) => setVisible(e.isIntersecting)),
       { threshold: 0.4 }
     );
     io.observe(el);

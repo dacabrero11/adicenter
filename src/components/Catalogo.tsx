@@ -62,7 +62,7 @@ export function Catalogo() {
     <InView as="section" id="catalogo" className="cv-section relative overflow-hidden py-19 lg:py-30">
       <SectionBg tone="dark" />
       <div className="relative z-2 mx-auto max-w-[1220px] px-6">
-        <div className="mb-14 max-w-[760px]">
+        <Reveal as="div" className="mb-14 max-w-[760px]">
           <span className="eyebrow">Catálogo de servicios</span>
           <h2 className="font-display mt-4.5 text-[30px] sm:text-[40px] lg:text-[54px]">
             Ocho servicios,
@@ -73,9 +73,9 @@ export function Catalogo() {
             Del refuerzo estructural con fibra de carbono hasta el sello de la última junta. No
             subcontratamos: la misma cuadrilla que diagnostica es la que aplica.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mb-8.5 flex flex-wrap gap-2.5">
+        <Reveal as="div" className="mb-8.5 flex flex-wrap gap-2.5">
           {filtrosServicios.map((f) => (
             <button
               key={f.key}
@@ -89,7 +89,7 @@ export function Catalogo() {
               {f.label}
             </button>
           ))}
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 gap-4.5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((s, i) => (

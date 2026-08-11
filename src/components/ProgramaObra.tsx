@@ -66,7 +66,7 @@ export function ProgramaObra() {
       />
       <div className="relative z-2 mx-auto max-w-[1220px] px-6">
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[.9fr_1.1fr]">
-          <div className="max-w-none">
+          <Reveal as="div" className="max-w-none">
             <span className="eyebrow">Programa Obra · constructoras y desarrolladores</span>
             <h2 className="font-display mt-4.5 text-[30px] sm:text-[40px] lg:text-[54px]">
               Si maneja
@@ -81,7 +81,7 @@ export function ProgramaObra() {
               Condiciones distintas para constructoras, contratistas de mantenimiento y
               desarrolladores con más de un frente abierto a la vez.
             </p>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 gap-px sm:grid-cols-2">
             {BENEFICIOS.map((b, i) => (

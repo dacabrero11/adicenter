@@ -9,7 +9,7 @@ export function Tecnologias() {
       <SectionBg tone="light" />
       <section className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
-          <div className="mb-14 max-w-[760px]">
+          <Reveal as="div" className="mb-14 max-w-[760px]">
             <span className="eyebrow on-light">Cinco formas de impermeabilizar</span>
             <h2 className="font-display mt-4.5 text-[30px] text-ink sm:text-[40px] lg:text-[50px]">
               No toda superficie
@@ -20,7 +20,7 @@ export function Tecnologias() {
               Elegimos la tecnología según el sustrato, el tránsito y la exposición — no
               vendemos el mismo sistema para una cisterna que para un estacionamiento.
             </p>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {tecnologias.map((t, i) => (

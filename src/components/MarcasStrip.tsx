@@ -1,7 +1,9 @@
+import { Reveal } from "./Reveal";
+
 export function MarcasStrip() {
   return (
     <div className="border-y border-white/10 bg-navy-950 py-6">
-      <div className="mx-auto flex max-w-[1220px] flex-col items-center justify-center gap-4 px-6 sm:flex-row sm:gap-10">
+      <Reveal as="div" className="mx-auto flex max-w-[1220px] flex-col items-center justify-center gap-4 px-6 sm:flex-row sm:gap-10">
         <span className="font-mono-adi text-[10px] uppercase tracking-[0.18em] text-white/45">
           Trabajamos con productos de
         </span>
@@ -13,7 +15,7 @@ export function MarcasStrip() {
             <span className="font-mono-adi text-[9px] uppercase tracking-[0.14em] text-white/40">Alemania</span>
           </span>
         </div>
-      </div>
+      </Reveal>
     </div>
   );
 }

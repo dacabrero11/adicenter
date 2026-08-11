@@ -11,7 +11,7 @@ export function Cotizar() {
     <section id="cotizar" className="cv-section relative overflow-hidden bg-navy-900 py-19 lg:py-30">
       <div className="relative z-2 mx-auto max-w-[1220px] px-6">
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[.85fr_1.15fr]">
-          <div>
+          <Reveal as="div">
             <span className="font-mono-adi inline-flex items-center gap-2.5 rounded-full border border-hivis/40 px-3.75 py-2 text-[11px] uppercase tracking-[0.1em] text-hivis-soft">
               <span className="dot-live" /> Menos de 2 horas hábiles
             </span>
@@ -44,9 +44,10 @@ export function Cotizar() {
                 </Reveal>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
-          <form
+          <Reveal as="div">
+            <form
             className="rounded-[4px] border border-white/12 bg-white/4 p-8.5"
             onSubmit={(e) => e.preventDefault()}
           >
@@ -91,6 +92,7 @@ export function Cotizar() {
               O escríbanos directo al WhatsApp +504 9900-0000
             </p>
           </form>
+          </Reveal>
         </div>
       </div>
     </section>

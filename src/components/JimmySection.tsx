@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "./Button";
 import { SectionBg } from "./SectionBg";
 import { InView } from "./InView";
+import { Reveal } from "./Reveal";
 
 const HACE = [
   {
@@ -44,7 +45,7 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: () => void }) {
       <SectionBg tone="light" />
 
       <div className="relative z-2 mx-auto grid max-w-[1220px] grid-cols-1 items-center gap-12 px-6 py-19 lg:grid-cols-[.82fr_1.18fr] lg:py-24">
-        <div className="flex flex-col items-center">
+        <Reveal as="div" className="flex flex-col items-center">
           <div className="relative flex w-full justify-center">
             <span
               className="absolute -bottom-1 left-1/2 aspect-[1/.24] w-[46%] -translate-x-1/2 rounded-full"
@@ -63,9 +64,9 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: () => void }) {
             <b className="font-display block text-[17px]">Jimmy</b>
             <small className="font-mono-adi block text-[8.5px] uppercase tracking-[0.14em] text-sky">Técnico ADICENTER</small>
           </div>
-        </div>
+        </Reveal>
 
-        <div>
+        <Reveal as="div">
           <span className="eyebrow on-light">El que anda en la obra · y ahora también en el sitio</span>
           <h2 className="font-display mt-4.5 text-[30px] text-ink sm:text-[40px] lg:text-[48px]">Jimmy ya conoce su techo.</h2>
           <p className="mt-5 max-w-[56ch] text-base text-ink-soft sm:text-[17px]">
@@ -76,12 +77,12 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: () => void }) {
           </p>
 
           <div className="mt-8 grid grid-cols-1 gap-px border border-navy/[.14] bg-navy/[.14] sm:grid-cols-3">
-            {HACE.map((h) => (
-              <div key={h.titulo} className="card-live card-live-light relative bg-white px-5 py-5.5">
+            {HACE.map((h, i) => (
+              <Reveal key={h.titulo} index={i} className="card-live card-live-light relative bg-white px-5 py-5.5">
                 <span className="mb-3.5 block text-cyan">{h.icon}</span>
                 <strong className="font-display block text-[14px] text-ink">{h.titulo}</strong>
                 <small className="mt-2 block text-[13px] leading-relaxed text-ink-soft">{h.texto}</small>
-              </div>
+              </Reveal>
             ))}
           </div>
 
@@ -91,7 +92,7 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: () => void }) {
               Disponible 24/7 · sin esperar horario de oficina
             </span>
           </div>
-        </div>
+        </Reveal>
       </div>
     </InView>
   );

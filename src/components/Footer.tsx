@@ -1,11 +1,12 @@
 import Image from "next/image";
+import { Reveal } from "./Reveal";
 
 export function Footer() {
   return (
     <footer className="cv-section border-t border-white/12 bg-navy-950 pt-16">
       <div className="mx-auto max-w-[1220px] px-6">
         <div className="grid grid-cols-1 gap-10 pb-13 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
-          <div>
+          <Reveal as="div" index={0}>
             <a href="#top" className="flex items-center gap-3">
               <Image src="/images/logo.png" alt="ADICENTER" width={46} height={35} className="w-[46px] h-auto" />
               <span className="leading-tight">
@@ -22,20 +23,24 @@ export function Footer() {
               acompañamiento en obra para constructoras, industria y mantenimiento en toda
               Honduras.
             </p>
-          </div>
+          </Reveal>
 
-          <FooterCol title="Líneas" links={["Aditivos para concreto", "Epóxicos industriales", "Impermeabilizantes", "Complementos y anclajes"]} href="#catalogo" />
-          <FooterCol
-            title="Empresa"
-            links={["Sistemas", "Jimmy, el técnico", "Programa Obra", "Selector de sistema"]}
-            hrefs={["#sistemas", "#jimmy", "#obra", "#selector"]}
-          />
-          <div>
+          <Reveal as="div" index={1}>
+            <FooterCol title="Líneas" links={["Aditivos para concreto", "Epóxicos industriales", "Impermeabilizantes", "Complementos y anclajes"]} href="#catalogo" />
+          </Reveal>
+          <Reveal as="div" index={2}>
+            <FooterCol
+              title="Empresa"
+              links={["Sistemas", "Jimmy, el técnico", "Programa Obra", "Selector de sistema"]}
+              hrefs={["#sistemas", "#jimmy", "#obra", "#selector"]}
+            />
+          </Reveal>
+          <Reveal as="div" index={3}>
             <h6 className="font-mono-adi mb-4.5 text-[10px] font-medium uppercase tracking-[0.18em] text-cyan">Contacto</h6>
             {["Tegucigalpa, Francisco Morazán", "+504 2200-0000", "ventas@adicenter.hn", "Lun a Vie 7:30 – 17:00 · Sáb 8:00 – 12:00"].map((t) => (
               <p key={t} className="py-1.25 text-sm text-white/58">{t}</p>
             ))}
-          </div>
+          </Reveal>
         </div>
 
         <div className="font-mono-adi flex flex-wrap justify-between gap-4.5 border-t border-white/12 py-5.5 text-white/40">

@@ -11,7 +11,7 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: () => void }) {
       <SectionBg tone="light" />
       <section id="proyectos" className="relative z-2 py-19 lg:py-30">
         <div className="mx-auto max-w-[1220px] px-6">
-          <div className="mb-12 flex flex-wrap items-end justify-between gap-8">
+          <Reveal as="div" className="mb-12 flex flex-wrap items-end justify-between gap-8">
             <div className="max-w-[620px]">
               <span className="eyebrow on-light">Obras entregadas</span>
               <h2 className="font-display mt-4.5 text-[30px] text-ink sm:text-[40px] lg:text-[50px]">
@@ -26,7 +26,7 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: () => void }) {
               </p>
             </div>
             <Button href="#cotizar" size="sm">Cotizar un proyecto así</Button>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 gap-5.5 sm:grid-cols-2 lg:grid-cols-3">
             {proyectos.map((p, i) => (
