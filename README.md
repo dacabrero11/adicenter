@@ -40,6 +40,37 @@ npm run start
 `npm run build` debe pasar sin errores antes de cualquier push (regla
 estándar de BLITZ).
 
+## Sección "Selector de sistema" — reconstruida sobre referencia visual (2 pasos)
+
+Rediseño completo: de un único paso (elegir superficie, con "Reparación
+estructural" como una opción más) a dos pasos reales — superficie y
+problema — que combinados generan el resultado, tal como en la referencia.
+
+- **5 superficies** (Losa, Techo, Piso, Cisterna, Muro — separadas; antes
+  "Cisterna o muro" era una sola opción combinada) × **5 problemas**
+  (Filtración, Fisuras, Desgaste, Humedad, Otro) = 25 combinaciones,
+  probadas todas sin desborde a 320px.
+- **Título y descripción dinámicos** combinando superficie + problema
+  (`getResultado()` en `src/data/selector.ts`), sin necesidad de 25 fichas
+  escritas a mano — el ejemplo del brief (Losa + Filtración → "1.2 m²/L",
+  "Estructural", "3-7 días") es el resultado por defecto al cargar.
+- **5 imágenes reales del cliente** (transparencia preservada, sin fondo
+  agregado) en `public/images/selector/`, cambian dinámicamente según la
+  superficie seleccionada — verificado que la imagen realmente cambia
+  (`losa.webp` → `muro.webp` al seleccionar Muro).
+- **Mini-widget "Jimmy está analizando su caso"** con barra de progreso de
+  3 pasos (Superficie/Problema/Análisis) y mensaje dinámico que menciona la
+  combinación elegida.
+
+**Bug real encontrado y corregido**: con la grilla de métricas en 3
+columnas, valores largos como "Presión negativa" o "Estructural" no
+desbordaban la CAJA de su columna (`getBoundingClientRect` no marcaba
+superposición), pero sí desbordaban VISUALMENTE por encima de la columna
+vecina porque `overflow: visible` no fuerza el recorte — un tipo de bug que
+las auditorías automáticas basadas en cajas no detectan, hay que mirar la
+captura real. Se resolvió apilando las métricas en una sola columna con
+`whitespace-nowrap` en móvil, volviendo a 3 columnas desde `sm:`.
+
 ## Sección "Jimmy" — reconstruida sobre referencia visual
 
 Reescrita completa siguiendo una referencia visual del cliente, reutilizando
