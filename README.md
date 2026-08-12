@@ -40,6 +40,32 @@ npm run start
 `npm run build` debe pasar sin errores antes de cualquier push (regla
 estándar de BLITZ).
 
+## Sección "Sistemas" — reconstruida sobre referencia visual
+
+Reescrita siguiendo un mockup de referencia que el cliente proporcionó
+(estilo editorial de ingeniería: blanco, blueprint sutil, azul técnico +
+naranja solo como énfasis). Cambios principales vs. la versión anterior:
+
+- **Bloque de 4 principios técnicos** nuevo, a la derecha del encabezado
+  (Sistemas comprobados / Ingeniería aplicada / Desempeño garantizado /
+  Respaldo técnico), con íconos lineales propios.
+- **Fichas rediseñadas**: número + badge de línea (naranja solo en la 01,
+  azul en 02/03) + imagen real de producto + lista de especificaciones con
+  ícono por fila + CTA de color acorde a la línea.
+- **Imágenes reales de producto**, provistas por el cliente
+  (`public/images/sistemas/*.webp`), con transparencia preservada — no se
+  regeneraron ni se les agregó fondo, solo se recortaron a su contenido y
+  se convirtieron a WebP.
+- **Franja de cierre nueva** al pie de las fichas ("Una solución correcta
+  empieza por especificar el sistema correcto" + "Ver cómo trabajamos →").
+- Fondo simplificado a blanco + cuadrícula de plano muy sutil (sin los
+  orbes de color de `SectionBg`) para que "el fondo no compita con el
+  contenido", tal como pidió el cliente explícitamente.
+
+Mapeo de assets (por si se agregan más líneas a futuro):
+`reparacion.webp` → Línea 01, `impermeabilizantes.webp` → Línea 02,
+`anclajes.webp` → Línea 03.
+
 ## Hero — separación, giro, glow mejorado y despliegue idle más largo
 
 Ajustes sobre el sistema de hover del bloque:
