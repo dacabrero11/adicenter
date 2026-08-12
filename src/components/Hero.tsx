@@ -44,7 +44,7 @@ export function Hero() {
               width: p.s,
               height: p.s,
               animationDelay: p.d,
-              opacity: 0.5,
+              opacity: 0.7,
             }}
           />
         ))}

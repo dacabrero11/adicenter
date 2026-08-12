@@ -325,7 +325,7 @@ input, select, textarea { font-size: 16px; }
    TEXTO DEL HERO
    ============================================================ */
 @keyframes hero-line-in {
-  from { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+  from { opacity: 0; transform: translateY(36px); filter: blur(9px); }
   to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 .hero-line {
@@ -404,16 +404,38 @@ input, select, textarea { font-size: 16px; }
   will-change: transform, opacity;
 }
 
-/* parallax: capa interna para no pisar el transform del ensamblaje */
+/* el parallax, la elevación al hover y el despliegue idle se escriben
+   directo por JS en style.transform (ver HeroBlock.tsx) — más preciso que
+   variables CSS porque necesita saber exactamente qué placa está bajo el
+   cursor, y evita que dos animation/transform distintos se pisen entre sí */
 .hero-layer-parallax {
-  transform: translate3d(calc(var(--px, 0px) * var(--d)), calc(var(--py, 0px) * var(--d)), 0);
+  position: relative;
   will-change: transform;
+}
+/* glow: una capa de degradado detrás del plano cuya opacidad se anima —
+   mucho más barato que filter:drop-shadow(), que obliga a recalcular el
+   contorno alfa completo en cada repintado de la página (ya lo pagamos
+   caro una vez con los orbes de fondo, no lo repetimos aquí). */
+.hero-layer-parallax::after {
+  content: "";
+  position: absolute;
+  inset: -8%;
+  z-index: -1;
+  border-radius: 14%;
+  background: radial-gradient(58% 58% at 50% 50%, rgba(1, 183, 222, 0.5), transparent 72%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  will-change: opacity;
+}
+.hero-layer-parallax.hero-layer-glow::after {
+  opacity: 1;
 }
 
 /* respiración ambiental del bloque ya ensamblado */
 @keyframes block-float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-7px); }
+  50% { transform: translateY(-11px); }
 }
 .hero-block {
   animation: block-float 7.5s ease-in-out infinite paused;
@@ -432,7 +454,7 @@ input, select, textarea { font-size: 16px; }
 @keyframes particle-drift {
   0% { transform: translate3d(0, 0, 0); opacity: 0; }
   15%, 70% { opacity: 1; }
-  100% { transform: translate3d(14px, -70px, 0); opacity: 0; }
+  100% { transform: translate3d(20px, -110px, 0); opacity: 0; }
 }
 .hero-particle {
   position: absolute;

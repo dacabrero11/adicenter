@@ -40,6 +40,37 @@ npm run start
 `npm run build` debe pasar sin errores antes de cualquier push (regla
 estándar de BLITZ).
 
+## Hero — hover preciso, glow y despliegue idle
+
+**Detección de hover por transparencia real, no por caja rectangular.** Las
+placas son diagonales y se solapan; con una caja rectangular, pasar el mouse
+por el margen transparente de una capa activaría el hover de la capa
+equivocada. `HeroBlock.tsx` precarga cada asset en un canvas oculto, guarda
+su canal alfa a baja resolución, y en cada `mousemove` calcula qué capa está
+realmente pintada bajo el cursor (probado: 0 falsos positivos en zonas
+transparentes, exactamente 1 placa activa en zonas sólidas).
+
+**Glow: opacidad, no `filter: drop-shadow()`.** La primera versión usaba
+`drop-shadow` para que el halo siguiera el contorno exacto de cada placa —
+visualmente perfecto, pero combinado con las animaciones continuas del hero
+(partículas, mesh, cuadrícula, logo) obligaba a recalcular el filtro en cada
+repintado de la página: 20 FPS en reposo con el hover activo. Se reemplazó
+por una capa de degradado radial con opacidad animada detrás de cada placa —
+mismo efecto visual, 36–42 FPS en las mismas condiciones exactas (medido con
+Chrome tracing, mismo patrón del problema que ya resolvimos con los orbes de
+fondo de las demás secciones).
+
+**Despliegue idle.** Cada 9s, si nadie tiene el mouse sobre el bloque, las 6
+capas se separan (proporcional a su offset de ensamblaje) y se iluminan
+todas a la vez durante ~1.5s, después vuelven a su lugar. Se cancela si hay
+hover activo o si el hero no está en pantalla.
+
+Todo el movimiento (parallax, elevación al hover, despliegue idle) se anima
+en un único loop de `requestAnimationFrame` que escribe `transform` directo
+por JS — se evitó a propósito mezclar `animation` CSS con transform inline en
+el mismo elemento, que ya causó bugs de colisión dos veces antes en este
+proyecto.
+
 ## Hero — bloque de 6 capas
 
 El hero se reconstruyó con los 6 renders de capa como assets independientes
