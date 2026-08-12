@@ -182,43 +182,42 @@ export function Catalogo() {
                       ref={(node) => {
                         cardRefs.current[s.slug] = node;
                       }}
-                      className="flex flex-1 flex-col p-5.5"
+                      className="flex flex-col gap-4 p-5.5 lg:flex-row"
                     >
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0">
-                          <span className="font-display text-[22px] leading-none text-cyan">{s.n}</span>
-                          <h3 className="font-display mt-2 text-[16.5px] leading-[1.15] text-white">{s.titulo}</h3>
-                        </div>
-                        <div className="relative aspect-square w-[92px] flex-none overflow-hidden sm:w-[104px]">
-                          <Image
-                            src={s.img}
-                            alt={s.imgAlt}
-                            fill
-                            sizes="110px"
-                            className="object-contain transition-transform duration-400 group-hover:scale-[1.08]"
-                          />
-                        </div>
-                      </div>
+                      <div className="flex min-w-0 flex-1 flex-col">
+                        <span className="font-display text-[22px] leading-none text-cyan">{s.n}</span>
+                        <h3 className="font-display mt-2 text-[16.5px] leading-[1.15] text-white">{s.titulo}</h3>
 
-                      <p className="mt-3 text-[12.5px] leading-relaxed text-white/55">{s.descripcion}</p>
+                        <p className="mt-3 text-[12.5px] leading-relaxed text-white/55">{s.descripcion}</p>
 
-                      <div className="mt-4 grid grid-cols-3 gap-x-2 border-t border-white/10 pt-3.5">
-                        {s.specs.map(([k, v]) => (
-                          <div key={k} className="min-w-0">
-                            <div className="font-mono-adi truncate text-[8.5px] uppercase tracking-[0.05em] text-white/40">
-                              {k}
+                        <div className="mt-4 grid grid-cols-3 gap-x-2 border-t border-white/10 pt-3.5">
+                          {s.specs.map(([k, v]) => (
+                            <div key={k} className="min-w-0">
+                              <div className="font-mono-adi truncate text-[8.5px] uppercase tracking-[0.05em] text-white/40">
+                                {k}
+                              </div>
+                              <div className="mt-0.5 truncate text-[10.5px] font-semibold text-white">{v}</div>
                             </div>
-                            <div className="mt-0.5 truncate text-[10.5px] font-semibold text-white">{v}</div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
+
+                        <a
+                          href="#cotizar"
+                          className="font-mono-adi mt-4 inline-flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.08em] text-cyan transition-all group-hover:gap-2.5"
+                        >
+                          Ver especificaciones {I.arrow}
+                        </a>
                       </div>
 
-                      <a
-                        href="#cotizar"
-                        className="font-mono-adi mt-4 inline-flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.08em] text-cyan transition-all group-hover:gap-2.5"
-                      >
-                        Ver especificaciones {I.arrow}
-                      </a>
+                      <div className="relative order-first h-[160px] w-full flex-none overflow-hidden lg:order-none lg:h-auto lg:w-[160px] lg:self-stretch xl:w-[190px]">
+                        <Image
+                          src={s.img}
+                          alt={s.imgAlt}
+                          fill
+                          sizes="(max-width: 1023px) 90vw, 200px"
+                          className="object-contain object-center transition-transform duration-400 group-hover:scale-[1.06]"
+                        />
+                      </div>
                     </div>
                   </Reveal>
                 );
