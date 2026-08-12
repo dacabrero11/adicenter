@@ -129,7 +129,7 @@ export function HeroBlock({ onLayerFocus }: { onLayerFocus?: (i: number | null) 
         const scale = 1 + liftPx * 0.0013;
         const rot = popPx * 0.11; // grados — acompaña al "sale del bloque" con una leve inclinación
         node.style.transform =
-          `translate3d(${(px.current * d + popPx).toFixed(2)}px, ${(py.current * d + idlePx).toFixed(2)}px, 0) ` +
+          `translate3d(${(px.current * d + popPx * 0.65).toFixed(2)}px, ${(py.current * d + idlePx + popPx * 0.78).toFixed(2)}px, 0) ` +
           `translateY(${(-liftPx).toFixed(2)}px) rotate(${rot.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
       }
 
