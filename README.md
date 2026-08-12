@@ -40,6 +40,41 @@ npm run start
 `npm run build` debe pasar sin errores antes de cualquier push (regla
 estándar de BLITZ).
 
+## Sección "Catálogo de servicios" — reconstruida sobre referencia visual
+
+Se aplicó el DISEÑO de una referencia visual del cliente (sidebar + filtros
++ grid de 2 columnas + fichas compactas), pero manteniendo el CONTENIDO real
+de los 8 servicios que ya existía en el sitio (sacado del PPT de ADICENTER):
+refuerzo con fibra de carbono, grouting, inyección epóxica, impermeabilización
+de losas / de tanques y cisternas / de muros enterrados, sello de juntas y
+pisos epóxicos. La referencia visual traía nombres de servicios de ejemplo
+("Anclajes químicos", "Protección superficial") que NO son servicios reales
+de ADICENTER — se descartó ese contenido, solo se tomó la estructura visual.
+
+Las 8 fotos que envió el cliente ahora tienen una asignación 1 a 1 sin
+sustitutos ni huecos, porque el catálogo real tiene 3 servicios de
+impermeabilización distintos (losas, tanques/cisternas, muros enterrados) y
+el cliente había enviado exactamente 3 fotos de impermeabilización — encajan
+perfecto una por una:
+
+| # | Servicio | Imagen |
+|---|---|---|
+| 01 | Refuerzo estructural con fibra de carbono | CFRP / Sika CarboDur® |
+| 02 | Grouting | placa base + grout |
+| 03 | Inyección epóxica | Sika InjectoCem® |
+| 04 | Impermeabilización de losas | losa/techo con soplete |
+| 05 | Impermeabilización de tanques y cisternas | cisterna con productos Velosit |
+| 06 | Impermeabilización de muros enterrados | muro de contención con drenaje |
+| 07 | Sello de juntas y pintura para tráfico | sellador + pintura tráfico |
+| 08 | Pisos epóxicos y poliuretano | latas de pintura epóxica/PU |
+
+Filtros: Reparación y refuerzo (3), Impermeabilización (3), Sellado (1),
+Pisos (1) — verificado con clics reales, no solo visual.
+
+Fondo: navy oscuro + cuadrícula de plano sutil, sin orbes de color. Sin
+animaciones ambientales continuas en las tarjetas (hover simple: borde +
+zoom de imagen + CTA), tal como pidió el cliente.
+
 ## Sección "Sistemas" — reconstruida sobre referencia visual
 
 Reescrita siguiendo un mockup de referencia que el cliente proporcionó
