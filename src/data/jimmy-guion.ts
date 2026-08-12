@@ -44,7 +44,7 @@ export const guion: Entrada[] = [
       "Para contacto con agua potable usamos <b>VELOSIT® WP 101</b>, lechada cementicia de alta resistencia con desempeño bajo presión negativa.<br/><br/>Antes de recubrir hay que sellar pasamuros y juntas frías con <b>VELOSIT® PC 221</b>, que es donde se pierde el trabajo. ¿La cisterna está en operación o vacía?",
   },
   {
-    claves: ["aditivo", "concreto", "mezcla", "fisura", "fragua", "planta", "resistencia"],
+    claves: ["aditivo", "concreto", "mezcla", "fragua", "planta", "resistencia"],
     respuesta:
       "En aditivos trabajamos el <b>aditivo cristalino líquido VELOSIT®</b>, que impermeabiliza y plastifica la mezcla desde la planta.<br/><br/>Si el colado es en planta podemos apoyar con la dosificación. ¿Qué volumen de concreto está manejando?",
   },
@@ -59,7 +59,7 @@ export const guion: Entrada[] = [
       "La visita de diagnóstico es <b>sin costo en proyectos desde 300 m²</b>. Incluye levantamiento, prueba de humedad y adherencia, y el acta con la especificación del sistema.<br/><br/>Déjeme su nombre, teléfono y el municipio del proyecto y se lo agendo con el asesor de su zona.",
   },
   {
-    claves: ["reparacion", "reparación", "reforzamiento", "acero expuesto", "columna", "viga", "corrosion", "corrosión", "concreto dañado", "disgregado"],
+    claves: ["reparacion", "reparación", "reforzamiento", "acero expuesto", "columna", "viga", "corrosion", "corrosión", "concreto dañado", "disgregado", "fisura", "grieta"],
     respuesta:
       "Reparación y reforzamiento es <b>lo que más hacemos</b>.<br/><br/>El sistema típico es: picado y saneo del concreto dañado, protección anticorrosiva del acero expuesto con <b>SikaTop® Armatec®-110 EpoCem®</b> y mortero estructural <b>Sika MonoTop®</b> o <b>VELOSIT® RM 202</b>.<br/><br/>¿La estructura tiene acero de refuerzo visible o es solo desprendimiento superficial de concreto?",
   },

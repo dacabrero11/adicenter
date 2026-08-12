@@ -40,6 +40,35 @@ npm run start
 `npm run build` debe pasar sin errores antes de cualquier push (regla
 estándar de BLITZ).
 
+## Sección "Jimmy" — reconstruida sobre referencia visual
+
+Reescrita completa siguiendo una referencia visual del cliente, reutilizando
+el personaje de Jimmy existente sin modificarlo (mismo PNG, sin rediseño).
+
+- **4 indicadores técnicos** conectados a Jimmy con líneas sutiles
+  (Diagnóstico, Metraje, Sistema, Garantía) — solo desde `lg:`, se ocultan en
+  mobile/tablet para no saturar (Jimmy pasa a estar solo, centrado arriba).
+- **3 cards** (Diagnostica / Calcula / Escala), cada una con su propio
+  contenido visual: Diagnostica usa el PNG de capas que envió el cliente
+  (transparencia real preservada, sin fondo agregado — `public/images/jimmy/
+  sistema-capas.webp`); Calcula muestra una lectura de datos simulada
+  (1.2 m²/L · 42.5 L); Escala tiene un mini-CTA de calendario.
+- **Preview de chat funcional, no solo decorativo.** Las 4 opciones rápidas
+  y el botón "Visita en obra" abren el widget real de Jimmy y le envían el
+  mensaje correspondiente automáticamente — se extendió
+  `JimmyWidgetHandle.abrir()` para aceptar un mensaje opcional
+  (`abrir(mensaje?: string)`), sin romper los llamadores existentes
+  (Proyectos.tsx sigue llamando `onAskJimmy()` sin argumento).
+- **Bug de contenido encontrado y corregido de paso**: el guion de Jimmy
+  tenía "fisura" como palabra clave de la respuesta de *aditivos para
+  concreto*, así que probando el botón "Reparar fisura" Jimmy contestaba
+  sobre dosificación en planta en vez de reparación estructural. Se movió
+  "fisura"/"grieta" a las palabras clave de la respuesta de reparación,
+  que es el tema real.
+
+Fondo: mismo `SectionBg tone="light"` que ya usaba la sección (grid sutil +
+orbes suaves, sin cambios).
+
 ## Sección "Catálogo de servicios" — reconstruida sobre referencia visual
 
 Se aplicó el DISEÑO de una referencia visual del cliente (sidebar + filtros

@@ -5,7 +5,7 @@ import { Reveal } from "./Reveal";
 import { SectionBg } from "./SectionBg";
 import { InView } from "./InView";
 
-export function Proyectos({ onAskJimmy }: { onAskJimmy: () => void }) {
+export function Proyectos({ onAskJimmy }: { onAskJimmy: (mensaje?: string) => void }) {
   return (
     <InView className="cv-section relative text-ink">
       <SectionBg tone="light" />
@@ -75,7 +75,7 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: () => void }) {
               estos proyectos y qué haría falta en el suyo.
             </span>
             <button
-              onClick={onAskJimmy}
+              onClick={() => onAskJimmy()}
               className="font-mono-adi inline-flex items-center justify-center gap-2.5 rounded-[4px] px-4.5 py-2.75 text-xs font-semibold uppercase tracking-[0.13em] text-navy shadow-[inset_0_0_0_1px_rgba(1,35,135,.3)] transition-all hover:shadow-[inset_0_0_0_1px_var(--cyan)]"
             >
               Consultarlo con Jimmy

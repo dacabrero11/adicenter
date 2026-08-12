@@ -19,7 +19,7 @@ import { JimmyWidget, type JimmyWidgetHandle } from "@/components/JimmyWidget";
 
 export default function Home() {
   const jimmyRef = useRef<JimmyWidgetHandle>(null);
-  const abrirJimmy = () => jimmyRef.current?.abrir();
+  const abrirJimmy = (mensaje?: string) => jimmyRef.current?.abrir(mensaje);
 
   return (
     <>

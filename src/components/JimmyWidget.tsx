@@ -6,7 +6,7 @@ import { preguntasRapidas, respuestaGenerica, responderJimmy, saludoInicial } fr
 
 type Msg = { id: number; rol: "bot" | "user"; texto: string };
 
-export type JimmyWidgetHandle = { abrir: () => void };
+export type JimmyWidgetHandle = { abrir: (mensajeInicial?: string) => void };
 
 export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_, ref) {
   const [open, setOpen] = useState(false);
@@ -19,6 +19,7 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
   // ref, no state: no debe disparar un segundo paso del efecto ni cancelar su propio timeout
   const iniciadoRef = useRef(false);
   const [pulse, setPulse] = useState(false);
+  const pendienteRef = useRef<string | null>(null);
 
   // pulso de atención periódico cuando el chat está cerrado
   useEffect(() => {
@@ -36,15 +37,33 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
   }, []);
 
   useImperativeHandle(ref, () => ({
-    abrir: () => setOpen(true),
+    abrir: (mensajeInicial) => {
+      if (mensajeInicial) pendienteRef.current = mensajeInicial;
+      setOpen(true);
+    },
   }));
 
   useEffect(() => {
     if (!open) return;
     inputRef.current && setTimeout(() => inputRef.current?.focus(), 350);
-    if (iniciadoRef.current) return;
+    if (iniciadoRef.current) {
+      // el widget ya estaba abierto: si llega un mensaje nuevo desde afuera, enviarlo ahora
+      if (pendienteRef.current) {
+        const msg = pendienteRef.current;
+        pendienteRef.current = null;
+        enviar(msg);
+      }
+      return;
+    }
     iniciadoRef.current = true;
-    const t = setTimeout(() => push("bot", saludoInicial), 350);
+    const t = setTimeout(() => {
+      push("bot", saludoInicial);
+      if (pendienteRef.current) {
+        const msg = pendienteRef.current;
+        pendienteRef.current = null;
+        setTimeout(() => enviar(msg), 750);
+      }
+    }, 350);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
