@@ -15,11 +15,11 @@ import { useEffect, useRef, useState } from "react";
  * `depth` = cuánto responde esa capa al parallax (las de arriba, más).
  */
 export const CAPAS = [
-  { n: "01", src: "/images/hero/layer-1.webp", fy: -45.9, start: 26, depth: 1.5, titulo: "Acabado", desc: "Protección final" },
-  { n: "02", src: "/images/hero/layer-2.webp", fy: -40.6, start: 22, depth: 1.3, titulo: "Impermeabilización", desc: "Barrera contra la humedad" },
-  { n: "03", src: "/images/hero/layer-3.webp", fy: -37.4, start: 18, depth: 1.12, titulo: "Membrana elastomérica", desc: "Flexibilidad y resistencia" },
-  { n: "04", src: "/images/hero/layer-4.webp", fy: -30.6, start: 14, depth: 0.94, titulo: "Primer", desc: "Adherencia superior" },
-  { n: "05", src: "/images/hero/layer-5.webp", fy: -21.2, start: 10, depth: 0.76, titulo: "Reparación", desc: "Corrección estructural" },
+  { n: "01", src: "/images/hero/layer-1.webp", fy: -52.9, start: 26, depth: 1.5, titulo: "Acabado", desc: "Protección final" },
+  { n: "02", src: "/images/hero/layer-2.webp", fy: -46.2, start: 22, depth: 1.3, titulo: "Impermeabilización", desc: "Barrera contra la humedad" },
+  { n: "03", src: "/images/hero/layer-3.webp", fy: -41.6, start: 18, depth: 1.12, titulo: "Membrana elastomérica", desc: "Flexibilidad y resistencia" },
+  { n: "04", src: "/images/hero/layer-4.webp", fy: -33.4, start: 14, depth: 0.94, titulo: "Primer", desc: "Adherencia superior" },
+  { n: "05", src: "/images/hero/layer-5.webp", fy: -22.6, start: 10, depth: 0.76, titulo: "Reparación", desc: "Corrección estructural" },
   { n: "06", src: "/images/hero/layer-6.webp", fy: 0, start: 6, depth: 0.58, titulo: "Concreto", desc: "Estructura que perdura" },
 ] as const;
 
@@ -79,6 +79,8 @@ export function HeroBlock({ onLayerFocus }: { onLayerFocus?: (i: number | null) 
   const px = useRef(0), py = useRef(0), tx = useRef(0), ty = useRef(0);
   const lift = useRef<number[]>(CAPAS.map(() => 0));
   const liftT = useRef<number[]>(CAPAS.map(() => 0));
+  const pop = useRef<number[]>(CAPAS.map(() => 0));
+  const popT = useRef<number[]>(CAPAS.map(() => 0));
   const idle = useRef<number[]>(CAPAS.map(() => 0));
   const idleT = useRef<number[]>(CAPAS.map(() => 0));
   const hoveredRef = useRef<number | null>(null);
@@ -112,19 +114,23 @@ export function HeroBlock({ onLayerFocus }: { onLayerFocus?: (i: number | null) 
 
       for (let i = 0; i < N; i++) {
         lift.current[i] += (liftT.current[i] - lift.current[i]) * 0.16;
-        idle.current[i] += (idleT.current[i] - idle.current[i]) * 0.07;
+        pop.current[i] += (popT.current[i] - pop.current[i]) * 0.16;
+        idle.current[i] += (idleT.current[i] - idle.current[i]) * 0.055;
         if (Math.abs(liftT.current[i] - lift.current[i]) > 0.05) settled = false;
+        if (Math.abs(popT.current[i] - pop.current[i]) > 0.05) settled = false;
         if (Math.abs(idleT.current[i] - idle.current[i]) > 0.05) settled = false;
 
         const node = parallaxRefs.current[i];
         if (!node) continue;
         const d = CAPAS[i].depth;
         const liftPx = lift.current[i];
+        const popPx = pop.current[i];
         const idlePx = idle.current[i];
         const scale = 1 + liftPx * 0.0013;
+        const rot = popPx * 0.11; // grados — acompaña al "sale del bloque" con una leve inclinación
         node.style.transform =
-          `translate3d(${(px.current * d).toFixed(2)}px, ${(py.current * d + idlePx).toFixed(2)}px, 0) ` +
-          `translateY(${(-liftPx).toFixed(2)}px) scale(${scale.toFixed(4)})`;
+          `translate3d(${(px.current * d + popPx).toFixed(2)}px, ${(py.current * d + idlePx).toFixed(2)}px, 0) ` +
+          `translateY(${(-liftPx).toFixed(2)}px) rotate(${rot.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
       }
 
       if (!settled) raf.current = requestAnimationFrame(tick);
@@ -156,7 +162,12 @@ export function HeroBlock({ onLayerFocus }: { onLayerFocus?: (i: number | null) 
       hoveredRef.current = i;
       setHoveredIdx(i);
       onLayerFocus?.(i);
-      for (let k = 0; k < N; k++) liftT.current[k] = k === i ? 16 : 0;
+      for (let k = 0; k < N; k++) {
+        liftT.current[k] = k === i ? 16 : 0;
+        // sale del bloque hacia adelante — parejo en las 6 capas, así la
+        // seleccionada siempre se distingue aunque esté muy metida (capa 2 y 3)
+        popT.current[k] = k === i ? 26 : 0;
+      }
       ensureRaf();
     }
 
@@ -196,8 +207,8 @@ export function HeroBlock({ onLayerFocus }: { onLayerFocus?: (i: number | null) 
           for (let i = 0; i < N; i++) idleT.current[i] = 0;
           setIdleOpen(false);
           ensureRaf();
-        }, 1700);
-      }, 9000);
+        }, 3400);
+      }, 9500);
     }
 
     return () => {
@@ -232,16 +243,21 @@ export function HeroBlock({ onLayerFocus }: { onLayerFocus?: (i: number | null) 
               }}
               className={`hero-layer-parallax ${hoveredIdx === i || idleOpen ? "hero-layer-glow" : ""}`}
             >
-              <Image
-                src={c.src}
-                alt=""
-                width={1200}
-                height={800}
-                priority={i < 3}
-                sizes="(max-width: 1024px) 92vw, 1000px"
-                className="h-auto w-full select-none"
-                draggable={false}
-              />
+              <div
+                className="hero-layer-spin"
+                style={{ ["--spin" as string]: `${(i % 2 === 0 ? 1 : -1) * (0.9 + (i % 3) * 0.25)}deg`, animationDelay: `${i * 0.6}s` }}
+              >
+                <Image
+                  src={c.src}
+                  alt=""
+                  width={1200}
+                  height={800}
+                  priority={i < 3}
+                  sizes="(max-width: 1024px) 92vw, 1000px"
+                  className="h-auto w-full select-none"
+                  draggable={false}
+                />
+              </div>
             </div>
           </div>
         ))}

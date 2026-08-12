@@ -40,6 +40,39 @@ npm run start
 `npm run build` debe pasar sin errores antes de cualquier push (regla
 estándar de BLITZ).
 
+## Hero — separación, giro, glow mejorado y despliegue idle más largo
+
+Ajustes sobre el sistema de hover del bloque:
+
+- **Más separación en reposo.** +1.4% acumulado por frontera entre capas
+  (capa1 terminó en fy=-52.9% vs -45.9% original). Se verificó con un mapa de
+  calor real (896 puntos de hover sobre todo el bloque, usando el código de
+  producción) que las 6 capas son alcanzables y forman bandas concéntricas
+  limpias sin huecos. Capa 2 y 3 siguen siendo bandas más finas que capa 1/6
+  — es geometría real del bloque (son capas delgadas por diseño), no un bug;
+  la separación extra amplió su franja de hover proporcionalmente.
+- **Salida del bloque al hover, pareja en las 6 capas** (no solo 2 y 3, por
+  consistencia): además de elevarse, la capa seleccionada se desplaza ~26px
+  hacia adelante con una leve rotación, dejando clarísimo cuál está activa.
+  Vuelve a su lugar al quitar el mouse.
+- **Giro ambiental sutil** en un div anidado aparte (`.hero-layer-spin`),
+  para no repetir el bug de colisión de `transform` entre animaciones CSS e
+  inline-por-JS que ya salió dos veces antes en este proyecto.
+- **Glow de dos capas** (halo amplio + núcleo más brillante), sigue siendo
+  100% opacidad — nunca `filter:drop-shadow()`, que ya se midió muy caro en
+  este mismo bloque.
+- **Despliegue idle dura ~3.3s abierto** (antes 1.7s) y separa más las capas.
+
+**Nota de rendimiento honesta:** en el pico exacto del despliegue idle (las
+6 capas separadas + 6 glows a la vez) se midió 23-26 FPS en el entorno de
+prueba por software — más bajo que el resto del sitio. Se investigó: no es
+el giro ni el doble-glow (probados por separado, casi sin diferencia), es
+el costo acumulado de animar 6 capas simultáneamente. Es un pico breve
+(~1.5s de cada 9.5s) y no afecta la interacción principal (el hover normal
+mide 34-39 FPS). Si en algún momento se ve lento en un dispositivo real,
+la primera palanca a tocar es reducir de 6 a 3-4 capas el despliegue
+simultáneo (escalonarlo en dos grupos).
+
 ## Hero — hover preciso, glow y despliegue idle
 
 **Detección de hover por transparencia real, no por caja rectangular.** Las

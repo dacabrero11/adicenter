@@ -412,22 +412,47 @@ input, select, textarea { font-size: 16px; }
   position: relative;
   will-change: transform;
 }
-/* glow: una capa de degradado detrás del plano cuya opacidad se anima —
-   mucho más barato que filter:drop-shadow(), que obliga a recalcular el
-   contorno alfa completo en cada repintado de la página (ya lo pagamos
-   caro una vez con los orbes de fondo, no lo repetimos aquí). */
+
+/* giro ambiental muy sutil — vive en su propio div para no pisar el
+   transform que ya escribe JS en .hero-layer-parallax cada frame */
+@keyframes layer-spin {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(var(--spin, 1deg)); }
+}
+.hero-layer-spin {
+  animation: layer-spin 6.5s ease-in-out infinite paused;
+  transform-origin: 50% 60%;
+  will-change: transform;
+}
+[data-inview="true"] .hero-layer-spin {
+  animation-play-state: running;
+}
+
+/* glow: dos capas de degradado (halo amplio + núcleo más brillante) cuya
+   opacidad se anima — mucho más barato que filter:drop-shadow(), que
+   obliga a recalcular el contorno alfa completo en cada repintado de la
+   página (ya lo pagamos caro una vez con los orbes de fondo). */
+.hero-layer-parallax::before,
 .hero-layer-parallax::after {
   content: "";
   position: absolute;
-  inset: -8%;
   z-index: -1;
-  border-radius: 14%;
-  background: radial-gradient(58% 58% at 50% 50%, rgba(1, 183, 222, 0.5), transparent 72%);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
   will-change: opacity;
 }
+.hero-layer-parallax::before {
+  inset: -14%;
+  border-radius: 18%;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(1, 183, 222, 0.4), transparent 74%);
+}
+.hero-layer-parallax::after {
+  inset: -5%;
+  border-radius: 12%;
+  background: radial-gradient(55% 55% at 50% 48%, rgba(154, 223, 252, 0.75), rgba(1, 183, 222, 0.35) 55%, transparent 75%);
+}
+.hero-layer-parallax.hero-layer-glow::before,
 .hero-layer-parallax.hero-layer-glow::after {
   opacity: 1;
 }
