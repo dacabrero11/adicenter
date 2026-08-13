@@ -40,6 +40,20 @@ npm run start
 `npm run build` debe pasar sin errores antes de cualquier push (regla
 estándar de BLITZ).
 
+## Fix — imagen de "Muro" en el Selector
+
+La imagen original de `muro.webp` traía una sombra/resplandor de fondo mal
+recortado en el render (23.6% de píxeles semi-transparentes, contra menos
+del 1.3% en las otras 4 imágenes del selector) — se veía como un halo
+irregular alrededor del objeto. Se probaron correcciones automáticas
+(umbral de alfa, separación por color, separación por textura/varianza
+local) que redujeron el problema pero no lo eliminaron del todo: quedaba
+un resto delgado de sombra pegado al borde superior, porque esa sombra
+tenía opacidad alta y colores similares a la membrana azul real del
+sistema, no separable de forma confiable. El cliente proporcionó un
+render nuevo con transparencia limpia (0.9% semi-transparente, en línea
+con el resto) y se reemplazó directamente.
+
 ## Sección "Selector de sistema" — reconstruida sobre referencia visual (2 pasos)
 
 Rediseño completo: de un único paso (elegir superficie, con "Reparación
