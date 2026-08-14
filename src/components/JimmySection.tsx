@@ -96,7 +96,7 @@ function JimmyAnimado() {
     <div
       ref={containerRef}
       className={`relative flex-none ${alturaClase}`}
-      style={{ aspectRatio: "510 / 1219" }}
+      style={{ aspectRatio: "510 / 1219", overflow: "hidden" }}
     >
       {/* imagen estática — base siempre disponible */}
       <Image
@@ -109,7 +109,10 @@ function JimmyAnimado() {
         className="animate-bob object-contain drop-shadow-[0_24px_38px_rgba(1,35,135,.3)]"
         style={{ transition: "opacity 0.3s ease" }}
       />
-      {/* video transparente: se muestra solo cuando Jimmy saluda */}
+      {/* video transparente: se muestra solo cuando Jimmy saluda.
+          scale(1.26) compensa la diferencia de aspecto entre el canvas del
+          video (504×957) y el contenedor (ratio 510/1219): sin él Jimmy
+          aparecería al 79% del tamaño de la imagen estática. */}
       <video
         ref={videoRef}
         src="/images/jimmy/jimmy-saludo.webm"
@@ -123,6 +126,8 @@ function JimmyAnimado() {
           height: "100%",
           objectFit: "contain",
           objectPosition: "center bottom",
+          transform: "scale(1.26)",
+          transformOrigin: "center bottom",
           opacity: 0,
           transition: "opacity 0.3s ease",
           pointerEvents: "none",
