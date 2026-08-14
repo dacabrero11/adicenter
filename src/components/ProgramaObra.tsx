@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Reveal } from "./Reveal";
 import { InView } from "./InView";
 
@@ -115,34 +116,17 @@ export function ProgramaObra() {
               constructoras, contratistas y desarrolladores.
             </p>
 
-            {/* mini visual SVG */}
+            {/* gráfico de barras 3D */}
             <div className="relative mt-10 hidden lg:block">
-              <svg viewBox="0 0 320 180" className="w-full max-w-[320px] opacity-80" fill="none">
-                {/* rejilla isométrica */}
-                {[0,40,80,120,160].map(x=>(
-                  <line key={`gx${x}`} x1={x} y1="0" x2={x+160} y2="160" stroke="rgba(1,183,222,.18)" strokeWidth=".8"/>
-                ))}
-                {[20,60,100,140].map(x=>(
-                  <line key={`gx2${x}`} x1={x} y1="0" x2={x+160} y2="160" stroke="rgba(1,183,222,.10)" strokeWidth=".5"/>
-                ))}
-                {[0,40,80,120,160].map(y=>(
-                  <line key={`gy${y}`} x1="0" y1={y} x2="320" y2={y} stroke="rgba(1,183,222,.10)" strokeWidth=".5"/>
-                ))}
-                {/* barras de crecimiento */}
-                {[
-                  {x:40,h:60,c:"rgba(1,183,222,.55)"},
-                  {x:90,h:90,c:"rgba(1,183,222,.65)"},
-                  {x:140,h:120,c:"rgba(1,183,222,.75)"},
-                  {x:190,h:150,c:"rgba(1,183,222,.9)"},
-                  {x:240,h:175,c:"rgba(1,183,222,1)"},
-                ].map(({x,h,c})=>(
-                  <rect key={x} x={x} y={180-h} width="32" height={h} rx="3" fill={c}/>
-                ))}
-                {/* línea tendencia */}
-                <polyline points="56,120 106,90 156,60 206,30 256,5" stroke="#FF6A13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="256" cy="5" r="4" fill="#FF6A13"/>
-                <polyline points="256,5 270,0" stroke="#FF6A13" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
+              <div className="grafico-barras-wrap relative max-w-[340px]">
+                <Image
+                  src="/images/grafico-barras.webp"
+                  alt="Crecimiento de proyectos ADICENTER"
+                  width={900}
+                  height={635}
+                  className="grafico-barras-img h-auto w-full drop-shadow-[0_18px_40px_rgba(1,183,222,.35)]"
+                />
+              </div>
               <div className="absolute bottom-4 right-0 flex items-center gap-2.5 rounded-[6px] border border-cyan/25 bg-navy-950/80 px-3.5 py-3">
                 <span className="text-cyan">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">

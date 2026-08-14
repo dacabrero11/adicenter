@@ -502,6 +502,49 @@ input, select, textarea { font-size: 16px; }
   animation: label-in 0.55s cubic-bezier(0.22, 0.85, 0.3, 1) forwards;
 }
 
+
+/* ============================================================
+   GRÁFICO DE BARRAS — animación de pulso + flotación suave
+   Tres efectos apilados sin filter ni backdrop:
+   1) flotación vertical suave (translateY)
+   2) escala mínima de "respiración" (scale)
+   3) glow cian pulsante del drop-shadow (opacity del pseudo)
+   ============================================================ */
+
+@keyframes grafico-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-10px) scale(1.018); }
+}
+@keyframes grafico-glow-pulse {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 0.75; }
+}
+
+.grafico-barras-img {
+  animation: grafico-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* halo cian animado debajo de la imagen — sin filter:blur en la imagen */
+.grafico-barras-wrap::before {
+  content: "";
+  position: absolute;
+  bottom: -10%;
+  left: 10%;
+  right: 10%;
+  height: 40%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(1,183,222,0.5), transparent 68%);
+  animation: grafico-glow-pulse 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grafico-barras-img { animation: none; }
+  .grafico-barras-wrap::before { animation: none; opacity: 0.4; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-layer {
     opacity: 1;
