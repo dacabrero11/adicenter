@@ -14,6 +14,7 @@ function JimmyAnimado() {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inViewRef = useRef(false);
   const readyRef = useRef(false);
+  const saludadoBienvenidaRef = useRef(false);
 
   function reproducir() {
     const vid = videoRef.current;
@@ -44,6 +45,11 @@ function JimmyAnimado() {
       if (!vid) return;
       vid.currentTime = vid.duration - 0.001;
       readyRef.current = true;
+      // Si la sección ya estaba visible cuando terminó de cargar → saludar ahora
+      if (inViewRef.current && !saludadoBienvenidaRef.current) {
+        saludadoBienvenidaRef.current = true;
+        setTimeout(() => reproducir(), 600);
+      }
     }
 
     if (vid.readyState >= 1) {
@@ -57,8 +63,13 @@ function JimmyAnimado() {
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => {
         inViewRef.current = e.isIntersecting;
+        // Primera vez que el usuario llega a la sección → saludo de bienvenida
+        if (e.isIntersecting && !saludadoBienvenidaRef.current && readyRef.current) {
+          saludadoBienvenidaRef.current = true;
+          setTimeout(() => reproducir(), 600);
+        }
       }),
-      { threshold: 0.3 }
+      { threshold: 0.35 }
     );
     io.observe(container);
 
@@ -76,11 +87,12 @@ function JimmyAnimado() {
     }
     container.addEventListener("mouseenter", onEnter);
 
-    // Primer saludo entre 8 y 12 s cuando la sección está visible
+    // Saludos periódicos (después del de bienvenida, cada 20-40 s)
+    // El primer saludo ya lo maneja el IntersectionObserver arriba;
+    // aquí solo programamos los siguientes.
     timerRef.current = setTimeout(() => {
-      if (inViewRef.current) reproducir();
       programarSiguiente();
-    }, 8000 + Math.random() * 4000);
+    }, 500); // arranca el loop periódico casi de inmediato
 
     return () => {
       io.disconnect();
