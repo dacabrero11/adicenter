@@ -4,6 +4,107 @@ import Image from "next/image";
 import { SectionBg } from "./SectionBg";
 import { InView } from "./InView";
 import { Reveal } from "./Reveal";
+import { useEffect, useRef } from "react";
+
+/* -------- Componente aislado para la animación de Jimmy -------- */
+function JimmyAnimado() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const playingRef = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const inViewRef = useRef(false);
+
+  function reproducir() {
+    const vid = videoRef.current;
+    if (!vid || playingRef.current) return;
+    playingRef.current = true;
+    vid.currentTime = 0;
+    vid.style.opacity = "1";
+    vid.play().catch(() => {
+      vid.style.opacity = "0";
+      playingRef.current = false;
+    });
+  }
+
+  function programarSiguiente() {
+    const delay = 20000 + Math.random() * 20000;
+    timerRef.current = setTimeout(() => {
+      if (inViewRef.current) reproducir();
+      programarSiguiente();
+    }, delay);
+  }
+
+  useEffect(() => {
+    const vid = videoRef.current;
+    const container = containerRef.current;
+    if (!vid || !container) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { inViewRef.current = e.isIntersecting; }),
+      { threshold: 0.3 }
+    );
+    io.observe(container);
+
+    function onEnded() {
+      if (!vid) return;
+      vid.style.opacity = "0";
+      setTimeout(() => { playingRef.current = false; }, 400);
+    }
+    vid.addEventListener("ended", onEnded);
+
+    function onEnter() {
+      if (window.matchMedia("(pointer:fine)").matches) reproducir();
+    }
+    container.addEventListener("mouseenter", onEnter);
+
+    // primer saludo entre 8 y 12 s para que el usuario lo vea pronto
+    timerRef.current = setTimeout(() => {
+      if (inViewRef.current) reproducir();
+      programarSiguiente();
+    }, 8000 + Math.random() * 4000);
+
+    return () => {
+      io.disconnect();
+      vid.removeEventListener("ended", onEnded);
+      container.removeEventListener("mouseenter", onEnter);
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative h-[300px] w-auto sm:h-[360px] lg:h-[clamp(360px,30vw,480px)]">
+      <Image
+        src="/images/jimmy-full.png"
+        alt="JIMMY, el técnico de ADICENTER"
+        width={510}
+        height={1219}
+        priority
+        className="animate-bob h-full w-auto drop-shadow-[0_24px_38px_rgba(1,35,135,.3)]"
+      />
+      <video
+        ref={videoRef}
+        src="/images/jimmy/jimmy-saludo.webm"
+        muted
+        playsInline
+        preload="none"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          opacity: 0,
+          transition: "opacity 0.3s ease",
+          pointerEvents: "none",
+          filter: "drop-shadow(0 24px 38px rgba(1,35,135,.3))",
+        }}
+      />
+    </div>
+  );
+}
+/* ---------------------------------------------------------------- */
 
 /* ---------- iconos lineales, mismo lenguaje del resto del sitio ---------- */
 const I = {
@@ -120,14 +221,7 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
                 style={{ background: "radial-gradient(ellipse,rgba(1,35,135,.3),transparent 70%)" }}
                 aria-hidden="true"
               />
-              <Image
-                src="/images/jimmy-full.png"
-                alt="JIMMY, el técnico de ADICENTER"
-                width={510}
-                height={1219}
-                priority
-                className="animate-bob relative h-[300px] w-auto drop-shadow-[0_24px_38px_rgba(1,35,135,.3)] sm:h-[360px] lg:h-[clamp(360px,30vw,480px)]"
-              />
+              <JimmyAnimado />
               <div className="absolute -right-3 top-2 flex items-center gap-1.5 rounded-full border border-navy/[.14] bg-white px-2.5 py-1.25 shadow-[0_8px_20px_-8px_rgba(1,35,135,.35)] sm:-right-6">
                 <span className="dot-live" />
                 <span className="font-mono-adi whitespace-nowrap text-[8.5px] uppercase tracking-[0.08em] text-ink-soft">
