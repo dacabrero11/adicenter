@@ -9,19 +9,36 @@ import { useEffect, useRef } from "react";
 /* -------- Componente aislado para la animación de Jimmy -------- */
 function JimmyAnimado() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const playingRef = useRef(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inViewRef = useRef(false);
+
+  function mostrarVideo() {
+    const vid = videoRef.current;
+    const img = imgRef.current;
+    if (!vid || !img) return;
+    img.style.opacity = "0";   // ocultar imagen estática
+    vid.style.opacity = "1";   // mostrar video
+  }
+
+  function mostrarImagen() {
+    const vid = videoRef.current;
+    const img = imgRef.current;
+    if (!vid || !img) return;
+    vid.style.opacity = "0";   // ocultar video
+    img.style.opacity = "1";   // restaurar imagen
+  }
 
   function reproducir() {
     const vid = videoRef.current;
     if (!vid || playingRef.current) return;
     playingRef.current = true;
     vid.currentTime = 0;
-    vid.style.opacity = "1";
+    mostrarVideo();
     vid.play().catch(() => {
-      vid.style.opacity = "0";
+      mostrarImagen();
       playingRef.current = false;
     });
   }
@@ -48,7 +65,7 @@ function JimmyAnimado() {
 
     function onEnded() {
       if (!vid) return;
-      vid.style.opacity = "0";
+      mostrarImagen();
       setTimeout(() => { playingRef.current = false; }, 400);
     }
     vid.addEventListener("ended", onEnded);
@@ -58,7 +75,7 @@ function JimmyAnimado() {
     }
     container.addEventListener("mouseenter", onEnter);
 
-    // primer saludo entre 8 y 12 s para que el usuario lo vea pronto
+    // primer saludo entre 8 y 12 s después de que el usuario ve la sección
     timerRef.current = setTimeout(() => {
       if (inViewRef.current) reproducir();
       programarSiguiente();
@@ -73,16 +90,26 @@ function JimmyAnimado() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const alturaClase = "h-[300px] sm:h-[360px] lg:h-[clamp(360px,30vw,480px)]";
+
   return (
-    <div ref={containerRef} className="relative h-[300px] w-auto sm:h-[360px] lg:h-[clamp(360px,30vw,480px)]">
+    <div
+      ref={containerRef}
+      className={`relative flex-none ${alturaClase}`}
+      style={{ aspectRatio: "510 / 1219" }}
+    >
+      {/* imagen estática — base siempre disponible */}
       <Image
+        ref={imgRef as React.RefObject<HTMLImageElement>}
         src="/images/jimmy-full.png"
         alt="JIMMY, el técnico de ADICENTER"
-        width={510}
-        height={1219}
+        fill
         priority
-        className="animate-bob h-full w-auto drop-shadow-[0_24px_38px_rgba(1,35,135,.3)]"
+        sizes="(max-width: 640px) 125px, (max-width: 1024px) 150px, 200px"
+        className="animate-bob object-contain drop-shadow-[0_24px_38px_rgba(1,35,135,.3)]"
+        style={{ transition: "opacity 0.3s ease" }}
       />
+      {/* video transparente: se muestra solo cuando Jimmy saluda */}
       <video
         ref={videoRef}
         src="/images/jimmy/jimmy-saludo.webm"
@@ -95,6 +122,7 @@ function JimmyAnimado() {
           width: "100%",
           height: "100%",
           objectFit: "contain",
+          objectPosition: "center bottom",
           opacity: 0,
           transition: "opacity 0.3s ease",
           pointerEvents: "none",
