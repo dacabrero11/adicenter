@@ -63,27 +63,59 @@ export function Proceso() {
       setVisible(true);
       return;
     }
+
+    let done = false;
     let raf1 = 0;
     let raf2 = 0;
+    let rafCheck = 0;
+
+    const arm = () => {
+      if (done) return;
+      done = true;
+      io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      // Doble rAF: garantiza que el estado inicial (scaleX(0), nodos en
+      // opacity 0) se pinte en un frame propio antes de cambiar al final.
+      // Sin esto el navegador colapsa ambos valores y no interpola.
+      raf1 = requestAnimationFrame(() => {
+        raf2 = requestAnimationFrame(() => setVisible(true));
+      });
+    };
+
+    // Red de seguridad idéntica a la de Reveal: con `content-visibility`
+    // la sección puede estar sin layout (alto/ancho 0) justo cuando el
+    // usuario llega de un salto de ancla, y entonces el observer nunca
+    // alcanza su umbral. Medir la posición real lo resuelve.
+    const check = () => {
+      rafCheck = 0;
+      if (done || !ref.current) return;
+      const r = ref.current.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (r.top < vh - 40 && r.bottom > 0) arm();
+    };
+    const onScroll = () => {
+      if (rafCheck) return;
+      rafCheck = requestAnimationFrame(check);
+    };
+
+    // threshold 0: no dependemos del área del elemento, que puede ser 0
     const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return;
-          io.unobserve(el);
-          // Doble rAF: garantiza que el estado inicial (scaleX(0)) se pinte
-          // en un frame propio antes de cambiar a scaleX(1). Sin esto el
-          // navegador colapsa ambos valores y la transición no interpola.
-          raf1 = requestAnimationFrame(() => {
-            raf2 = requestAnimationFrame(() => setVisible(true));
-          });
-        }),
-      { threshold: 0.2 }
+      (entries) => entries.forEach((e) => e.isIntersecting && arm()),
+      { threshold: 0, rootMargin: "0px 0px -60px 0px" }
     );
     io.observe(el);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    check();
+
     return () => {
       io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(raf1);
       cancelAnimationFrame(raf2);
+      if (rafCheck) cancelAnimationFrame(rafCheck);
     };
   }, []);
 

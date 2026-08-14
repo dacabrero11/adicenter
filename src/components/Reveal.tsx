@@ -25,26 +25,60 @@ export function Reveal({
       return;
     }
 
-    // el propio IntersectionObserver dispara con el estado actual apenas se
-    // observa — si el elemento ya está en pantalla, entrega isIntersecting:true
-    // de inmediato. No hace falta chequeo manual ni temporizador de respaldo.
+    let done = false;
+    let raf = 0;
+
+    const reveal = () => {
+      if (done) return;
+      done = true;
+      setShown(true);
+      io.disconnect();
+      ro.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+
+    // Red de seguridad: el IntersectionObserver puede no emitir cuando el
+    // scroll salta de golpe (enlaces de ancla del menú, PageDown, restauración
+    // de posición). Ahí el elemento se quedaba pegado en `reveal-hidden`, o
+    // sea invisible para siempre. Este chequeo mide la posición real y lo
+    // rescata. Se apaga solo en cuanto el elemento se muestra.
+    const check = () => {
+      raf = 0;
+      if (done || !ref.current) return;
+      const r = ref.current.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (r.top < vh + 160 && r.bottom > -160) reveal();
+    };
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(check);
+    };
+
     const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            setShown(true);
-            io.unobserve(el);
-          }
-        });
-      },
-      // margen amplio en ambos sentidos: aunque el usuario haga un salto de
-      // scroll grande (PageDown, enlace de ancla), el elemento sigue cayendo
-      // dentro de la zona vigilada y no se queda pegado a "oculto"
+      (entries) => entries.forEach((e) => e.isIntersecting && reveal()),
       { threshold: 0, rootMargin: "160px 0px 160px 0px" }
     );
     io.observe(el);
 
-    return () => io.disconnect();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+
+    // Las imágenes cargan de forma diferida y empujan el contenido hacia
+    // abajo sin que haya un evento de scroll. Sin esto, un elemento podía
+    // quedar dentro del viewport y aun así seguir oculto.
+    const ro = new ResizeObserver(onScroll);
+    ro.observe(document.documentElement);
+
+    check();
+
+    return () => {
+      io.disconnect();
+      ro.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   const Comp = Tag as "div";

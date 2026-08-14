@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "./Button";
+import { scrollToHash } from "./scrollToHash";
 
 const LINKS = [
   { href: "#sistemas", label: "Sistemas" },
@@ -88,7 +89,13 @@ export function Header() {
               <a
                 key={l.href}
                 href={l.href}
-                onClick={() => setOpen(false)}
+                onClick={(e) => {
+                  if (l.href.startsWith("#")) {
+                    e.preventDefault();
+                    scrollToHash(l.href);
+                  }
+                  setOpen(false);
+                }}
                 className="relative border-b border-white/10 py-3.75 font-mono-adi text-[13px] uppercase tracking-[0.1em] text-white/70 transition-colors hover:text-white min-[1101px]:border-0 min-[1101px]:py-1.5 min-[1101px]:text-[10.8px] min-[1101px]:tracking-[0.1em] min-[1101px]:whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-cyan after:transition-all after:duration-300 hover:after:w-full min-[1101px]:after:content-['']"
               >
                 {l.label}
@@ -96,7 +103,11 @@ export function Header() {
             ))}
             <a
               href="#cotizar"
-              onClick={() => setOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToHash("#cotizar");
+                setOpen(false);
+              }}
               className="mt-4.5 flex items-center justify-center rounded-[4px] bg-hivis px-4 py-4 font-mono-adi text-xs font-semibold uppercase tracking-[0.1em] text-white shadow-[0_12px_30px_-12px_rgba(255,106,19,0.8)] min-[1101px]:hidden"
             >
               Cotizar proyecto
