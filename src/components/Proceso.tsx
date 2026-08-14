@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 
 const PASOS = [
   {
@@ -53,7 +54,6 @@ const PASOS = [
 
 export function Proceso() {
   const ref = useRef<HTMLDivElement>(null);
-  const lineRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -63,14 +63,28 @@ export function Proceso() {
       setVisible(true);
       return;
     }
+    let raf1 = 0;
+    let raf2 = 0;
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => {
-        if (e.isIntersecting) { setVisible(true); io.unobserve(el); }
-      }),
+      (entries) =>
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          io.unobserve(el);
+          // Doble rAF: garantiza que el estado inicial (scaleX(0)) se pinte
+          // en un frame propio antes de cambiar a scaleX(1). Sin esto el
+          // navegador colapsa ambos valores y la transición no interpola.
+          raf1 = requestAnimationFrame(() => {
+            raf2 = requestAnimationFrame(() => setVisible(true));
+          });
+        }),
       { threshold: 0.2 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
   }, []);
 
   return (
@@ -108,7 +122,7 @@ export function Proceso() {
           </div>
 
           {/* ---- timeline ---- */}
-          <div ref={ref} className="relative">
+          <div ref={ref} className={`relative ${visible ? "is-on" : ""}`}>
 
             {/* línea horizontal desktop */}
             <div className="absolute left-[calc(12.5%+1px)] right-[calc(12.5%+1px)] top-[38px] hidden h-px bg-navy/[.12] lg:block" />
@@ -116,34 +130,24 @@ export function Proceso() {
             {[1, 2, 3].map((i) => (
               <span
                 key={i}
-                className={`proceso-dot absolute top-[34px] hidden h-[9px] w-[9px] rounded-full border-2 border-navy/[.35] bg-white lg:block ${
-                  visible ? "" : "opacity-0"
-                }`}
-                style={{
-                  left: `${12.5 + i * 25}%`,
-                  transitionDelay: visible ? `${300 + i * 150}ms` : "0ms",
-                }}
+                className="proceso-dot absolute top-[34px] hidden h-[9px] w-[9px] rounded-full border-2 border-navy/[.35] bg-white lg:block"
+                style={
+                  {
+                    left: `${12.5 + i * 25}%`,
+                    "--d": `${420 + i * 190}ms`,
+                  } as CSSProperties
+                }
               />
             ))}
             {/* línea animada que se dibuja */}
-            <div
-              className="proceso-line absolute left-[calc(12.5%+1px)] right-[calc(12.5%+1px)] top-[38px] hidden h-[2px] origin-left lg:block"
-              style={{
-                transform: visible ? "scaleX(1)" : "scaleX(0)",
-                transition: visible ? "transform 1.1s cubic-bezier(0.16,1,0.3,1)" : "none",
-                transitionDelay: visible ? "200ms" : "0ms",
-              }}
-            />
+            <div className="proceso-line absolute left-[calc(12.5%+1px)] right-[calc(12.5%+1px)] top-[38px] hidden h-[2px] lg:block" />
 
             {/* 4 pasos */}
             <div className="relative grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-6">
               {PASOS.map((paso, i) => (
                 <div
                   key={paso.n}
-                  className={`flex flex-col items-start lg:items-center transition-all duration-700 ${
-                    visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                  }`}
-                  style={{ transitionDelay: visible ? `${300 + i * 140}ms` : "0ms" }}
+                  className="flex flex-col items-start lg:items-center"
                 >
                   {/* icono en círculo */}
                   <div className="relative lg:mx-auto">
@@ -159,23 +163,20 @@ export function Proceso() {
                       <span className="absolute left-[37px] top-[78px] h-10 w-px bg-navy/[.14] lg:hidden" />
                     )}
                     <div
-                      className={`relative z-2 flex h-[76px] w-[76px] items-center justify-center rounded-full border bg-white text-navy-500 ${
-                        visible
-                          ? i === 0
-                            ? "proceso-node-ring border-navy-500/30"
-                            : "proceso-node border-navy/[.18]"
-                          : "opacity-0"
-                      }`}
-                      style={{
-                        animationDelay: visible ? `${i * 180}ms` : undefined,
-                      }}
+                      className="proceso-node z-2 flex h-[76px] w-[76px] items-center justify-center rounded-full border border-navy/[.18] bg-white text-navy-500"
+                      style={{ "--d": `${300 + i * 190}ms` } as CSSProperties}
                     >
                       {paso.icon}
                     </div>
                   </div>
 
                   {/* contenido */}
-                  <div className="mt-7 pl-1 text-left lg:pl-0 lg:text-center">
+                  <div
+                    className={`mt-7 pl-1 text-left transition-all duration-700 lg:pl-0 lg:text-center ${
+                      visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                    }`}
+                    style={{ transitionDelay: visible ? `${480 + i * 190}ms` : "0ms" }}
+                  >
                     <span className="font-display text-[28px] leading-none text-navy-500">{paso.n}</span>
                     <h4 className="font-display mt-3 text-[15px] font-bold uppercase tracking-[0.04em] text-ink">
                       {paso.titulo}
