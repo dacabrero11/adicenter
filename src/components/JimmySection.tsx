@@ -9,36 +9,18 @@ import { useEffect, useRef } from "react";
 /* -------- Componente aislado para la animación de Jimmy -------- */
 function JimmyAnimado() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const playingRef = useRef(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inViewRef = useRef(false);
-
-  function mostrarVideo() {
-    const vid = videoRef.current;
-    const img = imgRef.current;
-    if (!vid || !img) return;
-    img.style.opacity = "0";   // ocultar imagen estática
-    vid.style.opacity = "1";   // mostrar video
-  }
-
-  function mostrarImagen() {
-    const vid = videoRef.current;
-    const img = imgRef.current;
-    if (!vid || !img) return;
-    vid.style.opacity = "0";   // ocultar video
-    img.style.opacity = "1";   // restaurar imagen
-  }
+  const readyRef = useRef(false);
 
   function reproducir() {
     const vid = videoRef.current;
-    if (!vid || playingRef.current) return;
+    if (!vid || playingRef.current || !readyRef.current) return;
     playingRef.current = true;
     vid.currentTime = 0;
-    mostrarVideo();
     vid.play().catch(() => {
-      mostrarImagen();
       playingRef.current = false;
     });
   }
@@ -57,25 +39,44 @@ function JimmyAnimado() {
     if (!vid || !container) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    // Precargar y quedarse pausado en el último frame (posición natural)
+    function irAlFinal() {
+      if (!vid) return;
+      vid.currentTime = vid.duration - 0.001;
+      readyRef.current = true;
+    }
+
+    if (vid.readyState >= 1) {
+      irAlFinal();
+    } else {
+      vid.addEventListener("loadedmetadata", irAlFinal, { once: true });
+    }
+    // Iniciar precarga
+    vid.load();
+
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { inViewRef.current = e.isIntersecting; }),
+      (entries) => entries.forEach((e) => {
+        inViewRef.current = e.isIntersecting;
+      }),
       { threshold: 0.3 }
     );
     io.observe(container);
 
+    // Al terminar el saludo, volver al último frame y pausar
     function onEnded() {
       if (!vid) return;
-      mostrarImagen();
-      setTimeout(() => { playingRef.current = false; }, 400);
+      vid.currentTime = vid.duration - 0.001;
+      setTimeout(() => { playingRef.current = false; }, 200);
     }
     vid.addEventListener("ended", onEnded);
 
+    // Hover — solo puntero fino (desktop)
     function onEnter() {
       if (window.matchMedia("(pointer:fine)").matches) reproducir();
     }
     container.addEventListener("mouseenter", onEnter);
 
-    // primer saludo entre 8 y 12 s después de que el usuario ve la sección
+    // Primer saludo entre 8 y 12 s cuando la sección está visible
     timerRef.current = setTimeout(() => {
       if (inViewRef.current) reproducir();
       programarSiguiente();
@@ -90,35 +91,18 @@ function JimmyAnimado() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const alturaClase = "h-[300px] sm:h-[360px] lg:h-[clamp(360px,30vw,480px)]";
-
   return (
     <div
       ref={containerRef}
-      className={`relative flex-none ${alturaClase}`}
-      style={{ aspectRatio: "510 / 1219", overflow: "hidden" }}
+      className="relative flex-none h-[300px] sm:h-[360px] lg:h-[clamp(360px,30vw,480px)]"
+      style={{ aspectRatio: "534 / 967" }}
     >
-      {/* imagen estática — base siempre disponible */}
-      <Image
-        ref={imgRef as React.RefObject<HTMLImageElement>}
-        src="/images/jimmy-full.png"
-        alt="JIMMY, el técnico de ADICENTER"
-        fill
-        priority
-        sizes="(max-width: 640px) 125px, (max-width: 1024px) 150px, 200px"
-        className="animate-bob object-contain drop-shadow-[0_24px_38px_rgba(1,35,135,.3)]"
-        style={{ transition: "opacity 0.3s ease" }}
-      />
-      {/* video transparente: se muestra solo cuando Jimmy saluda.
-          scale(1.26) compensa la diferencia de aspecto entre el canvas del
-          video (504×957) y el contenedor (ratio 510/1219): sin él Jimmy
-          aparecería al 79% del tamaño de la imagen estática. */}
       <video
         ref={videoRef}
         src="/images/jimmy/jimmy-saludo.webm"
         muted
         playsInline
-        preload="none"
+        preload="auto"
         style={{
           position: "absolute",
           inset: 0,
@@ -126,11 +110,6 @@ function JimmyAnimado() {
           height: "100%",
           objectFit: "contain",
           objectPosition: "center bottom",
-          transform: "scale(1.26)",
-          transformOrigin: "center bottom",
-          opacity: 0,
-          transition: "opacity 0.3s ease",
-          pointerEvents: "none",
           filter: "drop-shadow(0 24px 38px rgba(1,35,135,.3))",
         }}
       />
