@@ -116,7 +116,9 @@ export function Proceso() {
             {[1, 2, 3].map((i) => (
               <span
                 key={i}
-                className={`absolute top-[34px] hidden h-[9px] w-[9px] -translate-x-1/2 -translate-y-0 rounded-full border border-navy/[.22] bg-white lg:block transition-all duration-500 ${visible ? "opacity-100 scale-100" : "opacity-0 scale-0"}`}
+                className={`proceso-dot absolute top-[34px] hidden h-[9px] w-[9px] rounded-full border-2 border-navy/[.35] bg-white lg:block ${
+                  visible ? "" : "opacity-0"
+                }`}
                 style={{
                   left: `${12.5 + i * 25}%`,
                   transitionDelay: visible ? `${300 + i * 150}ms` : "0ms",
@@ -125,7 +127,7 @@ export function Proceso() {
             ))}
             {/* línea animada que se dibuja */}
             <div
-              className="absolute left-[calc(12.5%+1px)] right-[calc(12.5%+1px)] top-[38px] hidden h-[2px] origin-left bg-gradient-to-r from-navy-500 via-navy-400 to-navy-300 lg:block"
+              className="proceso-line absolute left-[calc(12.5%+1px)] right-[calc(12.5%+1px)] top-[38px] hidden h-[2px] origin-left lg:block"
               style={{
                 transform: visible ? "scaleX(1)" : "scaleX(0)",
                 transition: visible ? "transform 1.1s cubic-bezier(0.16,1,0.3,1)" : "none",
@@ -157,9 +159,15 @@ export function Proceso() {
                       <span className="absolute left-[37px] top-[78px] h-10 w-px bg-navy/[.14] lg:hidden" />
                     )}
                     <div
-                      className="relative z-2 flex h-[76px] w-[76px] items-center justify-center rounded-full border border-navy/[.18] bg-white text-navy-500"
+                      className={`relative z-2 flex h-[76px] w-[76px] items-center justify-center rounded-full border bg-white text-navy-500 ${
+                        visible
+                          ? i === 0
+                            ? "proceso-node-ring border-navy-500/30"
+                            : "proceso-node border-navy/[.18]"
+                          : "opacity-0"
+                      }`}
                       style={{
-                        boxShadow: "0 10px 28px -12px rgba(1,35,135,.22), 0 0 0 6px rgba(1,35,135,.04)",
+                        animationDelay: visible ? `${i * 180}ms` : undefined,
                       }}
                     >
                       {paso.icon}
