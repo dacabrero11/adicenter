@@ -31,7 +31,7 @@ export default function Home() {
       <JimmySection onAskJimmy={abrirJimmy} />
       <Catalogo />
       <Selector />
-      <Tecnologias />
+      <Tecnologias onAskJimmy={abrirJimmy} />
       <ProgramaObra />
       <FieldBand />
       <Proyectos onAskJimmy={abrirJimmy} />
