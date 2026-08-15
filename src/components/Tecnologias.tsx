@@ -130,7 +130,7 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
                   }`}
                 >
                 {t.recomendada && (
-                  <span className="font-mono-adi absolute left-4 top-3.5 flex items-center gap-1 rounded-full bg-hivis px-2 py-0.75 text-[8.5px] uppercase tracking-[0.08em] text-white">
+                  <span className="font-mono-adi absolute left-4 top-3.5 z-10 flex items-center gap-1 rounded-full bg-hivis px-2 py-0.75 text-[8.5px] uppercase tracking-[0.08em] text-white">
                     <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 2l3 6 7 1-5 5 1 7-6-3.5L6 21l1-7-5-5 7-1z" />
                     </svg>
