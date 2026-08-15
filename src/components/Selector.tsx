@@ -35,6 +35,12 @@ const SURF_ICON: Record<SurfaceKey, React.ReactNode> = {
       <path d="M4 4h16v16H4z" /><path d="M4 13c3 0 3 3 6 3s3-3 6-3 3 3 4 3" />
     </svg>
   ),
+  piscina: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M3 20V6a2 2 0 0 1 4 0v14M17 20V6a2 2 0 0 1 4 0v14" />
+      <path d="M3 11h4M17 11h4M3 15.5c1.5 0 1.5 1.5 3 1.5s1.5-1.5 3-1.5 1.5 1.5 3 1.5 1.5-1.5 3-1.5 1.5 1.5 3 1.5" />
+    </svg>
+  ),
   muro: (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
       <path d="M3 21V9l9-6 9 6v12" /><path d="M3 15h18M9 21v-6M15 21v-6" />

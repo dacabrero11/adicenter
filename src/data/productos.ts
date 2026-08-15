@@ -279,6 +279,114 @@ export const productos: Producto[] = [
       ["Función", "Impermeabilizante + plastificante"],
     ],
   },
+
+  // ── Sistema para piscinas — VELOSIT® ──
+  {
+    categoria: "imper",
+    marca: "Velosit",
+    familia: "Impermeabilización de piscinas",
+    nombre: "VELOSIT® WP 124",
+    descripcion:
+      "Sistema impermeabilizante flexible de dos componentes para piscinas elevadas o estructuras suspendidas que experimentan vibraciones o movimientos dinámicos. La mezcla se ajusta variando la cantidad de polímero según la condición de presión.",
+    specs: [
+      ["Marca", "VELOSIT®"],
+      ["Elongación", "Mayor al 60%"],
+      ["Presentación", "Kit de 25 kg"],
+    ],
+  },
+  {
+    categoria: "aditivos",
+    marca: "Velosit",
+    familia: "Cristalización",
+    nombre: "VELOSIT® CA 112 / CA 115",
+    descripcion:
+      "Aditivos cristalizantes en polvo que se mezclan en la planta cementera o directo en el trompo durante el vaciado. Le dan al vaso de la piscina una propiedad auto-reparable: ante microfisuras de hasta 0.5 mm, el aditivo reacciona con el agua y sella la grieta de forma automática.",
+    specs: [
+      ["Marca", "VELOSIT®"],
+      ["Autosellado", "Fisuras hasta 0.5 mm"],
+      ["Presentación", "CA 112: 20 kg / CA 115: 25 kg"],
+    ],
+  },
+  {
+    categoria: "imper",
+    marca: "Velosit",
+    familia: "Sellos y juntas",
+    nombre: "VELOSIT® WS 801",
+    descripcion:
+      "Cinta termo-plástica expansible (waterstop) que se instala en juntas de construcción y en la unión entre piso y paredes antes de vaciar el concreto. Se expande en contacto con el agua y sella esas uniones críticas.",
+    specs: [
+      ["Marca", "VELOSIT®"],
+      ["Acción", "Expansible con agua"],
+      ["Aplicación", "Juntas de construcción"],
+    ],
+  },
+
+  // ── Sistema para piscinas — Sika® ──
+  {
+    categoria: "imper",
+    marca: "Sika",
+    familia: "Impermeabilización de piscinas",
+    nombre: "SikaSwell® S-2",
+    descripcion:
+      "Masilla hidroexpansiva para puntos críticos: sellado de pasos de tuberías, desagües, focos empotrados y otras penetraciones del hormigón. Al contacto con el agua se expande y contribuye al sellado a presión de posibles vías de filtración.",
+    specs: [
+      ["Marca", "Sika®"],
+      ["Acción", "Hidroexpansiva"],
+      ["Uso típico", "Tuberías, desagües, focos"],
+    ],
+  },
+  {
+    categoria: "imper",
+    marca: "Sika",
+    familia: "Impermeabilización de piscinas",
+    nombre: "SikaTop® Seal-107",
+    descripcion:
+      "Mortero cementoso impermeabilizante bicomponente para muros y suelo de la piscina. Forma una barrera impermeable continua sobre el hormigón y contribuye a soportar las condiciones de presión hidrostática.",
+    specs: [
+      ["Marca", "Sika®"],
+      ["Aplicación", "Mínimo 2 capas"],
+      ["Uso típico", "Muros y suelo de piscina"],
+    ],
+  },
+  {
+    categoria: "imper",
+    marca: "Sika",
+    familia: "Refuerzo",
+    nombre: "Sika® Mesh",
+    descripcion:
+      "Malla de fibra de vidrio para refuerzo en ángulos, esquinas, encuentros muro-piso y cambios de plano. Ayuda a distribuir tensiones y reforzar los puntos críticos de la impermeabilización.",
+    specs: [
+      ["Marca", "Sika®"],
+      ["Material", "Fibra de vidrio"],
+      ["Uso típico", "Ángulos y encuentros"],
+    ],
+  },
+  {
+    categoria: "imper",
+    marca: "Sika",
+    familia: "Adhesivos cerámicos",
+    nombre: "SikaCeram®-252 / SikaCeram®-290 StarLight",
+    descripcion:
+      "Adhesivos cementosos para instalación de azulejos, mosaicos, gresite y otros revestimientos cerámicos sobre el sistema impermeabilizado. Proporcionan adherencia y deformabilidad adecuadas para condiciones de servicio de piscina.",
+    specs: [
+      ["Marca", "Sika®"],
+      ["Uso típico", "Azulejo, mosaico, gresite"],
+      ["Selección", "Según pieza y soporte"],
+    ],
+  },
+  {
+    categoria: "imper",
+    marca: "Sika",
+    familia: "Sellos y juntas",
+    nombre: "Sikasil® Pool",
+    descripcion:
+      "Silicona neutra elástica especial para piscinas. Sellado perimetral final de skimmers, focos, boquillas y encuentros entre plástico, metal, cerámica y hormigón. Genera un sello flexible donde convergen distintos materiales.",
+    specs: [
+      ["Marca", "Sika®"],
+      ["Tipo", "Silicona neutra elástica"],
+      ["Uso típico", "Skimmers, focos, boquillas"],
+    ],
+  },
 ];
 
 export const filtros = [

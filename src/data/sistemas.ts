@@ -1,4 +1,4 @@
-export type SistemaKey = "lamina" | "losa" | "piso" | "cisterna" | "reparacion";
+export type SistemaKey = "lamina" | "losa" | "piso" | "cisterna" | "piscina" | "reparacion";
 
 export type Sistema = {
   key: SistemaKey;
@@ -18,6 +18,7 @@ export const opcionesSuperficie: { key: SistemaKey; label: string; hint: string 
   { key: "losa", label: "Losa de concreto", hint: "Manchas de humedad en cielo, fisuras, empozamiento" },
   { key: "piso", label: "Piso industrial", hint: "Desgaste, polvo de concreto, tránsito de montacargas" },
   { key: "cisterna", label: "Cisterna o muro", hint: "Presión negativa, contacto con agua potable, sótanos" },
+  { key: "piscina", label: "Piscina", hint: "Vaso nuevo o piscina que pierde nivel, filtración en focos y skimmers" },
 ];
 
 export const sistemas: Record<SistemaKey, Sistema> = {
@@ -105,5 +106,22 @@ export const sistemas: Record<SistemaKey, Sistema> = {
     rendimiento: "Según espesor",
     vidaUtil: "Alta resistencia",
     tiempo: "5 – 9 días",
+  },
+  piscina: {
+    key: "piscina",
+    label: "Piscina",
+    hint: "",
+    titulo: "Sistema de impermeabilización para piscinas",
+    descripcion:
+      "Sello de las penetraciones y juntas, membrana cementicia flexible reforzada con malla en los ángulos, y sellado elástico final de accesorios. El vaso queda estanco antes de colocar el gresite, que es cuando todavía se puede corregir.",
+    pasos: [
+      ["01", "Sello de penetraciones y juntas con SikaSwell® S-2 y waterstop VELOSIT® WS 801"],
+      ["02", "Membrana cementicia flexible: VELOSIT® WP 120 o SikaTop® Seal-107, mínimo 2 capas"],
+      ["03", "Refuerzo con Sika® Mesh en ángulos, esquinas y encuentros muro-piso"],
+      ["04", "Prueba de estanqueidad, revestimiento con SikaCeram® y sello final con Sikasil® Pool"],
+    ],
+    rendimiento: "Según ficha técnica",
+    vidaUtil: "Hasta 5 bar de presión",
+    tiempo: "5 – 10 días",
   },
 };

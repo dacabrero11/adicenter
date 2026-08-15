@@ -76,7 +76,7 @@ export function Catalogo() {
             <Reveal as="div">
               <span className="eyebrow">Catálogo de servicios</span>
               <h2 className="font-display mt-4.5 text-[30px] sm:text-[40px] lg:text-[46px]">
-                Ocho servicios,
+                Nueve servicios,
                 <br />
                 <span className="text-cyan">un solo equipo.</span>
               </h2>

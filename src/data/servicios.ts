@@ -132,6 +132,22 @@ export const servicios: Servicio[] = [
       ["Uso", "Alto tránsito"],
     ],
   },
+  {
+    n: "09",
+    slug: "impermeabilizacion-piscinas",
+    categoria: "imper",
+    titulo: "Impermeabilización de piscinas",
+    // TODO: reemplazar por la imagen real de piscina cuando esté lista
+    img: "/images/catalogo/impermeab_cisterna.webp",
+    imgAlt: "Vaso de piscina impermeabilizado con sistema cementicio antes de colocar el gresite",
+    descripcion:
+      "Sistema completo para vasos de piscina: sello de penetraciones y juntas, membrana cementicia flexible con refuerzo de malla en los ángulos, y sellado elástico final de skimmers y focos antes del revestimiento.",
+    specs: [
+      ["Sistema", "VELOSIT® / Sika®"],
+      ["Presión", "Hasta 5 bar"],
+      ["Control", "Prueba de estanqueidad"],
+    ],
+  },
 ];
 
 export const filtros = [

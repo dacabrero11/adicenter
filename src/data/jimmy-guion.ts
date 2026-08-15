@@ -26,7 +26,7 @@ export const guion: Entrada[] = [
   {
     claves: ["precio", "costo", "cotiz", "cuanto vale", "m2", "m²", "presupuest"],
     respuesta:
-      "Con el metraje le armo el estimado. Necesito tres datos:<br/><br/>1. Superficie (lámina, losa, piso o cisterna)<br/>2. Área aproximada en m²<br/>3. Departamento del proyecto<br/><br/>Con eso el equipo le devuelve la cotización formal <b>en menos de 2 horas hábiles</b>, con consumo por m² y ficha técnica incluida.",
+      "Con el metraje le armo el estimado. Necesito tres datos:<br/><br/>1. Superficie (lámina, losa, piso, cisterna o piscina)<br/>2. Área aproximada en m²<br/>3. Departamento del proyecto<br/><br/>Con eso el equipo le devuelve la cotización formal <b>en menos de 2 horas hábiles</b>, con consumo por m² y ficha técnica incluida.",
   },
   {
     claves: ["credito", "crédito", "constructora", "volumen", "obra", "contratista", "distribuidor"],
@@ -37,6 +37,16 @@ export const guion: Entrada[] = [
     claves: ["piso", "epoxico", "epóxico", "industrial", "montacarga", "planta", "autonivel"],
     respuesta:
       "Para piso industrial trabajamos el sistema epóxico <b>Sikadur®</b>: puente de adherencia más capa epóxica de alta resistencia.<br/><br/>Lo crítico ahí es la preparación: sin granallado o escarificado el sistema se despega. ¿El piso actual tiene brillo, polvo o desprendimiento?",
+  },
+  {
+    claves: ["piscina elevada", "elevada", "suspendida", "vibracion", "vibración", "azotea"],
+    respuesta:
+      "Para piscina elevada o suspendida el sistema cambia: usamos <b>VELOSIT® WP 124</b>, que permite ajustar la mezcla variando el polímero según la condición de presión y resiste mejor la presión negativa.<br/><br/>Si el vaso todavía no se ha vaciado, conviene meter aditivo cristalizante <b>CA 112</b> o <b>CA 115</b> en el concreto: le da propiedad auto-reparable ante microfisuras de hasta 0.5 mm.<br/><br/>¿En qué etapa está el proyecto?",
+  },
+  {
+    claves: ["piscina", "piscinas", "alberca", "vaso", "gresite", "azulejo", "skimmer", "skimmers", "pileta"],
+    respuesta:
+      "Para piscinas trabajamos el sistema completo, no solo el recubrimiento.<br/><br/>La membrana es <b>VELOSIT® WP 120</b> (elongación mayor al 100%, soporta hasta 5 bar) o <b>SikaTop® Seal-107</b>, mínimo 2 capas. Pero lo que decide el resultado es el paso previo: sellar tuberías, focos y desagües con <b>SikaSwell® S-2</b>, y las juntas piso-pared con waterstop <b>WS 801</b>. Ahí es donde se pierden casi todas las piscinas.<br/><br/>¿Es piscina nueva o una que ya está perdiendo nivel?",
   },
   {
     claves: ["cisterna", "tanque", "agua potable", "sotano", "sótano", "muro", "presion negativa", "presión negativa"],
@@ -71,7 +81,7 @@ export const guion: Entrada[] = [
 ];
 
 export const respuestaGenerica =
-  "Con gusto le ayudo. Para darle la respuesta técnica correcta, cuénteme:<br/><br/>• ¿Qué superficie es? (lámina, losa, piso, cisterna o concreto en planta)<br/>• ¿Qué área aproximada tiene?<br/><br/>Si prefiere, un asesor puede llamarle hoy mismo.";
+  "Con gusto le ayudo. Para darle la respuesta técnica correcta, cuénteme:<br/><br/>• ¿Qué superficie es? (lámina, losa, piso, cisterna, piscina o concreto en planta)<br/>• ¿Qué área aproximada tiene?<br/><br/>Si prefiere, un asesor puede llamarle hoy mismo.";
 
 export function responderJimmy(mensaje: string): string {
   const q = mensaje.toLowerCase();

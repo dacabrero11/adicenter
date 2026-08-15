@@ -1,4 +1,4 @@
-export type SurfaceKey = "losa" | "techo" | "piso" | "cisterna" | "muro";
+export type SurfaceKey = "losa" | "techo" | "piso" | "cisterna" | "muro" | "piscina";
 export type ProblemKey = "filtracion" | "fisuras" | "desgaste" | "humedad" | "otro";
 
 export const SURFACES: { key: SurfaceKey; label: string; hint: string; img: string; imgAlt: string }[] = [
@@ -7,6 +7,7 @@ export const SURFACES: { key: SurfaceKey; label: string; hint: string; img: stri
   { key: "piso", label: "Piso", hint: "Tráfico peatonal o vehicular.", img: "/images/selector/piso.webp", imgAlt: "Sistema de piso industrial" },
   { key: "cisterna", label: "Cisterna", hint: "Contención de agua, tanques y depósitos.", img: "/images/selector/cisterna.webp", imgAlt: "Sistema de impermeabilización para cisterna" },
   { key: "muro", label: "Muro", hint: "Muros, fachadas y superficies verticales.", img: "/images/selector/muro.webp", imgAlt: "Sistema de impermeabilización para muro" },
+  { key: "piscina", label: "Piscina", hint: "Vaso de piscina, residencial o comercial.", img: "/images/selector/cisterna.webp" /* TODO: imagen real de piscina */, imgAlt: "Sistema de impermeabilización para vaso de piscina" },
 ];
 
 export const PROBLEMS: { key: ProblemKey; label: string; hint: string }[] = [
@@ -135,6 +136,26 @@ const BASE: Record<SurfaceKey, SistemaBase> = {
     rendimiento: "1.5 kg/m²",
     comportamiento: "Presión negativa",
     tiempo: "5 – 9 días",
+  },
+  piscina: {
+    tituloSuperficie: "para vaso de piscina",
+    descripcion:
+      "Sistema completo para vasos de piscina: sella las penetraciones y juntas, aplica una membrana cementicia flexible reforzada en los ángulos y cierra con sellado elástico de accesorios antes del revestimiento.",
+    capas: [
+      ["04 — Revestimiento y sello", "Adhesivo SikaCeram® para gresite y sello elástico Sikasil® Pool en accesorios."],
+      ["03 — Refuerzo de ángulos", "Sika® Mesh en esquinas y encuentros muro-piso para distribuir tensiones."],
+      ["02 — Membrana flexible", "VELOSIT® WP 120 o SikaTop® Seal-107, mínimo 2 capas, resiste hasta 5 bar."],
+      ["01 — Sello de penetraciones", "SikaSwell® S-2 en tuberías y focos; waterstop WS 801 en juntas."],
+    ],
+    pasos: [
+      { n: "01", titulo: "Sello de puntos críticos", texto: "Penetraciones, desagües y juntas de construcción." },
+      { n: "02", titulo: "Impermeabilización", texto: "Membrana cementicia flexible en dos capas cruzadas." },
+      { n: "03", titulo: "Refuerzo con malla", texto: "Ángulos, esquinas y cambios de plano." },
+      { n: "04", titulo: "Prueba y acabado", texto: "Estanqueidad, revestimiento cerámico y sello final." },
+    ],
+    rendimiento: "Según ficha técnica",
+    comportamiento: "Hasta 5 bar",
+    tiempo: "5 – 10 días",
   },
 };
 
