@@ -7,7 +7,7 @@ export const SURFACES: { key: SurfaceKey; label: string; hint: string; img: stri
   { key: "piso", label: "Piso", hint: "Tráfico peatonal o vehicular.", img: "/images/selector/piso.webp", imgAlt: "Sistema de piso industrial" },
   { key: "cisterna", label: "Cisterna", hint: "Contención de agua, tanques y depósitos.", img: "/images/selector/cisterna.webp", imgAlt: "Sistema de impermeabilización para cisterna" },
   { key: "muro", label: "Muro", hint: "Muros, fachadas y superficies verticales.", img: "/images/selector/muro.webp", imgAlt: "Sistema de impermeabilización para muro" },
-  { key: "piscina", label: "Piscina", hint: "Vaso de piscina, residencial o comercial.", img: "/images/selector/cisterna.webp" /* TODO: imagen real de piscina */, imgAlt: "Sistema de impermeabilización para vaso de piscina" },
+  { key: "piscina", label: "Piscina", hint: "Vaso de piscina, residencial o comercial.", img: "/images/selector/piscina.webp", imgAlt: "Corte de vaso de piscina con las capas del sistema de impermeabilización y foco empotrado" },
 ];
 
 export const PROBLEMS: { key: ProblemKey; label: string; hint: string }[] = [

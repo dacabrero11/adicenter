@@ -137,9 +137,8 @@ export const servicios: Servicio[] = [
     slug: "impermeabilizacion-piscinas",
     categoria: "imper",
     titulo: "Impermeabilización de piscinas",
-    // TODO: reemplazar por la imagen real de piscina cuando esté lista
-    img: "/images/catalogo/impermeab_cisterna.webp",
-    imgAlt: "Vaso de piscina impermeabilizado con sistema cementicio antes de colocar el gresite",
+    img: "/images/catalogo/piscinas.webp",
+    imgAlt: "Corte de piscina que muestra las capas del sistema: concreto, membrana impermeabilizante, adhesivo y revestimiento de gresite",
     descripcion:
       "Sistema completo para vasos de piscina: sello de penetraciones y juntas, membrana cementicia flexible con refuerzo de malla en los ángulos, y sellado elástico final de skimmers y focos antes del revestimiento.",
     specs: [
