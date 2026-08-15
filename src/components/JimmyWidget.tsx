@@ -77,16 +77,36 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
     setMsgs((m) => [...m, { id: idRef.current, rol, texto }]);
   }
 
-  function enviar(texto: string) {
+  async function enviar(texto: string) {
     const t = texto.trim();
     if (!t) return;
+
+    // Historial ANTES de agregar el mensaje nuevo: el servidor lo recibe aparte.
+    const historial = msgs.map((m) => ({ rol: m.rol, texto: m.texto }));
+
     push("user", t);
     setValor("");
     setEscribiendo(true);
-    setTimeout(() => {
+
+    try {
+      const ctrl = new AbortController();
+      const timeout = setTimeout(() => ctrl.abort(), 22_000);
+      const r = await fetch("/api/jimmy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mensaje: t, historial }),
+        signal: ctrl.signal,
+      });
+      clearTimeout(timeout);
+      const data = await r.json();
+      setEscribiendo(false);
+      push("bot", data?.texto?.trim() || responderJimmy(t) || respuestaGenerica);
+    } catch {
+      // Sin conexión o el endpoint no respondió: Jimmy sigue contestando
+      // con el guion en vez de quedarse mudo.
       setEscribiendo(false);
       push("bot", responderJimmy(t) ?? respuestaGenerica);
-    }, 700 + Math.random() * 500);
+    }
   }
 
   return (
