@@ -64,10 +64,13 @@ body {
 
 .font-display {
   font-family: var(--font-display), sans-serif;
-  font-variation-settings: "wdth" 118, "wght" 800;
+  /* wdth 118 expandía tanto Archivo que los titulares se salían de su
+     columna. A 100 (ancho normal de la familia) entra el mismo texto con
+     más tamaño de cuerpo, que es lo que da presencia en un titular. */
+  font-variation-settings: "wdth" 100, "wght" 800;
   text-transform: uppercase;
-  line-height: 0.94;
-  letter-spacing: -0.012em;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
 }
 
 .font-mono-adi {

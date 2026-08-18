@@ -117,7 +117,7 @@ export function Hero() {
             Centro de aditivos, epóxicos e impermeabilizantes
           </span>
 
-          <h1 className="font-display mt-5 text-[40px] leading-[0.94] text-ink sm:text-[56px] lg:text-[64px] xl:text-[72px]">
+          <h1 className="font-display mt-5 text-[clamp(2.15rem,4.3vw,3.9rem)] leading-[0.92] text-ink">
             <span className="hero-line" style={{ animationDelay: "0.15s" }}>
               No vendemos
             </span>

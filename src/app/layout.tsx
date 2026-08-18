@@ -39,12 +39,16 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es-HN">
-      <body
-        className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    // Las variables de next/font van en <html>: globals.css las consume desde
+    // :root (que ES <html>), y las custom properties heredan hacia abajo, no
+    // hacia arriba. Declaradas en <body> quedaban fuera del alcance de :root,
+    // var(--font-archivo) no resolvía y toda la página caía a la fuente del
+    // sistema con las tipografías descargadas pero sin usar.
+    <html
+      lang="es-HN"
+      className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable}`}
+    >
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
