@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "./Button";
 import { StatsCounter } from "./StatsCounter";
 import { RevealRepeat } from "./RevealRepeat";
@@ -43,6 +43,11 @@ function posicionar(alto: number, minSep: number) {
   return { y, ancla };
 }
 
+/** Trazado de la guía: sale del borde de la placa y entra a la etiqueta. */
+function trazo(anclaY: number, etiquetaY: number) {
+  return `M -16 ${anclaY.toFixed(1)} L -4 ${anclaY.toFixed(1)} C 6 ${anclaY.toFixed(1)} 8 ${etiquetaY.toFixed(1)} 18 ${etiquetaY.toFixed(1)} L 26 ${etiquetaY.toFixed(1)}`;
+}
+
 export function Hero() {
   const [focus, setFocus] = useState<number | null>(null);
   const blockRef = useRef<HTMLDivElement>(null);
@@ -60,6 +65,25 @@ export function Hero() {
   }, []);
 
   const pos = altoBloque > 0 ? posicionar(altoBloque, 62) : null;
+
+  // Las placas flotan (parallax, hover, despliegue ambiental), así que un
+  // ancla fija se desalinea. El bloque nos pasa el desplazamiento real de
+  // cada capa en cada frame y aquí reescribimos el trazado directo en el DOM:
+  // pasar por estado de React serían 60 renders por segundo.
+  const pathRefs = useRef<(SVGPathElement | null)[]>([]);
+  const dotRefs = useRef<(SVGCircleElement | null)[]>([]);
+  const posRef = useRef(pos);
+  posRef.current = pos;
+
+  const onFrame = useCallback((offsetsY: number[]) => {
+    const p = posRef.current;
+    if (!p) return;
+    for (let i = 0; i < offsetsY.length; i++) {
+      const anclaY = p.ancla[i] + offsetsY[i];
+      pathRefs.current[i]?.setAttribute("d", trazo(anclaY, p.y[i]));
+      dotRefs.current[i]?.setAttribute("cy", anclaY.toFixed(1));
+    }
+  }, []);
 
   return (
     <section className="relative overflow-hidden pt-[56px] md:pt-[76px]">
@@ -136,7 +160,7 @@ export function Hero() {
         {/* ---- bloque + etiquetas de capa ---- */}
         <div className="flex items-center gap-3 lg:gap-5">
           <div ref={blockRef} className="min-w-0 flex-1">
-            <HeroBlock onLayerFocus={setFocus} />
+            <HeroBlock onLayerFocus={setFocus} onFrame={onFrame} />
           </div>
 
           <ul
@@ -154,21 +178,27 @@ export function Hero() {
                   const a = pos.ancla[i];
                   const y = pos.y[i];
                   return (
-                    <g key={c.n} className="transition-all duration-300">
+                    <g key={c.n}>
                       {/* punto sobre el borde de la placa */}
                       <circle
+                        ref={(el) => {
+                          dotRefs.current[i] = el;
+                        }}
                         cx={-16}
                         cy={a}
                         r={on ? 2.6 : 1.8}
                         fill={on ? "var(--cyan)" : "rgba(255,255,255,.5)"}
-                        className="transition-all duration-300"
+                        style={{ transition: "fill 300ms, r 300ms" }}
                       />
                       <path
-                        d={`M -16 ${a.toFixed(1)} L -4 ${a.toFixed(1)} C 6 ${a.toFixed(1)} 8 ${y.toFixed(1)} 18 ${y.toFixed(1)} L 26 ${y.toFixed(1)}`}
+                        ref={(el) => {
+                          pathRefs.current[i] = el;
+                        }}
+                        d={trazo(a, y)}
                         fill="none"
                         stroke={on ? "var(--cyan)" : "rgba(255,255,255,.28)"}
                         strokeWidth={on ? 1.5 : 1}
-                        className="transition-all duration-300"
+                        style={{ transition: "stroke 300ms, stroke-width 300ms" }}
                       />
                     </g>
                   );

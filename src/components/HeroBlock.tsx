@@ -76,7 +76,15 @@ function useAlphaMasks() {
   return { masksRef, ready };
 }
 
-export function HeroBlock({ onLayerFocus }: { onLayerFocus?: (i: number | null) => void }) {
+export function HeroBlock({
+  onLayerFocus,
+  onFrame,
+}: {
+  onLayerFocus?: (i: number | null) => void;
+  /** Desplazamiento vertical real de cada capa, en px, en cada frame.
+   *  Lo consume el hero para que las líneas guía sigan a las placas. */
+  onFrame?: (offsetsY: number[]) => void;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const parallaxRefs = useRef<(HTMLDivElement | null)[]>([]);
   const raf = useRef<number | null>(null);
@@ -95,6 +103,8 @@ export function HeroBlock({ onLayerFocus }: { onLayerFocus?: (i: number | null) 
   const hoveredRef = useRef<number | null>(null);
   const readyRef = useRef(ready);
   readyRef.current = ready;
+  const onFrameRef = useRef(onFrame);
+  onFrameRef.current = onFrame;
 
   useEffect(() => {
     const el = ref.current;
@@ -111,6 +121,9 @@ export function HeroBlock({ onLayerFocus }: { onLayerFocus?: (i: number | null) 
 
     let idleTimer: ReturnType<typeof setInterval> | null = null;
     let idleShowTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    // buffer reutilizado en cada frame: evita crear un array por frame
+    const offsets = new Array<number>(N).fill(0);
 
     function ensureRaf() {
       if (raf.current === null) raf.current = requestAnimationFrame(tick);
@@ -140,7 +153,13 @@ export function HeroBlock({ onLayerFocus }: { onLayerFocus?: (i: number | null) 
         node.style.transform =
           `translate3d(${(px.current * d + popPx * 0.65).toFixed(2)}px, ${(py.current * d + idlePx + popPx * 0.78).toFixed(2)}px, 0) ` +
           `translateY(${(-liftPx).toFixed(2)}px) rotate(${rot.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
+
+        // desplazamiento vertical neto de esta capa (mismo cálculo que el
+        // transform de arriba, sin la parte horizontal)
+        offsets[i] = py.current * d + idlePx + popPx * 0.78 - liftPx;
       }
+
+      onFrameRef.current?.(offsets);
 
       if (!settled) raf.current = requestAnimationFrame(tick);
       else raf.current = null;
