@@ -32,6 +32,62 @@ function permitido(ip: string) {
 
 type Turno = { rol: "bot" | "user"; texto: string };
 
+type Lead = Record<string, string>;
+
+/**
+ * Jimmy marca los datos de contacto con un bloque [[LEAD]]...[[/LEAD]] al final
+ * de su respuesta. Acá lo separamos: el bloque se va al correo de ventas y el
+ * visitante solo ve el texto limpio.
+ */
+function extraerLead(texto: string): { limpio: string; lead: Lead | null } {
+  const m = texto.match(/\[\[LEAD\]\]([\s\S]*?)\[\[\/LEAD\]\]/);
+  if (!m) return { limpio: texto, lead: null };
+
+  const limpio = texto.replace(m[0], "").trim();
+  try {
+    const lead = JSON.parse(m[1].trim()) as Lead;
+    // Sin nombre ni forma de contacto no sirve de nada: lo descartamos.
+    if (!lead.nombre || (!lead.telefono && !lead.correo)) return { limpio, lead: null };
+    return { limpio, lead };
+  } catch {
+    return { limpio, lead: null };
+  }
+}
+
+/** Envía el lead a Web3Forms. Nunca lanza: si falla, el chat sigue igual. */
+async function enviarLead(lead: Lead, historial: Turno[], ultimo: string) {
+  const key = process.env.WEB3FORMS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+  if (!key) return;
+
+  const conversacion = [...historial, { rol: "user" as const, texto: ultimo }]
+    .map((t) => `${t.rol === "user" ? "Cliente" : "Jimmy"}: ${t.texto.replace(/<[^>]*>/g, " ")}`)
+    .join("\n");
+
+  try {
+    await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        access_key: key,
+        subject: `Lead desde Jimmy — ${lead.nombre}`,
+        from_name: "Jimmy · Sitio web ADICENTER",
+        origen: "Chat de Jimmy",
+        nombre: lead.nombre,
+        telefono: lead.telefono || "no proporcionado",
+        correo: lead.correo || "no proporcionado",
+        superficie: lead.superficie || "no especificada",
+        area: lead.area || "no especificada",
+        ubicacion: lead.ubicacion || "no especificada",
+        resumen: lead.resumen || "",
+        conversacion,
+      }),
+    });
+  } catch (e) {
+    console.error("Jimmy/lead", e);
+  }
+}
+
+
 export async function POST(req: NextRequest) {
   let historial: Turno[] = [];
   let ultimo = "";
@@ -103,7 +159,13 @@ export async function POST(req: NextRequest) {
 
     if (!texto) return NextResponse.json({ texto: responderJimmy(ultimo), fuente: "guion" });
 
-    return NextResponse.json({ texto, fuente: "ia" });
+    const { limpio, lead } = extraerLead(texto);
+    if (lead) {
+      // No bloqueamos la respuesta del chat esperando al correo.
+      void enviarLead(lead, historial, ultimo);
+    }
+
+    return NextResponse.json({ texto: limpio, fuente: "ia", lead: Boolean(lead) });
   } catch (e) {
     console.error("Jimmy/error", e);
     return NextResponse.json({ texto: responderJimmy(ultimo), fuente: "guion" });

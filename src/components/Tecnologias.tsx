@@ -9,7 +9,7 @@ import { CRITERIOS, tecnologias, type Rating } from "@/data/tecnologias";
 /* ---- puntos de rating ---- */
 function Dots({ v, max = 3 }: { v: Rating; max?: number }) {
   return (
-    <span className="flex items-center gap-[3.5px]">
+    <span className="flex items-center justify-center gap-[3.5px]">
       {Array.from({ length: max }).map((_, i) => (
         <span
           key={i}
@@ -185,16 +185,16 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[600px] border-collapse text-left">
+            <table className="w-full min-w-[640px] table-fixed border-collapse text-left">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th className="w-[140px] px-5.5 py-3.5">
+                  <th className="w-[160px] px-5.5 py-3.5">
                     <span className="sr-only">Tecnología</span>
                   </th>
                   {CRITERIOS.map((c) => (
                     <th
                       key={c.key}
-                      className="px-3 py-3.5 text-center"
+                      className="px-2 py-3.5 text-center"
                     >
                       <span className="font-mono-adi text-[9px] uppercase tracking-[0.06em] text-white/45">
                         {c.label}
@@ -217,7 +217,7 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
                       <span className="text-[13px] font-medium text-white">{t.nombre}</span>
                     </td>
                     {CRITERIOS.map((c) => (
-                      <td key={c.key} className="px-3 py-3.5 text-center">
+                      <td key={c.key} className="px-2 py-3.5 text-center">
                         <Dots v={t.ratings[c.key]} />
                       </td>
                     ))}

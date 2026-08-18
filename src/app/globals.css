@@ -677,3 +677,66 @@ input, select, textarea { font-size: 16px; }
   .proceso-line { transform: scaleX(1) !important; }
   .proceso-node, .proceso-dot { opacity: 1 !important; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO BICOLOR
+   Izquierda clara (texto comercial) / derecha oscura (bloque técnico).
+   En móvil no hay dos columnas, así que el corte pasa a ser horizontal:
+   claro arriba donde está el texto, oscuro abajo donde está el bloque.
+   ═══════════════════════════════════════════════════════════ */
+
+.hero-split {
+  position: absolute;
+  inset: 0;
+  /* móvil: claro arriba, oscuro abajo */
+  background:
+    linear-gradient(
+      180deg,
+      #eef3f9 0%,
+      #e9eff7 42%,
+      #0a1730 62%,
+      #061024 100%
+    );
+}
+
+@media (min-width: 1024px) {
+  .hero-split {
+    /* desktop: corte vertical con una diagonal suave en el encuentro */
+    background:
+      radial-gradient(46% 54% at 78% 42%, rgba(1, 183, 222, 0.16), transparent 64%),
+      linear-gradient(
+        100deg,
+        #eef3f9 0%,
+        #eef3f9 40%,
+        #e6edf6 45%,
+        #0b1a36 52%,
+        #061024 72%,
+        #040d1e 100%
+      );
+  }
+}
+
+/* La cuadrícula de blueprint y las partículas solo tienen sentido sobre
+   el lado oscuro: sobre el claro se ven como suciedad. */
+.hero-dark-only {
+  position: absolute;
+  inset: 0;
+  /* móvil: solo la mitad inferior */
+  -webkit-mask-image: linear-gradient(180deg, transparent 58%, #000 68%);
+  mask-image: linear-gradient(180deg, transparent 58%, #000 68%);
+}
+
+@media (min-width: 1024px) {
+  .hero-dark-only {
+    -webkit-mask-image: linear-gradient(100deg, transparent 47%, #000 56%);
+    mask-image: linear-gradient(100deg, transparent 47%, #000 56%);
+  }
+}
+
+/* Eyebrow sobre fondo claro: el cyan no contrasta, usamos el azul de marca */
+.eyebrow-light {
+  color: var(--navy);
+}
+.eyebrow-light::before {
+  background: var(--navy);
+}

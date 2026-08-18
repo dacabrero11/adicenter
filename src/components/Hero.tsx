@@ -22,42 +22,37 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden pt-[56px] md:pt-[76px]">
-      {/* ---- fondo oscuro premium ---- */}
+      {/* ---- fondo bicolor: claro del lado del texto, oscuro del lado del bloque ---- */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(58% 50% at 72% 42%, rgba(1,183,222,.13), transparent 64%)," +
-              "radial-gradient(50% 60% at 6% 78%, rgba(1,35,135,.42), transparent 68%)," +
-              "linear-gradient(168deg, #061024 0%, #040d1e 46%, #030913 100%)",
-          }}
-        />
-        <div className="blueprint-grid absolute inset-0 opacity-70" />
-        {PARTICULAS.map((p, i) => (
-          <span
-            key={i}
-            className="hero-particle"
-            style={{
-              left: p.l,
-              top: p.t,
-              width: p.s,
-              height: p.s,
-              animationDelay: p.d,
-              opacity: 0.7,
-            }}
-          />
-        ))}
+        <div className="hero-split" />
+        {/* la trama y las partículas se enmascaran para vivir solo sobre lo oscuro */}
+        <div className="hero-dark-only">
+          <div className="blueprint-grid absolute inset-0 opacity-70" />
+          {PARTICULAS.map((p, i) => (
+            <span
+              key={i}
+              className="hero-particle"
+              style={{
+                left: p.l,
+                top: p.t,
+                width: p.s,
+                height: p.s,
+                animationDelay: p.d,
+                opacity: 0.7,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="relative z-2 mx-auto grid max-w-[1300px] grid-cols-1 items-center gap-10 px-6 pb-16 lg:grid-cols-[minmax(0,.78fr)_minmax(0,1.22fr)] lg:gap-6">
         {/* ---- columna de texto ---- */}
         <RevealRepeat>
-          <span className="eyebrow hero-line" style={{ animationDelay: "0.05s" }}>
+          <span className="eyebrow eyebrow-light hero-line" style={{ animationDelay: "0.05s" }}>
             Centro de aditivos, epóxicos e impermeabilizantes
           </span>
 
-          <h1 className="font-display mt-5 text-[40px] leading-[0.94] sm:text-[56px] lg:text-[64px] xl:text-[72px]">
+          <h1 className="font-display mt-5 text-[40px] leading-[0.94] text-ink sm:text-[56px] lg:text-[64px] xl:text-[72px]">
             <span className="hero-line" style={{ animationDelay: "0.15s" }}>
               No vendemos
             </span>
@@ -70,13 +65,13 @@ export function Hero() {
               Diseñamos
             </span>
             <br />
-            <span className="hero-line text-cyan" style={{ animationDelay: "0.6s" }}>
+            <span className="hero-line text-navy" style={{ animationDelay: "0.6s" }}>
               sistemas.
             </span>
           </h1>
 
           <p
-            className="hero-line mt-7 max-w-[46ch] text-base text-white/70 sm:text-[17px]"
+            className="hero-line mt-7 max-w-[46ch] text-base text-ink/72 sm:text-[17px]"
             style={{ animationDelay: "0.8s" }}
           >
             Diseñamos, suministramos y supervisamos soluciones para impermeabilizar, reparar y
@@ -85,16 +80,15 @@ export function Hero() {
 
           <div className="hero-line mt-9 flex flex-wrap gap-3.5" style={{ animationDelay: "0.95s" }}>
             <Button href="#sistemas">Ver sistemas</Button>
-            <Button href="#cotizar" variant="ghost">
+            <Button href="#cotizar" variant="ghostLight">
               Cotizar proyecto
             </Button>
           </div>
 
-          <div
-            className="hero-line font-mono-adi mt-6 flex items-center gap-2.5 text-[11px] uppercase tracking-[0.1em] text-white/45"
-            style={{ animationDelay: "1.1s" }}
-          >
-            <span className="dot-live" /> Respuesta a cotizaciones en menos de 2 horas hábiles
+          <div className="hero-line mt-6" style={{ animationDelay: "1.1s" }}>
+            <span className="font-mono-adi flex items-center gap-2.5 text-[11px] uppercase tracking-[0.1em] text-ink/55">
+              <span className="dot-live" /> Respuesta a cotizaciones en menos de 2 horas hábiles
+            </span>
           </div>
         </RevealRepeat>
 
@@ -138,7 +132,7 @@ export function Hero() {
       </div>
 
       {/* ---- barra de datos ---- */}
-      <div className="relative z-2 border-y border-white/10 bg-navy-950/50">
+      <div className="relative z-2 border-y border-white/10 bg-navy-950">
         <StatsCounter />
       </div>
     </section>
