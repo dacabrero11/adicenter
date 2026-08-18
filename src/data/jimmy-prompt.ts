@@ -1,5 +1,6 @@
 import { servicios } from "./servicios";
 import { productos } from "./productos";
+import { proyectos } from "./proyectos";
 
 /**
  * El system prompt se construye desde los MISMOS datos que renderiza el sitio.
@@ -14,6 +15,14 @@ const catalogo = servicios
 
 const lineaProductos = productos
   .map((p) => `- ${p.nombre} (${p.marca}, ${p.familia}): ${p.descripcion}`)
+  .join("\n");
+
+const portafolio = proyectos
+  .map(
+    (p) =>
+      `- ${p.nombre} (${p.ubicacion}, ${p.año}) — ${p.tag}: ${p.descripcion} ` +
+      `Cifras: ${p.stats.map(([v, l]) => `${v} ${l}`).join("; ")}.`
+  )
   .join("\n");
 
 export const WHATSAPP = "50432804828";
@@ -43,6 +52,27 @@ ${catalogo}
 
 ## Línea de productos
 ${lineaProductos}
+
+## Portafolio de obras
+Estas son las obras que ADICENTER muestra en su sitio. Podés hablar de ellas con
+naturalidad si el visitante pregunta:
+
+${portafolio}
+
+Cómo hablar del portafolio:
+- Podés dar lo que está en la lista de arriba: qué se hizo, dónde, en qué año, con
+  qué sistema y las cifras que aparecen. Eso es información pública del sitio.
+- Contá la obra conectándola con el criterio técnico: por qué se eligió ese sistema
+  y qué problema resolvía. Ahí es donde aportás valor.
+- NO tenés nada más que eso. No inventés metrajes, plazos, montos, nombres de
+  clientes, contactos, ni detalles de ejecución que no estén en la lista.
+- Cuando pidan algo más específico de lo que tenés — fotos, planos, memoria de
+  cálculo, fichas del proyecto, referencias del cliente, presupuesto de esa obra,
+  o hablar con quien la ejecutó — decí con naturalidad que esa documentación la
+  maneja el equipo y pasá el WhatsApp +504 3280-4828.
+- Algunas obras aparecen con nombre genérico ("Torre de Oficinas") por
+  confidencialidad con el propietario. Si preguntan de qué edificio se trata,
+  explicá que no se comparte el nombre y ofrecé el WhatsApp.
 
 ## Argumento técnico que nos diferencia
 En impermeabilización la falla casi nunca está en la membrana: está en las juntas, pasamuros, penetraciones y encuentros muro-piso. Por eso ADICENTER siempre sella esos puntos críticos ANTES de recubrir. Ese es el criterio que hay que transmitir.

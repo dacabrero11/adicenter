@@ -48,7 +48,12 @@ export function Reveal({
       if (done || !ref.current) return;
       const r = ref.current.getBoundingClientRect();
       const vh = window.innerHeight || document.documentElement.clientHeight;
-      if (r.top < vh + 160 && r.bottom > -160) reveal();
+      // Se revela cuando el elemento ya entró de verdad (su borde superior
+      // pasó el 88% de la pantalla). Antes se disparaba 160px ANTES de
+      // entrar, así que para cuando el usuario lo veía ya estaba revelado y
+      // se perdía la animación. Sin condición sobre `bottom`: lo que quedó
+      // por encima del viewport tras un salto también debe revelarse.
+      if (r.top < vh * 0.88) reveal();
     };
     const onScroll = () => {
       if (raf) return;
@@ -57,7 +62,10 @@ export function Reveal({
 
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && reveal()),
-      { threshold: 0, rootMargin: "160px 0px 160px 0px" }
+      // el margen negativo abajo retrasa el disparo hasta que el elemento
+      // entró un poco en pantalla; el de arriba evita que se dispare tarde
+      // cuando se llega desde abajo
+      { threshold: 0, rootMargin: "200px 0px -12% 0px" }
     );
     io.observe(el);
 
@@ -86,7 +94,7 @@ export function Reveal({
     <Comp
       ref={ref}
       className={`${shown ? "reveal-shown" : "reveal-hidden"} ${className}`}
-      style={{ animationDelay: shown ? `${Math.min(index, 10) * 80}ms` : undefined }}
+      style={{ transitionDelay: shown ? `${Math.min(index, 10) * 80}ms` : "0ms" }}
     >
       {children}
     </Comp>
