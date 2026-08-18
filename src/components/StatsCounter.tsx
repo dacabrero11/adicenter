@@ -11,15 +11,13 @@ const STATS: Stat[] = [
   { value: 72, label: "Servicios con ficha técnica" },
 ];
 
-// active=true dispara el conteo hasta el valor final; active=false lo reinicia
-// a 0 para que la próxima vez que vuelva a entrar en pantalla se repita
+// active=true dispara el conteo hasta el valor final. Una vez contado se
+// queda en el valor: reiniciarlo al salir de pantalla hacía que el usuario
+// viera los números volver a cero y recontar en cada scroll.
 function useCountUp(target: number, decimals: number, active: boolean, duration = 1500) {
   const [val, setVal] = useState(0);
   useEffect(() => {
-    if (!active) {
-      setVal(0);
-      return;
-    }
+    if (!active) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setVal(target);
       return;
@@ -84,12 +82,18 @@ export function StatsCounter() {
     };
   }, []);
 
-  // sin unobserve: cada vez que el bloque de stats reaparece, vuelve a contar
+  // Se dispara una sola vez: al salir de pantalla el estado NO se revierte,
+  // así los números quedan en su valor final para el resto de la visita.
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => setVisible(e.isIntersecting)),
+      (entries) =>
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          setVisible(true);
+          io.disconnect();
+        }),
       { threshold: 0.4 }
     );
     io.observe(el);

@@ -3,10 +3,12 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /**
- * Como Reveal, pero repite la animación cada vez que el elemento vuelve a
- * entrar en pantalla (no solo la primera vez). Pensado para el Hero: si el
- * usuario baja y vuelve a subir, el titular y las estadísticas se sienten
- * "vivos" otra vez en lugar de quedarse ya reveladas para siempre.
+ * Revela su contenido una sola vez, la primera que entra en pantalla.
+ *
+ * Antes repetía la animación en cada reaparición, con la idea de que el hero
+ * se sintiera "vivo" al volver arriba. En uso real se leía como un fallo: el
+ * bloque desaparecía al salir de pantalla y volvía a animarse en cada scroll.
+ * Ahora, una vez revelado, se queda.
  */
 export function RevealRepeat({
   children,
@@ -17,7 +19,6 @@ export function RevealRepeat({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(true); // visible en la primera carga (está arriba de todo)
-  const [playKey, setPlayKey] = useState(0);
   const reducedRef = useRef(false);
 
   useEffect(() => {
@@ -30,12 +31,9 @@ export function RevealRepeat({
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) {
-            setPlayKey((k) => k + 1); // fuerza a React a remontar y repetir la animación CSS
-            setShown(true);
-          } else {
-            setShown(false);
-          }
+          if (!e.isIntersecting) return;
+          setShown(true);
+          io.disconnect(); // una sola vez: no revertimos al salir de pantalla
         });
       },
       { threshold: 0.15 }
@@ -46,7 +44,7 @@ export function RevealRepeat({
 
   return (
     <div ref={ref} className={className}>
-      <div key={playKey} className={shown || reducedRef.current ? "" : "opacity-0"}>
+      <div className={shown || reducedRef.current ? "" : "opacity-0"}>
         {children}
       </div>
     </div>
