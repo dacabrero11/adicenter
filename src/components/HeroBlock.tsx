@@ -15,13 +15,22 @@ import { useEffect, useRef, useState } from "react";
  * `depth` = cuánto responde esa capa al parallax (las de arriba, más).
  */
 export const CAPAS = [
-  { n: "01", src: "/images/hero/layer-1.webp", fy: -52.9, start: 26, depth: 1.5, titulo: "Acabado", desc: "Protección final" },
-  { n: "02", src: "/images/hero/layer-2.webp", fy: -46.2, start: 22, depth: 1.3, titulo: "Impermeabilización", desc: "Barrera contra la humedad" },
-  { n: "03", src: "/images/hero/layer-3.webp", fy: -41.6, start: 18, depth: 1.12, titulo: "Membrana elastomérica", desc: "Flexibilidad y resistencia" },
-  { n: "04", src: "/images/hero/layer-4.webp", fy: -33.4, start: 14, depth: 0.94, titulo: "Primer", desc: "Adherencia superior" },
-  { n: "05", src: "/images/hero/layer-5.webp", fy: -22.6, start: 10, depth: 0.76, titulo: "Reparación", desc: "Corrección estructural" },
-  { n: "06", src: "/images/hero/layer-6.webp", fy: 0, start: 6, depth: 0.58, titulo: "Concreto", desc: "Estructura que perdura" },
+  { n: "01", src: "/images/hero/layer-1.webp", fy: -52.9, start: 26, depth: 1.5, ly: 23.75, titulo: "Acabado", desc: "Protección final" },
+  { n: "02", src: "/images/hero/layer-2.webp", fy: -46.2, start: 22, depth: 1.3, ly: 26.78, titulo: "Impermeabilización", desc: "Barrera contra la humedad" },
+  { n: "03", src: "/images/hero/layer-3.webp", fy: -41.6, start: 18, depth: 1.12, ly: 30.20, titulo: "Membrana elastomérica", desc: "Flexibilidad y resistencia" },
+  { n: "04", src: "/images/hero/layer-4.webp", fy: -33.4, start: 14, depth: 0.94, ly: 33.62, titulo: "Primer", desc: "Adherencia superior" },
+  { n: "05", src: "/images/hero/layer-5.webp", fy: -22.6, start: 10, depth: 0.76, ly: 42.64, titulo: "Reparación", desc: "Corrección estructural" },
+  { n: "06", src: "/images/hero/layer-6.webp", fy: 0, start: 6, depth: 0.58, ly: 56.65, titulo: "Concreto", desc: "Estructura que perdura" },
 ] as const;
+
+/**
+ * `ly` = altura del borde DERECHO de cada placa, en % de la altura del
+ * contenedor del bloque. Se obtuvo midiendo el canal alfa real de cada asset
+ * (centroide del último 25% del ancho, que es el lado que mira a las
+ * etiquetas) y proyectándolo con la geometría de `fy`. Usar el centro global
+ * de la placa dejaría cada etiqueta ~10% por debajo, porque las placas son
+ * diagonales y su lado derecho queda más alto que su centro.
+ */
 
 const N = CAPAS.length;
 const GRID_W = 160;
