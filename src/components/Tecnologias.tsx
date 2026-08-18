@@ -100,10 +100,10 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
               </svg>
             </span>
             <div>
-              <strong className="font-display block text-[12.5px] uppercase tracking-[0.02em] text-white">
+              <strong className="font-display block text-[13px] uppercase tracking-[0.02em] text-white">
                 Calidad ADICENTER
               </strong>
-              <span className="text-[11.5px] text-white/55">
+              <span className="text-[12px] text-white/55">
                 Sistemas probados en obra y respaldados por garantía.
               </span>
             </div>
@@ -130,7 +130,7 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
                   }`}
                 >
                 {t.recomendada && (
-                  <span className="font-mono-adi absolute left-4 top-3.5 z-10 flex items-center gap-1 rounded-full bg-hivis px-2 py-0.75 text-[8.5px] uppercase tracking-[0.08em] text-white">
+                  <span className="font-mono-adi absolute left-4 top-3.5 z-10 flex items-center gap-1 rounded-full bg-hivis px-2 py-0.75 text-[12px] uppercase tracking-[0.08em] text-white">
                     <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 2l3 6 7 1-5 5 1 7-6-3.5L6 21l1-7-5-5 7-1z" />
                     </svg>
@@ -157,14 +157,14 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
                   <p className="mt-1.5 flex-1 text-[12px] leading-relaxed text-white/55">{t.frase}</p>
 
                   <div className="mt-4 border-t border-white/10 pt-4">
-                    <div className="font-mono-adi text-[8.5px] uppercase tracking-[0.1em] text-cyan/70">
+                    <div className="font-mono-adi text-[12px] uppercase tracking-[0.1em] text-cyan/70">
                       Ideal para
                     </div>
-                    <div className="mt-1 text-[11.5px] text-white/80">{t.idealPara}</div>
-                    <div className="font-mono-adi mt-3 text-[8.5px] uppercase tracking-[0.1em] text-white/40">
+                    <div className="mt-1 text-[12px] text-white/80">{t.idealPara}</div>
+                    <div className="font-mono-adi mt-3 text-[12px] uppercase tracking-[0.1em] text-white/40">
                       Ventaja principal
                     </div>
-                    <div className="mt-1 text-[11.5px] text-white/65">{t.ventaja}</div>
+                    <div className="mt-1 text-[12px] text-white/65">{t.ventaja}</div>
                   </div>
                 </div>
               </div>
@@ -179,7 +179,7 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-cyan">
               <path d="M3 3h18v18H3z" /><path d="M3 9h18M3 15h18M9 3v18M15 3v18" />
             </svg>
-            <span className="font-mono-adi text-[10.5px] uppercase tracking-[0.1em] text-white/55">
+            <span className="font-mono-adi text-[12px] uppercase tracking-[0.1em] text-white/55">
               Comparación rápida
             </span>
           </div>
@@ -196,7 +196,7 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
                       key={c.key}
                       className="px-2 py-3.5 text-center"
                     >
-                      <span className="font-mono-adi text-[9px] uppercase tracking-[0.06em] text-white/45">
+                      <span className="font-mono-adi text-[12px] uppercase tracking-[0.06em] text-white/45">
                         {c.label}
                       </span>
                     </th>
@@ -213,7 +213,7 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
                     }`}
                   >
                     <td className="px-5.5 py-3.5">
-                      <span className="font-mono-adi mr-2 text-[9px] text-white/35">{t.n}</span>
+                      <span className="font-mono-adi mr-2 text-[12px] text-white/35">{t.n}</span>
                       <span className="text-[13px] font-medium text-white">{t.nombre}</span>
                     </td>
                     {CRITERIOS.map((c) => (
@@ -231,12 +231,12 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
             {[["Óptimo",3],["Bueno",2],["Regular",1]].map(([label,v]) => (
               <span key={label as string} className="inline-flex items-center gap-1.5">
                 <Dots v={v as Rating} />
-                <span className="font-mono-adi text-[9px] text-white/40">{label as string}</span>
+                <span className="font-mono-adi text-[12px] text-white/40">{label as string}</span>
               </span>
             ))}
             <span className="inline-flex items-center gap-1.5">
               <Dots v={0} />
-              <span className="font-mono-adi text-[9px] text-white/40">No recomendable</span>
+              <span className="font-mono-adi text-[12px] text-white/40">No recomendable</span>
             </span>
           </div>
         </Reveal>
@@ -251,7 +251,7 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
                 </svg>
               </span>
               <div>
-                <strong className="font-display block text-[15.5px] text-white">
+                <strong className="font-display block text-[15px] text-white">
                   ¿No sabe cuál corresponde a su superficie?
                 </strong>
                 <span className="text-[13px] text-white/55">
@@ -261,7 +261,7 @@ export function Tecnologias({ onAskJimmy }: { onAskJimmy?: (m?: string) => void 
             </div>
             <button
               onClick={() => onAskJimmy("Quisiera saber qué tecnología de impermeabilización es la adecuada para mi superficie")}
-              className="font-mono-adi flex-none rounded-[4px] bg-hivis px-6 py-3.5 text-[11.5px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_14px_30px_-14px_rgba(255,106,19,.7)] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d33]"
+              className="font-mono-adi flex-none rounded-[4px] bg-hivis px-6 py-3.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_14px_30px_-14px_rgba(255,106,19,.7)] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d33]"
             >
               Analizar mi superficie →
             </button>

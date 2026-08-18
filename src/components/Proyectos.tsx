@@ -91,16 +91,16 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: (mensaje?: string) => vo
             <div className="flex flex-wrap items-start justify-between gap-6 lg:gap-10">
               <div className="max-w-[580px]">
                 <span className="eyebrow on-light">Obras entregadas</span>
-                <h2 className="font-display mt-4.5 text-[28px] text-ink sm:text-[36px] lg:text-[44px]">
+                <h2 className="font-display mt-4.5 text-[28px] text-ink sm:text-[36px] lg:text-[42px]">
                   Lo que ya está
                   <br />
                   <span className="text-navy-500">aguantando</span> la lluvia.
                 </h2>
-                <p className="mt-4 max-w-[52ch] text-[14.5px] font-medium text-ink">
+                <p className="mt-4 max-w-[52ch] text-[15px] font-medium text-ink">
                   Obras reales. Sistemas especificados.
                   <br />Resultados que permanecen.
                 </p>
-                <p className="mt-2.5 flex items-start gap-2 text-[12.5px] text-ink-soft">
+                <p className="mt-2.5 flex items-start gap-2 text-[13px] text-ink-soft">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="mt-[1px] flex-none text-navy-500/60">
                     <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                   </svg>
@@ -114,7 +114,7 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: (mensaje?: string) => vo
                   <div key={s.label} className="flex flex-col items-center rounded-[6px] border border-navy/[.13] bg-white px-4 py-3.5 text-center shadow-[0_8px_22px_-18px_rgba(1,35,135,.4)]">
                     <span className="mb-2 text-navy-500/70">{HEADER_ICONO[i]}</span>
                     <span className="font-display text-[20px] leading-none text-navy sm:text-[22px]">{s.valor}</span>
-                    <span className="font-mono-adi mt-1.5 text-[8.5px] uppercase tracking-[0.06em] text-ink-soft">{s.label}</span>
+                    <span className="font-mono-adi mt-1.5 text-[12px] uppercase tracking-[0.06em] text-ink-soft">{s.label}</span>
                   </div>
                 ))}
               </div>
@@ -125,7 +125,7 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: (mensaje?: string) => vo
               <div />
               <a
                 href="#cotizar"
-                className="font-mono-adi inline-flex items-center gap-2 rounded-[4px] bg-hivis px-5.5 py-3.25 text-[11.5px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_14px_30px_-14px_rgba(255,106,19,.7)] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d33]"
+                className="font-mono-adi inline-flex items-center gap-2 rounded-[4px] bg-hivis px-5.5 py-3.25 text-[12px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_14px_30px_-14px_rgba(255,106,19,.7)] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d33]"
               >
                 Cotizar un proyecto así
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -139,7 +139,7 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: (mensaje?: string) => vo
               <button
                 key={f.key}
                 onClick={() => cambiarFiltro(f.key)}
-                className={`font-mono-adi rounded-full border px-4 py-2 text-[10.5px] uppercase tracking-[0.08em] transition-colors duration-200 ${
+                className={`font-mono-adi rounded-full border px-4 py-2 text-[12px] uppercase tracking-[0.08em] transition-colors duration-200 ${
                   filtro === f.key
                     ? "border-navy bg-navy text-white"
                     : "border-navy/[.18] text-ink-soft hover:border-navy/50 hover:text-ink"
@@ -170,27 +170,27 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: (mensaje?: string) => vo
                   />
                   {/* tag categoría */}
                   <span
-                    className={`font-mono-adi absolute left-3.5 top-3.5 rounded-[3px] px-2.5 py-1.25 text-[8.5px] uppercase tracking-[0.12em] text-white ${
+                    className={`font-mono-adi absolute left-3.5 top-3.5 rounded-[3px] px-2.5 py-1.25 text-[12px] uppercase tracking-[0.12em] text-white ${
                       p.tagVariant === "ba" ? "bg-hivis" : "bg-navy"
                     }`}
                   >
                     {p.tag}
                   </span>
                   {/* año */}
-                  <span className="font-mono-adi absolute right-3.5 top-3.5 rounded-[3px] bg-black/40 px-2 py-1.25 text-[8.5px] tracking-[0.06em] text-white backdrop-blur-[2px]">
+                  <span className="font-mono-adi absolute right-3.5 top-3.5 rounded-[3px] bg-black/40 px-2 py-1.25 text-[12px] tracking-[0.06em] text-white backdrop-blur-[2px]">
                     {p.año}
                   </span>
                 </div>
 
                 {/* contenido */}
                 <div className="flex flex-1 flex-col p-5.5">
-                  <span className="font-mono-adi flex items-center gap-1.5 text-[9.5px] uppercase tracking-[0.14em] text-navy-500/80">
+                  <span className="font-mono-adi flex items-center gap-1.5 text-[12px] uppercase tracking-[0.14em] text-navy-500/80">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                     </svg>
                     {p.ubicacion}
                   </span>
-                  <h4 className="font-display mt-2.5 mb-2.5 text-[17px] leading-tight tracking-[-0.005em] text-ink">
+                  <h4 className="font-display mt-2.5 mb-2.5 text-[18px] leading-tight tracking-[-0.005em] text-ink">
                     {p.nombre}
                   </h4>
                   <p className="flex-1 text-[13px] leading-relaxed text-ink-soft">{p.descripcion}</p>
@@ -204,7 +204,7 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: (mensaje?: string) => vo
                         </span>
                         <div>
                           <div className="font-display text-[15px] leading-none text-navy">{v}</div>
-                          <div className="font-mono-adi mt-0.75 text-[8px] uppercase tracking-[0.1em] text-ink/45">{l}</div>
+                          <div className="font-mono-adi mt-0.75 text-[12px] uppercase tracking-[0.1em] text-ink/45">{l}</div>
                         </div>
                       </div>
                     ))}
@@ -239,7 +239,7 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: (mensaje?: string) => vo
                   <path d="M19 12H5M11 6l-6 6 6 6"/>
                 </svg>
               </button>
-              <span className="font-mono-adi text-[11px] tracking-[0.08em] text-ink-soft">
+              <span className="font-mono-adi text-[12px] tracking-[0.08em] text-ink-soft">
                 {pagActual + 1} / {totalPaginas}
               </span>
               <button
@@ -264,17 +264,17 @@ export function Proyectos({ onAskJimmy }: { onAskJimmy: (mensaje?: string) => vo
                 </svg>
               </span>
               <div>
-                <strong className="font-display block text-[15.5px] text-ink">¿Tiene un proyecto parecido?</strong>
+                <strong className="font-display block text-[15px] text-ink">¿Tiene un proyecto parecido?</strong>
                 <span className="text-[13px] text-ink-soft">Cuéntenos qué necesita resolver y especificamos el sistema adecuado.</span>
               </div>
             </div>
             <button
               onClick={() => onAskJimmy("Tengo un proyecto parecido a los que vi en la sección de obras")}
-              className="font-mono-adi flex-none rounded-[4px] bg-navy px-5.5 py-3.25 text-[11.5px] font-semibold uppercase tracking-[0.08em] text-white transition-all hover:-translate-y-0.5 hover:bg-navy-500"
+              className="font-mono-adi flex-none rounded-[4px] bg-navy px-5.5 py-3.25 text-[12px] font-semibold uppercase tracking-[0.08em] text-white transition-all hover:-translate-y-0.5 hover:bg-navy-500"
             >
               Hablar con un técnico →
             </button>
-            <span className="hidden items-center gap-1.5 text-[11px] text-ink-soft sm:flex">
+            <span className="hidden items-center gap-1.5 text-[12px] text-ink-soft sm:flex">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="flex-none">
                 <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/>
               </svg>

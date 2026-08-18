@@ -75,7 +75,7 @@ export function Catalogo() {
           <div className="mb-12 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-start lg:gap-8">
             <Reveal as="div">
               <span className="eyebrow">Catálogo de servicios</span>
-              <h2 className="font-display mt-4.5 text-[30px] sm:text-[40px] lg:text-[46px]">
+              <h2 className="font-display mt-4.5 text-[30px] sm:text-[42px] lg:text-[46px]">
                 Nueve servicios,
                 <br />
                 <span className="text-cyan">un solo equipo.</span>
@@ -90,10 +90,10 @@ export function Catalogo() {
               {PRINCIPIOS.map((p, i) => (
                 <div key={p.titulo} className={`${i > 0 ? "sm:border-l sm:border-white/10 sm:pl-5" : ""}`}>
                   <span className="text-cyan">{p.icon}</span>
-                  <h4 className="font-display mt-3 text-[11.5px] uppercase leading-tight tracking-[0.02em] text-white">
+                  <h4 className="font-display mt-3 text-[12px] uppercase leading-tight tracking-[0.02em] text-white">
                     {p.titulo}
                   </h4>
-                  <p className="mt-1.5 max-w-[17ch] text-[11.5px] leading-snug text-white/50">{p.texto}</p>
+                  <p className="mt-1.5 max-w-[17ch] text-[12px] leading-snug text-white/50">{p.texto}</p>
                 </div>
               ))}
             </Reveal>
@@ -106,7 +106,7 @@ export function Catalogo() {
                 <button
                   key={f.key}
                   onClick={() => setActivo(f.key)}
-                  className={`font-mono-adi min-h-[36px] flex-none rounded-full border px-4 py-2 text-[10.5px] uppercase tracking-[0.1em] transition-colors duration-200 ${
+                  className={`font-mono-adi min-h-[36px] flex-none rounded-full border px-4 py-2 text-[12px] uppercase tracking-[0.1em] transition-colors duration-200 ${
                     activo === f.key
                       ? "border-cyan bg-cyan font-semibold text-navy-950"
                       : "border-white/15 text-white/60 hover:border-white/35 hover:text-white"
@@ -116,7 +116,7 @@ export function Catalogo() {
                 </button>
               ))}
             </div>
-            <div className="font-mono-adi flex flex-none items-center gap-5 text-[11px] uppercase tracking-[0.08em] text-white/45">
+            <div className="font-mono-adi flex flex-none items-center gap-5 text-[12px] uppercase tracking-[0.08em] text-white/45">
               <span>
                 <b className="font-semibold text-cyan">{items.length}</b>{" "}
                 {items.length === 1 ? "servicio disponible" : "servicios disponibles"}
@@ -130,7 +130,7 @@ export function Catalogo() {
           {/* ---- sidebar + grid ---- */}
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[220px_1fr]">
             <Reveal as="div" index={3} className="min-w-0 lg:sticky lg:top-24 lg:self-start">
-              <div className="font-mono-adi mb-3 hidden text-[10px] uppercase tracking-[0.18em] text-white/40 lg:block">
+              <div className="font-mono-adi mb-3 hidden text-[12px] uppercase tracking-[0.18em] text-white/40 lg:block">
                 Servicios
               </div>
               <nav className="flex min-w-0 gap-2 overflow-x-auto pb-2 lg:flex-col lg:gap-0 lg:overflow-visible lg:border-l lg:border-white/10 lg:pb-0">
@@ -140,7 +140,7 @@ export function Catalogo() {
                     <button
                       key={s.slug}
                       onClick={() => irAServicio(s.slug)}
-                      className={`font-mono-adi flex-none rounded-full border px-3.5 py-2 text-left text-[11px] uppercase tracking-[0.03em] transition-colors duration-200 lg:-ml-px lg:w-full lg:rounded-none lg:border-0 lg:border-l-2 lg:px-4 lg:py-2.25 ${
+                      className={`font-mono-adi flex-none rounded-full border px-3.5 py-2 text-left text-[12px] uppercase tracking-[0.03em] transition-colors duration-200 lg:-ml-px lg:w-full lg:rounded-none lg:border-0 lg:border-l-2 lg:px-4 lg:py-2.25 ${
                         on
                           ? "border-cyan bg-cyan/10 text-cyan lg:border-l-cyan lg:bg-cyan/[.08]"
                           : "border-white/15 text-white/55 hover:text-white lg:border-l-transparent lg:hover:border-l-white/25 lg:hover:bg-white/[.03]"
@@ -154,12 +154,12 @@ export function Catalogo() {
 
               <div className="mt-6 hidden rounded-[6px] border border-white/10 bg-white/[.03] p-5 lg:block">
                 <span className="text-cyan">{I.bulb}</span>
-                <p className="mt-3 text-[12.5px] leading-relaxed text-white/60">
+                <p className="mt-3 text-[13px] leading-relaxed text-white/60">
                   ¿No estás seguro qué servicio necesitas? Hablemos con un especialista.
                 </p>
                 <a
                   href="#cotizar"
-                  className="font-mono-adi mt-3 inline-flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.08em] text-cyan transition-all hover:gap-2.5"
+                  className="font-mono-adi mt-3 inline-flex items-center gap-1.5 text-[12px] uppercase tracking-[0.08em] text-cyan transition-all hover:gap-2.5"
                 >
                   Contactar asesor {I.arrow}
                 </a>
@@ -186,24 +186,24 @@ export function Catalogo() {
                     >
                       <div className="flex min-w-0 flex-1 flex-col">
                         <span className="font-display text-[22px] leading-none text-cyan">{s.n}</span>
-                        <h3 className="font-display mt-2 text-[16.5px] leading-[1.15] text-white">{s.titulo}</h3>
+                        <h3 className="font-display mt-2 text-[16px] leading-[1.15] text-white">{s.titulo}</h3>
 
-                        <p className="mt-3 text-[12.5px] leading-relaxed text-white/55">{s.descripcion}</p>
+                        <p className="mt-3 text-[13px] leading-relaxed text-white/55">{s.descripcion}</p>
 
                         <div className="mt-4 grid grid-cols-3 gap-x-2 border-t border-white/10 pt-3.5">
                           {s.specs.map(([k, v]) => (
                             <div key={k} className="min-w-0">
-                              <div className="font-mono-adi truncate text-[8.5px] uppercase tracking-[0.05em] text-white/40">
+                              <div className="font-mono-adi truncate text-[12px] uppercase tracking-[0.05em] text-white/40">
                                 {k}
                               </div>
-                              <div className="mt-0.5 truncate text-[10.5px] font-semibold text-white">{v}</div>
+                              <div className="mt-0.5 truncate text-[12px] font-semibold text-white">{v}</div>
                             </div>
                           ))}
                         </div>
 
                         <a
                           href="#cotizar"
-                          className="font-mono-adi mt-4 inline-flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.08em] text-cyan transition-all group-hover:gap-2.5"
+                          className="font-mono-adi mt-4 inline-flex items-center gap-1.5 text-[12px] uppercase tracking-[0.08em] text-cyan transition-all group-hover:gap-2.5"
                         >
                           Ver especificaciones {I.arrow}
                         </a>

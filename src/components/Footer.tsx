@@ -13,7 +13,7 @@ export function Footer() {
                 <strong className="font-display block text-[22px]">
                   ADI<span className="text-cyan">CENTER</span>
                 </strong>
-                <small className="font-mono-adi block text-[8.5px] uppercase tracking-[0.15em] text-white/50">
+                <small className="font-mono-adi block text-[12px] uppercase tracking-[0.15em] text-white/50">
                   Aditivos · Epóxicos · Impermeabilizantes
                 </small>
               </span>
@@ -36,7 +36,7 @@ export function Footer() {
             />
           </Reveal>
           <Reveal as="div" index={3}>
-            <h6 className="font-mono-adi mb-4.5 text-[10px] font-medium uppercase tracking-[0.18em] text-cyan">Contacto</h6>
+            <h6 className="font-mono-adi mb-4.5 text-[12px] font-medium uppercase tracking-[0.18em] text-cyan">Contacto</h6>
             {["Tegucigalpa, Francisco Morazán", "+504 2200-0000", "ventas@adicenter.hn", "Lun a Vie 7:30 – 17:00 · Sáb 8:00 – 12:00"].map((t) => (
               <p key={t} className="py-1.25 text-sm text-white/58">{t}</p>
             ))}
@@ -55,7 +55,7 @@ export function Footer() {
 function FooterCol({ title, links, href, hrefs }: { title: string; links: string[]; href?: string; hrefs?: string[] }) {
   return (
     <div>
-      <h6 className="font-mono-adi mb-4.5 text-[10px] font-medium uppercase tracking-[0.18em] text-cyan">{title}</h6>
+      <h6 className="font-mono-adi mb-4.5 text-[12px] font-medium uppercase tracking-[0.18em] text-cyan">{title}</h6>
       {links.map((l, i) => (
         <a key={l} href={hrefs ? hrefs[i] : href} className="block py-1.25 text-sm text-white/58 transition-colors hover:text-white">
           {l}

@@ -39,7 +39,7 @@ export function Header() {
   return (
     <>
       <div className="bg-navy border-b border-white/10 relative z-[60]">
-        <div className="mx-auto flex h-[34px] md:h-[38px] max-w-[1220px] items-center justify-center md:justify-between gap-4 px-6 font-mono-adi text-[11px]">
+        <div className="mx-auto flex h-[34px] md:h-[38px] max-w-[1220px] items-center justify-center md:justify-between gap-4 px-6 font-mono-adi text-[12px]">
           <span className="hidden md:inline text-white/70">
             Tegucigalpa · San Pedro Sula · <b className="text-sky font-medium">Cobertura nacional</b>
           </span>
@@ -70,11 +70,11 @@ export function Header() {
               priority
             />
             <span className="leading-tight min-w-0 overflow-hidden">
-              <strong className="relative block font-display text-[19px] md:text-[22px] whitespace-nowrap">
+              <strong className="relative block font-display text-[20px] md:text-[22px] whitespace-nowrap">
                 ADI<span className="text-cyan">CENTER</span>
                 <span className="wordmark-shine" aria-hidden="true">ADICENTER</span>
               </strong>
-              <small className="block font-mono-adi text-[7.6px] md:text-[8.5px] tracking-[0.13em] uppercase text-white/50 whitespace-normal md:whitespace-nowrap leading-snug">
+              <small className="block font-mono-adi text-[12px] md:text-[12px] tracking-[0.13em] uppercase text-white/50 whitespace-normal md:whitespace-nowrap leading-snug">
                 Aditivos · Epóxicos · Impermeabilizantes
               </small>
             </span>
@@ -96,7 +96,7 @@ export function Header() {
                   }
                   setOpen(false);
                 }}
-                className="relative border-b border-white/10 py-3.75 font-mono-adi text-[13px] uppercase tracking-[0.1em] text-white/70 transition-colors hover:text-white min-[1101px]:border-0 min-[1101px]:py-1.5 min-[1101px]:text-[10.8px] min-[1101px]:tracking-[0.1em] min-[1101px]:whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-cyan after:transition-all after:duration-300 hover:after:w-full min-[1101px]:after:content-['']"
+                className="relative border-b border-white/10 py-3.75 font-mono-adi text-[13px] uppercase tracking-[0.1em] text-white/70 transition-colors hover:text-white min-[1101px]:border-0 min-[1101px]:py-1.5 min-[1101px]:text-[12px] min-[1101px]:tracking-[0.1em] min-[1101px]:whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-cyan after:transition-all after:duration-300 hover:after:w-full min-[1101px]:after:content-['']"
               >
                 {l.label}
               </a>

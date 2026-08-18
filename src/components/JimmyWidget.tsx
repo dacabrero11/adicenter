@@ -123,8 +123,8 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
           <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-navy bg-[#25D07A]" />
         </span>
         <span className="text-left leading-tight max-[560px]:hidden">
-          <strong className="block text-[13.5px] font-semibold">Pregúntele a Jimmy</strong>
-          <small className="font-mono-adi block text-[9px] uppercase tracking-[0.13em] text-sky">Técnico en línea</small>
+          <strong className="block text-[14px] font-semibold">Pregúntele a Jimmy</strong>
+          <small className="font-mono-adi block text-[12px] uppercase tracking-[0.13em] text-sky">Técnico en línea</small>
         </span>
       </button>
 
@@ -141,8 +141,8 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
             <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-navy bg-[#25D07A]" />
           </span>
           <span className="flex-1 leading-snug">
-            <strong className="block text-[14.5px]">Jimmy · Técnico ADICENTER</strong>
-            <small className="font-mono-adi block text-[9.5px] uppercase tracking-[0.12em] text-[#7DE2AE]">
+            <strong className="block text-[15px]">Jimmy · Técnico ADICENTER</strong>
+            <small className="font-mono-adi block text-[12px] uppercase tracking-[0.12em] text-[#7DE2AE]">
               En línea · responde al instante
             </small>
           </span>
@@ -179,7 +179,7 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
             <button
               key={q.label}
               onClick={() => enviar(q.texto)}
-              className="font-mono-adi rounded-full border border-cyan/40 px-3.25 py-1.75 text-[9.5px] uppercase tracking-[0.1em] text-sky transition-colors hover:bg-cyan hover:text-navy-950"
+              className="font-mono-adi rounded-full border border-cyan/40 px-3.25 py-1.75 text-[12px] uppercase tracking-[0.1em] text-sky transition-colors hover:bg-cyan hover:text-navy-950"
             >
               {q.label}
             </button>

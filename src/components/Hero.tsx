@@ -136,7 +136,7 @@ export function Hero() {
           </h1>
 
           <p
-            className="hero-line mt-7 max-w-[46ch] text-base text-ink/72 sm:text-[17px]"
+            className="hero-line mt-7 max-w-[46ch] text-base text-ink/72 sm:text-[18px]"
             style={{ animationDelay: "0.8s" }}
           >
             Diseñamos, suministramos y supervisamos soluciones para impermeabilizar, reparar y
@@ -151,7 +151,7 @@ export function Hero() {
           </div>
 
           <div className="hero-line mt-6" style={{ animationDelay: "1.1s" }}>
-            <span className="font-mono-adi flex items-center gap-2.5 text-[11px] uppercase tracking-[0.1em] text-ink/55">
+            <span className="font-mono-adi flex items-center gap-2.5 text-[12px] uppercase tracking-[0.1em] text-ink/55">
               <span className="dot-live" /> Respuesta a cotizaciones en menos de 2 horas hábiles
             </span>
           </div>

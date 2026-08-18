@@ -48,12 +48,12 @@ function StatItem({ s, active, i }: { s: Stat; active: boolean; i: number }) {
         i % 2 === 0 ? "border-r" : ""
       } max-[560px]:border-r-0 max-[560px]:border-b`}
     >
-      <div className="font-display text-[30px] leading-none text-white tabular-nums sm:text-[38px] lg:text-[44px]">
+      <div className="font-display text-[30px] leading-none text-white tabular-nums sm:text-[36px] lg:text-[42px]">
         {s.prefix}
         {display}
         {s.suffix}
       </div>
-      <div className="font-mono-adi mt-2.25 text-[9.5px] uppercase tracking-[0.1em] text-white/55 sm:text-[10px]">
+      <div className="font-mono-adi mt-2.25 text-[12px] uppercase tracking-[0.1em] text-white/55 sm:text-[12px]">
         {s.label}
       </div>
     </div>

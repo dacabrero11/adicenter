@@ -231,10 +231,10 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
                   <span className="mb-1.5 flex h-8 w-8 items-center justify-center rounded-[8px] border border-navy/[.16] text-navy-500">
                     {ind.icon}
                   </span>
-                  <strong className="font-display block text-[11.5px] uppercase tracking-[0.01em] text-ink">
+                  <strong className="font-display block text-[12px] uppercase tracking-[0.01em] text-ink">
                     {ind.titulo}
                   </strong>
-                  <span className="mt-1 block text-[11px] leading-snug text-ink-soft">{ind.texto}</span>
+                  <span className="mt-1 block text-[12px] leading-snug text-ink-soft">{ind.texto}</span>
                 </li>
               ))}
             </ul>
@@ -248,7 +248,7 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
               <JimmyAnimado />
               <div className="absolute -right-3 top-2 flex items-center gap-1.5 rounded-full border border-navy/[.14] bg-white px-2.5 py-1.25 shadow-[0_8px_20px_-8px_rgba(1,35,135,.35)] sm:-right-6">
                 <span className="dot-live" />
-                <span className="font-mono-adi whitespace-nowrap text-[8.5px] uppercase tracking-[0.08em] text-ink-soft">
+                <span className="font-mono-adi whitespace-nowrap text-[12px] uppercase tracking-[0.08em] text-ink-soft">
                   Jimmy en línea
                 </span>
               </div>
@@ -257,12 +257,12 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
 
           <Reveal as="div" index={1}>
             <span className="eyebrow on-light">El que anda en la obra · y ahora también en el sitio</span>
-            <h2 className="font-display mt-4.5 text-[30px] leading-[1.03] text-ink sm:text-[40px] lg:text-[46px]">
+            <h2 className="font-display mt-4.5 text-[30px] leading-[1.03] text-ink sm:text-[42px] lg:text-[46px]">
               Tu técnico,
               <br />
               <span className="text-navy-500">ahora también en el sitio.</span>
             </h2>
-            <p className="mt-5 max-w-[54ch] text-base text-ink-soft sm:text-[17px]">
+            <p className="mt-5 max-w-[54ch] text-base text-ink-soft sm:text-[18px]">
               Jimmy responde preguntas técnicas, orienta sobre sistemas, calcula consumos y sabe
               cuándo una consulta necesita pasar de la pantalla a una visita en obra.
             </p>
@@ -278,13 +278,13 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
             className="card-live card-live-light flex flex-col rounded-[8px] border border-navy/[.13] bg-white p-5.5 shadow-[0_20px_40px_-32px_rgba(1,35,135,.4)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan/45"
           >
             <div className="flex items-center gap-2.5">
-              <span className="font-mono-adi text-[10px] text-navy-500/60">01</span>
+              <span className="font-mono-adi text-[12px] text-navy-500/60">01</span>
               <span className="flex h-9 w-9 items-center justify-center rounded-[8px] bg-navy/[.06] text-navy-500">
                 {I.search}
               </span>
             </div>
-            <h3 className="font-display mt-3 text-[15.5px] text-ink">Diagnostica</h3>
-            <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-soft">
+            <h3 className="font-display mt-3 text-[15px] text-ink">Diagnostica</h3>
+            <p className="mt-1.5 text-[13px] leading-relaxed text-ink-soft">
               Identifica qué sistema necesita tu superficie según el problema.
             </p>
             <div className="relative mt-3.5 flex flex-1 items-end justify-center overflow-hidden rounded-[6px] bg-[linear-gradient(155deg,#EEF4FB,#E4EDF8)] px-2 pt-3">
@@ -305,27 +305,27 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
             className="card-live card-live-light flex flex-col rounded-[8px] border border-navy/[.13] bg-white p-5.5 shadow-[0_20px_40px_-32px_rgba(1,35,135,.4)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan/45"
           >
             <div className="flex items-center gap-2.5">
-              <span className="font-mono-adi text-[10px] text-navy-500/60">02</span>
+              <span className="font-mono-adi text-[12px] text-navy-500/60">02</span>
               <span className="flex h-9 w-9 items-center justify-center rounded-[8px] bg-navy/[.06] text-navy-500">
                 {I.calc}
               </span>
             </div>
-            <h3 className="font-display mt-3 text-[15.5px] text-ink">Calcula</h3>
-            <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-soft">
+            <h3 className="font-display mt-3 text-[15px] text-ink">Calcula</h3>
+            <p className="mt-1.5 text-[13px] leading-relaxed text-ink-soft">
               Estima consumos, rendimiento y materiales según el metraje de tu proyecto.
             </p>
             <div className="mt-3.5 grid flex-1 grid-cols-2 gap-2.5">
               <div className="flex flex-col justify-center rounded-[6px] bg-[linear-gradient(155deg,#EEF4FB,#E4EDF8)] p-3.5">
-                <span className="font-mono-adi text-[8px] uppercase leading-tight tracking-[0.05em] text-ink-soft">
+                <span className="font-mono-adi text-[12px] uppercase leading-tight tracking-[0.05em] text-ink-soft">
                   Rendimiento aprox.
                 </span>
-                <span className="font-display mt-1.5 text-[19px] text-navy">1.2 m²/L</span>
+                <span className="font-display mt-1.5 text-[20px] text-navy">1.2 m²/L</span>
               </div>
               <div className="flex flex-col justify-center rounded-[6px] bg-[linear-gradient(155deg,#EEF4FB,#E4EDF8)] p-3.5">
-                <span className="font-mono-adi text-[8px] uppercase leading-tight tracking-[0.05em] text-ink-soft">
+                <span className="font-mono-adi text-[12px] uppercase leading-tight tracking-[0.05em] text-ink-soft">
                   Consumo estimado
                 </span>
-                <span className="font-display mt-1.5 text-[19px] text-navy">42.5 L</span>
+                <span className="font-display mt-1.5 text-[20px] text-navy">42.5 L</span>
               </div>
             </div>
           </Reveal>
@@ -337,13 +337,13 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
             className="card-live card-live-light flex flex-col rounded-[8px] border border-navy/[.13] bg-white p-5.5 shadow-[0_20px_40px_-32px_rgba(1,35,135,.4)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan/45"
           >
             <div className="flex items-center gap-2.5">
-              <span className="font-mono-adi text-[10px] text-navy-500/60">03</span>
+              <span className="font-mono-adi text-[12px] text-navy-500/60">03</span>
               <span className="flex h-9 w-9 items-center justify-center rounded-[8px] bg-navy/[.06] text-navy-500">
                 {I.scale}
               </span>
             </div>
-            <h3 className="font-display mt-3 text-[15.5px] text-ink">Escala</h3>
-            <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-soft">
+            <h3 className="font-display mt-3 text-[15px] text-ink">Escala</h3>
+            <p className="mt-1.5 text-[13px] leading-relaxed text-ink-soft">
               Cuando hace falta criterio de campo, agenda la visita con un asesor.
             </p>
             <button
@@ -354,10 +354,10 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
                 {I.calendar}
               </span>
               <span>
-                <strong className="font-display block text-[12.5px] uppercase tracking-[0.01em] text-ink">
+                <strong className="font-display block text-[13px] uppercase tracking-[0.01em] text-ink">
                   Visita en obra
                 </strong>
-                <span className="text-[11.5px] text-ink-soft">Agendamos por ti</span>
+                <span className="text-[12px] text-ink-soft">Agendamos por ti</span>
               </span>
             </button>
           </Reveal>
@@ -376,7 +376,7 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
               </strong>
             </div>
 
-            <div className="mt-3.5 inline-block max-w-[92%] rounded-xl rounded-tl-[3px] bg-[linear-gradient(155deg,#EEF4FB,#E4EDF8)] px-4 py-3 text-[13.5px] text-ink">
+            <div className="mt-3.5 inline-block max-w-[92%] rounded-xl rounded-tl-[3px] bg-[linear-gradient(155deg,#EEF4FB,#E4EDF8)] px-4 py-3 text-[14px] text-ink">
               ¿Qué necesitas resolver en tu proyecto?
             </div>
 
@@ -385,7 +385,7 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
                 <button
                   key={op.label}
                   onClick={() => onAskJimmy(op.texto)}
-                  className="font-mono-adi inline-flex items-center gap-1.5 rounded-full border border-navy/[.16] px-3.25 py-2 text-[10px] uppercase tracking-[0.05em] text-ink-soft transition-colors hover:border-cyan hover:bg-cyan/[.07] hover:text-navy"
+                  className="font-mono-adi inline-flex items-center gap-1.5 rounded-full border border-navy/[.16] px-3.25 py-2 text-[12px] uppercase tracking-[0.05em] text-ink-soft transition-colors hover:border-cyan hover:bg-cyan/[.07] hover:text-navy"
                 >
                   <span className="text-navy-500/70">{op.icon}</span>
                   {op.label}
@@ -399,7 +399,7 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
             className="group flex flex-col justify-between rounded-[8px] bg-[linear-gradient(150deg,var(--navy),var(--navy-950))] p-6 text-left shadow-[0_24px_50px_-24px_rgba(1,35,135,.6)] transition-transform hover:-translate-y-1"
           >
             <div>
-              <span className="font-display block text-[19px] leading-[1.1] text-white">
+              <span className="font-display block text-[20px] leading-[1.1] text-white">
                 ¿Qué necesita
                 <br />
                 su obra?
@@ -416,7 +416,7 @@ export function JimmySection({ onAskJimmy }: { onAskJimmy: (mensaje?: string) =>
         <Reveal
           as="div"
           index={6}
-          className="mt-6 flex flex-wrap items-center gap-x-7 gap-y-2 font-mono-adi text-[11px] uppercase tracking-[0.08em] text-ink-soft"
+          className="mt-6 flex flex-wrap items-center gap-x-7 gap-y-2 font-mono-adi text-[12px] uppercase tracking-[0.08em] text-ink-soft"
         >
           <span className="inline-flex items-center gap-1.75">
             <span className="text-navy-500">{I.clock}</span> Disponible 24/7

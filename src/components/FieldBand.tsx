@@ -21,7 +21,7 @@ export function FieldBand() {
       >
         <Reveal as="div" className="mx-auto w-full max-w-[1220px] px-6 pb-13">
           <span className="eyebrow">Aplicación supervisada</span>
-          <h3 className="font-display mt-3.5 max-w-[16ch] text-[24px] leading-[.98] sm:text-[32px] lg:text-[40px]">
+          <h3 className="font-display mt-3.5 max-w-[16ch] text-[24px] leading-[.98] sm:text-[30px] lg:text-[42px]">
             Nadie aplica <em className="not-italic text-cyan">solo</em> en una obra de ADICENTER.
           </h3>
           <p className="mt-3.5 max-w-[46ch] text-[15px] text-white/68">

@@ -79,7 +79,7 @@ body {
 
 .eyebrow {
   font-family: var(--font-mono-adi), monospace;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--cyan);
@@ -742,4 +742,13 @@ input, select, textarea { font-size: 16px; }
 }
 .eyebrow-light::before {
   background: var(--navy);
+}
+
+/* Los <th> traen font-weight:bold (700) del navegador, pero de IBM Plex solo
+   cargamos hasta 600: el navegador engorda las letras artificialmente y se
+   ven sucias. Fijamos 600, que sí existe como archivo real. */
+th,
+strong,
+b {
+  font-weight: 600;
 }

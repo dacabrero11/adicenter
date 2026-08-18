@@ -149,7 +149,7 @@ function SelectCard({
       <strong className="font-display mt-2.5 block text-[13px] uppercase tracking-[0.01em] text-ink">
         {label}
       </strong>
-      <span className="mt-1 block text-[11px] leading-snug text-ink-soft">{hint}</span>
+      <span className="mt-1 block text-[12px] leading-snug text-ink-soft">{hint}</span>
     </button>
   );
 }
@@ -200,10 +200,10 @@ export function Selector() {
             >
               <span className="dot-live" />
               <span>
-                <strong className="font-display block text-[11.5px] uppercase tracking-[0.02em] text-ink">
+                <strong className="font-display block text-[12px] uppercase tracking-[0.02em] text-ink">
                   Jimmy en línea
                 </strong>
-                <span className="block text-[10.5px] text-ink-soft">Respuestas al instante</span>
+                <span className="block text-[12px] text-ink-soft">Respuestas al instante</span>
               </span>
             </Reveal>
           </div>
@@ -264,7 +264,7 @@ export function Selector() {
                   <span className="relative h-9 w-9 flex-none rounded-full">
                     <Image src="/images/jimmy-face.png" alt="" fill sizes="36px" className="rounded-full object-cover" />
                   </span>
-                  <span className="font-mono-adi text-[10.5px] uppercase tracking-[0.06em] text-ink-soft">
+                  <span className="font-mono-adi text-[12px] uppercase tracking-[0.06em] text-ink-soft">
                     Jimmy está analizando su caso…
                   </span>
                 </div>
@@ -290,7 +290,7 @@ export function Selector() {
                     )}
                   </span>
                 </div>
-                <div className="font-mono-adi mt-1.5 flex justify-between text-[8.5px] uppercase tracking-[0.06em] text-ink-soft">
+                <div className="font-mono-adi mt-1.5 flex justify-between text-[12px] uppercase tracking-[0.06em] text-ink-soft">
                   <span>Superficie</span>
                   <span>Problema</span>
                   <span>Análisis</span>
@@ -313,15 +313,15 @@ export function Selector() {
             <Reveal as="div" index={5} className="overflow-hidden rounded-[6px] border border-navy/[.13] bg-white shadow-[0_30px_60px_-36px_rgba(1,35,135,.45)]">
               <div className="flex items-center gap-2.5 bg-[linear-gradient(120deg,var(--navy),var(--navy-800))] px-6 py-3.5 text-white">
                 <span className="text-cyan">{I.shield}</span>
-                <span className="font-mono-adi text-[10.5px] uppercase tracking-[0.1em]">Jimmy analizó su caso</span>
+                <span className="font-mono-adi text-[12px] uppercase tracking-[0.1em]">Jimmy analizó su caso</span>
               </div>
 
               <div key={`${surface}-${problem}-panel`} className="animate-panel-fade p-6 sm:p-7">
                 <span className="eyebrow on-light">Sistema recomendado</span>
-                <h4 className="font-display mt-3 text-[21px] uppercase leading-[1.08] text-ink sm:text-[25px]">
+                <h4 className="font-display mt-3 text-[22px] uppercase leading-[1.08] text-ink sm:text-[24px]">
                   {resultado.titulo}
                 </h4>
-                <p className="mt-3 text-[13.5px] leading-relaxed text-ink-soft">{resultado.descripcion}</p>
+                <p className="mt-3 text-[14px] leading-relaxed text-ink-soft">{resultado.descripcion}</p>
 
                 {/* imagen + capas */}
                 <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-[1.1fr_1fr] sm:items-center">
@@ -338,10 +338,10 @@ export function Selector() {
                     {resultado.capas.map(([titulo, texto]) => (
                       <li key={titulo} className="relative">
                         <span className="absolute -left-[21px] top-1 h-1.5 w-1.5 rounded-full bg-cyan" />
-                        <strong className="font-display block text-[10.5px] uppercase tracking-[0.02em] text-navy">
+                        <strong className="font-display block text-[12px] uppercase tracking-[0.02em] text-navy">
                           {titulo}
                         </strong>
-                        <span className="mt-0.5 block text-[11px] leading-snug text-ink-soft">{texto}</span>
+                        <span className="mt-0.5 block text-[12px] leading-snug text-ink-soft">{texto}</span>
                       </li>
                     ))}
                   </ul>
@@ -349,7 +349,7 @@ export function Selector() {
 
                 {/* orden de aplicación */}
                 <div className="mt-7">
-                  <span className="font-mono-adi text-[10px] uppercase tracking-[0.1em] text-navy-500">
+                  <span className="font-mono-adi text-[12px] uppercase tracking-[0.1em] text-navy-500">
                     Orden de aplicación
                   </span>
                   <div className="relative mt-4 grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-4">
@@ -360,9 +360,9 @@ export function Selector() {
                           {PASO_ICON[i]}
                         </span>
                         <div className="mt-2">
-                          <span className="font-mono-adi text-[9px] text-navy-500/60">{p.n}</span>
+                          <span className="font-mono-adi text-[12px] text-navy-500/60">{p.n}</span>
                           <strong className="font-display block text-[12px] text-ink">{p.titulo}</strong>
-                          <span className="mt-0.5 block text-[10.5px] leading-snug text-ink-soft">{p.texto}</span>
+                          <span className="mt-0.5 block text-[12px] leading-snug text-ink-soft">{p.texto}</span>
                         </div>
                       </div>
                     ))}
@@ -372,31 +372,31 @@ export function Selector() {
                 {/* métricas */}
                 <div className="mt-7 grid grid-cols-1 gap-3.5 border-t border-navy/[.13] pt-5 sm:grid-cols-3 sm:gap-4">
                   <div>
-                    <span className="font-mono-adi block text-[8.5px] uppercase tracking-[0.05em] text-ink-soft">
+                    <span className="font-mono-adi block text-[12px] uppercase tracking-[0.05em] text-ink-soft">
                       Rendimiento aprox.
                     </span>
-                    <span className="font-display mt-1 block text-[16px] text-navy sm:text-[19px]">
+                    <span className="font-display mt-1 block text-[16px] text-navy sm:text-[20px]">
                       {resultado.rendimiento}
                     </span>
                   </div>
                   <div>
-                    <span className="font-mono-adi block text-[8.5px] uppercase tracking-[0.05em] text-ink-soft">
+                    <span className="font-mono-adi block text-[12px] uppercase tracking-[0.05em] text-ink-soft">
                       Comportamiento
                     </span>
-                    <span className="font-display mt-1 block whitespace-nowrap text-[16px] uppercase text-navy sm:text-[19px]">
+                    <span className="font-display mt-1 block whitespace-nowrap text-[16px] uppercase text-navy sm:text-[20px]">
                       {resultado.comportamiento}
                     </span>
                   </div>
                   <div>
-                    <span className="font-mono-adi block text-[8.5px] uppercase tracking-[0.05em] text-ink-soft">
+                    <span className="font-mono-adi block text-[12px] uppercase tracking-[0.05em] text-ink-soft">
                       Tiempo estimado
                     </span>
-                    <span className="font-display mt-1 block whitespace-nowrap text-[16px] text-navy sm:text-[19px]">
+                    <span className="font-display mt-1 block whitespace-nowrap text-[16px] text-navy sm:text-[20px]">
                       {resultado.tiempo}
                     </span>
                   </div>
                 </div>
-                <p className="mt-2.5 text-[10.5px] text-ink-soft/70">
+                <p className="mt-2.5 text-[12px] text-ink-soft/70">
                   Según ficha técnica y condiciones de la obra.
                 </p>
 
@@ -404,11 +404,11 @@ export function Selector() {
                 <div className="mt-6 flex flex-col items-start gap-3 border-t border-navy/[.13] pt-6 sm:flex-row sm:items-center sm:justify-between">
                   <a
                     href="#cotizar"
-                    className="font-mono-adi inline-flex items-center gap-2 rounded-[4px] bg-hivis px-5.5 py-3.25 text-[11.5px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_14px_30px_-14px_rgba(255,106,19,.7)] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d33]"
+                    className="font-mono-adi inline-flex items-center gap-2 rounded-[4px] bg-hivis px-5.5 py-3.25 text-[12px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_14px_30px_-14px_rgba(255,106,19,.7)] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d33]"
                   >
                     Quiero cotizar este sistema {I.arrow}
                   </a>
-                  <span className="inline-flex items-center gap-1.5 text-[11.5px] text-ink-soft">
+                  <span className="inline-flex items-center gap-1.5 text-[12px] text-ink-soft">
                     <span className="flex-none text-navy-500/60">{I.send}</span>
                     Jimmy enviará la información técnica seleccionada al equipo de ADICENTER.
                   </span>

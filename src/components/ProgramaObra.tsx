@@ -105,13 +105,13 @@ export function ProgramaObra() {
           {/* columna izquierda */}
           <Reveal as="div">
             <span className="eyebrow">Programa Obra · constructoras y desarrolladores</span>
-            <h2 className="font-display mt-4.5 text-[30px] leading-[1.03] sm:text-[38px] lg:text-[46px]">
+            <h2 className="font-display mt-4.5 text-[30px] leading-[1.03] sm:text-[36px] lg:text-[46px]">
               Si maneja volumen,
               <br />
               <span className="text-cyan">obtenga condiciones de obra.</span>
             </h2>
             <div className="mt-1.5 h-px w-[72px] bg-cyan/60" />
-            <p className="mt-5 max-w-[50ch] text-[15.5px] text-white/66">
+            <p className="mt-5 max-w-[50ch] text-[15px] text-white/66">
               Precios por volumen, entregas programadas y acompañamiento técnico para
               constructoras, contratistas y desarrolladores.
             </p>
@@ -135,8 +135,8 @@ export function ProgramaObra() {
                   </svg>
                 </span>
                 <span>
-                  <strong className="font-display block text-[11px] uppercase tracking-[0.04em] text-white">Condiciones diseñadas</strong>
-                  <span className="text-[10.5px] text-cyan">para proyectos que construyen en grande.</span>
+                  <strong className="font-display block text-[12px] uppercase tracking-[0.04em] text-white">Condiciones diseñadas</strong>
+                  <span className="text-[12px] text-cyan">para proyectos que construyen en grande.</span>
                 </span>
               </div>
             </div>
@@ -152,17 +152,17 @@ export function ProgramaObra() {
                   className="relative bg-[linear-gradient(155deg,rgba(1,35,135,.60),rgba(1,20,80,.70))] px-5.5 py-6 transition-colors duration-300 hover:bg-[linear-gradient(155deg,rgba(1,35,135,.80),rgba(1,20,80,.90))]"
                 >
                   {b.principal && (
-                    <span className="font-mono-adi absolute right-4 top-3.5 rounded-full bg-hivis px-2 py-0.5 text-[8.5px] uppercase tracking-[0.08em] text-white">
+                    <span className="font-mono-adi absolute right-4 top-3.5 rounded-full bg-hivis px-2 py-0.5 text-[12px] uppercase tracking-[0.08em] text-white">
                       Beneficio principal
                     </span>
                   )}
-                  <span className="font-mono-adi mb-4 block text-[10.5px] text-white/35">{b.n}</span>
+                  <span className="font-mono-adi mb-4 block text-[12px] text-white/35">{b.n}</span>
                   <span className="text-hivis-soft">{ICONOS[i]}</span>
-                  <strong className="font-display mt-3.5 block text-[14.5px] uppercase leading-tight tracking-[0.01em] text-white">
+                  <strong className="font-display mt-3.5 block text-[15px] uppercase leading-tight tracking-[0.01em] text-white">
                     {b.titulo}
                   </strong>
                   <div className="mt-2 h-px w-8 bg-hivis/60" />
-                  <small className="mt-3 block text-[12.5px] leading-relaxed text-white/60">{b.texto}</small>
+                  <small className="mt-3 block text-[13px] leading-relaxed text-white/60">{b.texto}</small>
                 </Reveal>
               ))}
             </div>
@@ -180,8 +180,8 @@ export function ProgramaObra() {
                 </span>
                 <div className="min-w-0">
                   <div className="font-display text-[22px] leading-none text-white">{s.valor}</div>
-                  <div className="font-mono-adi mt-0.5 text-[9.5px] uppercase tracking-[0.06em] text-white">{s.label}</div>
-                  <div className="mt-0.75 text-[11px] text-white/45">{s.sub}</div>
+                  <div className="font-mono-adi mt-0.5 text-[12px] uppercase tracking-[0.06em] text-white">{s.label}</div>
+                  <div className="mt-0.75 text-[12px] text-white/45">{s.sub}</div>
                 </div>
               </div>
             ))}
@@ -190,24 +190,24 @@ export function ProgramaObra() {
           {/* CTA */}
           <div className="flex flex-col justify-between rounded-[6px] border border-white/10 bg-white/[.03] px-6 py-5">
             <div>
-              <h4 className="font-display text-[16.5px] uppercase leading-tight text-white">
+              <h4 className="font-display text-[16px] uppercase leading-tight text-white">
                 ¿Tiene varios frentes<br />de obra abiertos?
               </h4>
-              <p className="mt-1.5 text-[12.5px] text-white/55">
+              <p className="mt-1.5 text-[13px] text-white/55">
                 Conversemos sobre condiciones para su proyecto.
               </p>
             </div>
             <div className="mt-4 flex flex-wrap items-center gap-4">
               <a
                 href="#cotizar"
-                className="font-mono-adi inline-flex items-center gap-2 rounded-[4px] bg-hivis px-5.5 py-3 text-[11.5px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_14px_30px_-14px_rgba(255,106,19,.7)] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d33]"
+                className="font-mono-adi inline-flex items-center gap-2 rounded-[4px] bg-hivis px-5.5 py-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_14px_30px_-14px_rgba(255,106,19,.7)] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d33]"
               >
                 Solicitar condiciones de obra
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
               </a>
-              <span className="font-mono-adi text-[10px] text-white/40">Respuesta en menos de 24 horas</span>
+              <span className="font-mono-adi text-[12px] text-white/40">Respuesta en menos de 24 horas</span>
             </div>
           </div>
         </Reveal>

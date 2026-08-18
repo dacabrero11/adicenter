@@ -161,14 +161,14 @@ export function Sistemas() {
           <div className="mb-16 grid grid-cols-1 gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-8">
             <Reveal as="div">
               <span className="eyebrow on-light">Tres líneas · un solo criterio técnico</span>
-              <h2 className="font-display mt-4.5 text-[30px] text-ink sm:text-[38px] lg:text-[44px]">
+              <h2 className="font-display mt-4.5 text-[30px] text-ink sm:text-[36px] lg:text-[42px]">
                 No vendemos
                 <br />
                 baldes. Vendemos
                 <br />
                 <span className="text-navy-500">sistemas completos.</span>
               </h2>
-              <p className="mt-5 max-w-[58ch] text-[15.5px] leading-relaxed text-ink-soft">
+              <p className="mt-5 max-w-[58ch] text-[15px] leading-relaxed text-ink-soft">
                 Cada producto se especifica dentro de un sistema: preparación, imprimante, capa
                 base, refuerzo y acabado. Trabajamos con las líneas de{" "}
                 <b className="font-semibold text-navy">Sika®</b> y{" "}
@@ -183,7 +183,7 @@ export function Sistemas() {
                   <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-[10px] border border-navy/[.16] text-navy-500 lg:mx-0">
                     {p.icon}
                   </span>
-                  <h4 className="font-display mt-3.5 text-[12.5px] uppercase tracking-[0.01em] text-ink">
+                  <h4 className="font-display mt-3.5 text-[13px] uppercase tracking-[0.01em] text-ink">
                     {p.titulo}
                   </h4>
                   <p className="mx-auto mt-1.5 max-w-[16ch] text-[12px] leading-snug text-ink-soft lg:mx-0">
@@ -209,7 +209,7 @@ export function Sistemas() {
                       {l.n}
                     </span>
                     <span
-                      className={`font-mono-adi rounded-full px-2.5 py-1 text-[9.5px] uppercase tracking-[0.13em] ${
+                      className={`font-mono-adi rounded-full px-2.5 py-1 text-[12px] uppercase tracking-[0.13em] ${
                         i === 0 ? l.badgeStyle : ""
                       }`}
                       style={i !== 0 ? { color: l.accent } : undefined}
@@ -218,7 +218,7 @@ export function Sistemas() {
                     </span>
                   </div>
 
-                  <h3 className="font-display mt-3.5 text-[21px] leading-[1.08] text-ink sm:text-[23px]">
+                  <h3 className="font-display mt-3.5 text-[22px] leading-[1.08] text-ink sm:text-[22px]">
                     {l.titulo}
                   </h3>
                 </div>
@@ -240,7 +240,7 @@ export function Sistemas() {
                     {l.specs.map(([icon, k, v]) => (
                       <li
                         key={k as string}
-                        className="flex items-center justify-between gap-3 border-b border-navy/[.09] py-2.75 text-[11.5px]"
+                        className="flex items-center justify-between gap-3 border-b border-navy/[.09] py-2.75 text-[12px]"
                       >
                         <span className="flex min-w-0 items-center gap-2 text-ink-soft">
                           <span className="flex-none text-navy-500/70">{icon}</span>
@@ -255,7 +255,7 @@ export function Sistemas() {
 
                   <a
                     href="#catalogo"
-                    className="font-mono-adi mt-5 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] transition-all hover:gap-2.5"
+                    className="font-mono-adi mt-5 inline-flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] transition-all hover:gap-2.5"
                     style={{ color: l.accent }}
                   >
                     Ver aplicaciones y especificaciones
@@ -276,7 +276,7 @@ export function Sistemas() {
               <span className="flex h-11 w-11 flex-none items-center justify-center rounded-[10px] bg-navy/[.06] text-navy-500">
                 {I.hex}
               </span>
-              <p className="font-display text-[16px] leading-[1.15] text-ink sm:text-[19px]">
+              <p className="font-display text-[16px] leading-[1.15] text-ink sm:text-[20px]">
                 Una solución correcta empieza
                 <br className="hidden sm:block" /> por especificar el sistema correcto.
               </p>

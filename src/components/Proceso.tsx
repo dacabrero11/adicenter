@@ -138,11 +138,11 @@ export function Proceso() {
           <div className="mb-14 max-w-[680px]">
             <span className="inline-flex items-center gap-2.5">
               <span className="h-px w-7 bg-navy-500" />
-              <span className="font-mono-adi text-[10.5px] uppercase tracking-[0.2em] text-navy-500">
+              <span className="font-mono-adi text-[12px] uppercase tracking-[0.2em] text-navy-500">
                 Cómo trabajamos
               </span>
             </span>
-            <h2 className="font-display mt-5 text-[32px] leading-[1.05] text-ink sm:text-[42px] lg:text-[54px]">
+            <h2 className="font-display mt-5 text-[30px] leading-[1.05] text-ink sm:text-[42px] lg:text-[54px]">
               Del diagnóstico
               <br />
               <span className="text-navy-500">al acta de entrega.</span>
@@ -215,7 +215,7 @@ export function Proceso() {
                     </h4>
                     {/* línea decorativa bajo el título */}
                     <span className="mt-2.5 block h-px w-7 bg-navy-500/50 lg:mx-auto" />
-                    <p className="mt-3 max-w-[28ch] text-[13.5px] leading-relaxed text-ink-soft lg:mx-auto">
+                    <p className="mt-3 max-w-[28ch] text-[14px] leading-relaxed text-ink-soft lg:mx-auto">
                       {paso.texto}
                     </p>
                   </div>
@@ -241,14 +241,14 @@ export function Proceso() {
                   <strong className="font-display block text-[15px] uppercase tracking-[0.04em] text-navy-500">
                     Un solo equipo.
                   </strong>
-                  <span className="font-mono-adi text-[10px] uppercase tracking-[0.12em] text-ink-soft">
+                  <span className="font-mono-adi text-[12px] uppercase tracking-[0.12em] text-ink-soft">
                     De la primera visita a la garantía.
                   </span>
                 </div>
               </div>
               <a
                 href="#cotizar"
-                className="font-mono-adi inline-flex flex-none items-center gap-2 text-[11.5px] font-semibold uppercase tracking-[0.1em] text-navy-500 transition-all hover:gap-3 hover:text-navy"
+                className="font-mono-adi inline-flex flex-none items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.1em] text-navy-500 transition-all hover:gap-3 hover:text-navy"
               >
                 Cotizar proyecto
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
