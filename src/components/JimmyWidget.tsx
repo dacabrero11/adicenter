@@ -114,7 +114,7 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
       <button
         onClick={() => setOpen(true)}
         aria-label="Preguntarle a J1MMY"
-        className={`fixed bottom-5.5 right-5.5 z-90 flex flex-col items-end gap-2 transition-all duration-300 ${
+        className={`fixed bottom-5.5 right-5.5 z-90 flex flex-col items-end gap-3 transition-all duration-300 ${
           open ? "pointer-events-none scale-90 opacity-0" : ""
         } ${pulse ? "animate-jimmy-attention" : ""}`}
       >

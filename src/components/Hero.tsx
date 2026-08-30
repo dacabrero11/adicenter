@@ -162,6 +162,19 @@ export function Hero() {
         <div className="flex items-center gap-3 lg:gap-5">
           <div ref={blockRef} className="min-w-0 flex-1">
             <HeroBlock onLayerFocus={setFocus} onFrame={onFrame} />
+            {/* Capas mobile: debajo del bloque 3D, solo en mobile */}
+            <div className="mt-3 grid grid-cols-3 gap-x-2 gap-y-2 md:hidden">
+              {CAPAS.map((c) => (
+                <div key={c.n} className="flex flex-col gap-0.5">
+                  <span className="font-mono-adi text-[9px] font-semibold tracking-[0.06em] text-cyan/60">
+                    {c.n} / {c.titulo.toUpperCase()}
+                  </span>
+                  <span className="text-[10px] leading-tight text-white/55">
+                    {c.desc}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
 
           <ul
@@ -239,20 +252,6 @@ export function Hero() {
             })}
           </ul>
         </div>
-      </div>
-
-      {/* ---- capas mobile: grid compacto, solo en mobile ---- */}
-      <div className="mx-auto mt-5 grid max-w-sm grid-cols-3 gap-x-3 gap-y-2.5 px-5 md:hidden">
-        {CAPAS.map((c) => (
-          <div key={c.n} className="flex flex-col gap-0.5">
-            <span className="font-mono-adi text-[9px] font-semibold tracking-[0.08em] text-cyan/60">
-              {c.n}
-            </span>
-            <span className="font-mono-adi text-[10px] font-semibold uppercase tracking-[0.05em] text-white/75 leading-tight">
-              {c.titulo}
-            </span>
-          </div>
-        ))}
       </div>
 
       {/* ---- barra de datos ---- */}
