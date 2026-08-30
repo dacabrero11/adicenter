@@ -114,17 +114,19 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
       <button
         onClick={() => setOpen(true)}
         aria-label="Preguntarle a J1MMY"
-        className={`fixed bottom-5.5 right-5.5 z-90 flex flex-col-reverse items-end gap-1.5 rounded-2xl border border-cyan/40 bg-navy px-3 pb-2.5 pt-2 shadow-[0_18px_44px_-16px_rgba(1,35,135,.95)] transition-all duration-300 hover:-translate-y-0.75 hover:scale-102 hover:shadow-[0_24px_54px_-16px_rgba(1,183,222,.6)] ${
+        className={`fixed bottom-5.5 right-5.5 z-90 flex flex-col items-end gap-2 transition-all duration-300 ${
           open ? "pointer-events-none scale-90 opacity-0" : ""
         } ${pulse ? "animate-jimmy-attention" : ""}`}
       >
-        <span className="relative h-[46px] w-[46px] flex-none rounded-full shadow-[inset_0_0_0_1px_rgba(255,255,255,.22)] max-[560px]:h-[52px] max-[560px]:w-[52px]">
-          <Image src="/images/jimmy-face.png" alt="" fill sizes="52px" className="rounded-full object-cover" />
-          <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-navy bg-[#25D07A]" />
+        {/* Rótulo flotante encima del casco */}
+        <span className="rounded-full border border-cyan/30 bg-navy/95 px-3.5 py-1.5 text-right shadow-[0_8px_24px_-8px_rgba(1,35,135,.7)] backdrop-blur-sm">
+          <strong className="block text-[13px] font-semibold leading-tight">Pregúntele a J1MMY</strong>
+          <small className="font-mono-adi block text-[10px] uppercase tracking-[0.13em] text-sky">Técnico en línea</small>
         </span>
-        <span className="text-right leading-tight">
-          <strong className="block text-[14px] font-semibold">Pregúntele a J1MMY</strong>
-          <small className="font-mono-adi block text-[12px] uppercase tracking-[0.13em] text-sky">Técnico en línea</small>
+        {/* Avatar compacto */}
+        <span className="relative h-[50px] w-[50px] flex-none rounded-full border border-cyan/40 bg-navy shadow-[0_18px_44px_-16px_rgba(1,35,135,.95)]">
+          <Image src="/images/jimmy-face.png" alt="" fill sizes="50px" className="rounded-full object-cover" />
+          <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-navy bg-[#25D07A]" />
         </span>
       </button>
 

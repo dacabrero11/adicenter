@@ -165,7 +165,7 @@ export function Hero() {
           </div>
 
           <ul
-            className="relative w-full md:w-[248px] flex-none xl:w-[300px] 2xl:w-[330px]"
+            className="relative hidden w-[248px] flex-none md:block xl:w-[300px] 2xl:w-[330px]"
             style={pos ? { height: altoBloque } : undefined}
           >
             {/* líneas guía: unen cada etiqueta con la altura real de su capa */}
@@ -239,6 +239,20 @@ export function Hero() {
             })}
           </ul>
         </div>
+      </div>
+
+      {/* ---- capas mobile: grid compacto, solo en mobile ---- */}
+      <div className="mx-auto mt-5 grid max-w-sm grid-cols-3 gap-x-3 gap-y-2.5 px-5 md:hidden">
+        {CAPAS.map((c) => (
+          <div key={c.n} className="flex flex-col gap-0.5">
+            <span className="font-mono-adi text-[9px] font-semibold tracking-[0.08em] text-cyan/60">
+              {c.n}
+            </span>
+            <span className="font-mono-adi text-[10px] font-semibold uppercase tracking-[0.05em] text-white/75 leading-tight">
+              {c.titulo}
+            </span>
+          </div>
+        ))}
       </div>
 
       {/* ---- barra de datos ---- */}
