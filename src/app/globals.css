@@ -1,0 +1,799 @@
+@import "tailwindcss";
+
+:root {
+  --navy-950: #030b22;
+  --navy-900: #04102e;
+  --navy-800: #071b47;
+  --navy-700: #0a2461;
+  --navy: #012387;
+  --navy-500: #0a3ab0;
+  --cyan: #01b7de;
+  --cyan-dim: #0089cf;
+  --sky: #9adffc;
+  --hivis: #ff6a13;
+  --hivis-soft: #ffa45c;
+  --paper: #f4f7fb;
+  --paper-2: #e7eef7;
+  --ink: #0b1533;
+  --ink-soft: #43506f;
+  --line: rgba(255, 255, 255, 0.12);
+  --line-dark: rgba(1, 35, 135, 0.14);
+}
+
+@theme inline {
+  --color-navy-950: var(--navy-950);
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
+  --color-navy-700: var(--navy-700);
+  --color-navy: var(--navy);
+  --color-navy-500: var(--navy-500);
+  --color-cyan: var(--cyan);
+  --color-cyan-dim: var(--cyan-dim);
+  --color-sky: var(--sky);
+  --color-hivis: var(--hivis);
+  --color-hivis-soft: var(--hivis-soft);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+
+  --font-display: var(--font-archivo);
+  --font-body: var(--font-plex-sans);
+  --font-mono-adi: var(--font-plex-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* el header es sticky (78px arriba, 61px compacto): sin esto, al saltar
+     por un enlace del menú la sección queda con su título tapado */
+  scroll-padding-top: 72px;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--navy-950);
+  color: #fff;
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--hivis);
+  color: #fff;
+}
+
+.font-display {
+  font-family: var(--font-display), sans-serif;
+  /* wdth 118 expandía tanto Archivo que los titulares se salían de su
+     columna. A 100 (ancho normal de la familia) entra el mismo texto con
+     más tamaño de cuerpo, que es lo que da presencia en un titular. */
+  font-variation-settings: "wdth" 100, "wght" 800;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+}
+
+.font-mono-adi {
+  font-family: var(--font-mono-adi), ui-monospace, monospace;
+}
+
+.eyebrow {
+  font-family: var(--font-mono-adi), monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--cyan);
+  opacity: 0.7;
+  flex: 0 0 auto;
+}
+.eyebrow.on-light {
+  color: var(--navy-500);
+}
+.eyebrow.on-light::before {
+  background: var(--navy-500);
+}
+
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(1, 183, 222, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(1, 183, 222, 0.055) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+.blueprint-grid-dark {
+  background-image:
+    linear-gradient(rgba(1, 35, 135, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(1, 35, 135, 0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-11px); }
+}
+.animate-bob { animation: bob 5.2s ease-in-out infinite; }
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(255, 106, 19, 0.55); }
+  70% { box-shadow: 0 0 0 12px rgba(255, 106, 19, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 106, 19, 0); }
+}
+.dot-live {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--hivis);
+  animation: pulse-dot 2.4s infinite;
+  flex: 0 0 auto;
+}
+
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-msg-in { animation: msg-in 0.35s cubic-bezier(0.22, 0.85, 0.3, 1); }
+
+@keyframes blink-dot {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-4px); }
+}
+.blink-dot { animation: blink-dot 1.3s infinite; }
+
+input, select, textarea { font-size: 16px; }
+
+
+/* ============================================================
+   ANIMACIONES DE VIDA DEL SITIO
+   ============================================================ */
+
+/* respiración de la cuadrícula tipo plano — vía transform, no background-position */
+@keyframes grid-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-52px, -52px, 0); }
+}
+.blueprint-grid {
+  position: absolute;
+  inset: -52px;
+  animation: grid-drift 34s linear infinite paused;
+  will-change: transform;
+}
+@keyframes grid-drift-dark {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-26px, -26px, 0); }
+}
+.blueprint-grid-dark {
+  position: absolute;
+  inset: -26px;
+  animation: grid-drift-dark 26s linear infinite paused;
+  will-change: transform;
+}
+[data-inview="true"] .blueprint-grid,
+[data-inview="true"] .blueprint-grid-dark {
+  animation-play-state: running;
+}
+
+/* deriva lenta del mesh de gradientes del hero */
+@keyframes mesh-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-1.5%, 1.5%) scale(1.03); }
+  66% { transform: translate(1.5%, -1%) scale(1.02); }
+}
+.animate-mesh { animation: mesh-drift 22s ease-in-out infinite; }
+
+/* fade + subida para el reveal por scroll */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* El reveal usa TRANSICIÓN, no animación.
+   Las secciones llevan `content-visibility: auto`, así que el navegador
+   descarta su renderizado al salir de pantalla y lo rehace al volver. Una
+   animación CSS se reinicia en ese momento y el usuario ve el fade-up dos
+   veces seguidas. Una transición no: el elemento ya está en su valor final,
+   no hay nada que interpolar, así que al repintarse simplemente aparece. */
+.reveal-hidden,
+.reveal-shown {
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.85, 0.3, 1),
+    transform 0.7s cubic-bezier(0.22, 0.85, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(22px);
+}
+.reveal-shown {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-hidden,
+  .reveal-shown {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* cross-fade del panel de resultado del selector */
+@keyframes panel-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-panel-fade { animation: panel-fade-in 0.45s cubic-bezier(0.22, 0.85, 0.3, 1); }
+
+/* glow de atención del lanzador de Jimmy — solo luz, sin movimiento */
+@keyframes jimmy-glow {
+  0%, 100% { box-shadow: 0 18px 44px -16px rgba(1, 35, 135, 0.95), 0 0 0 0 rgba(1, 183, 222, 0); }
+  40% { box-shadow: 0 18px 44px -16px rgba(1, 35, 135, 0.95), 0 0 28px 10px rgba(1, 183, 222, 0.55); }
+  100% { box-shadow: 0 18px 44px -16px rgba(1, 35, 135, 0.95), 0 0 0 0 rgba(1, 183, 222, 0); }
+}
+.animate-jimmy-attention { animation: jimmy-glow 1.8s ease-in-out; }
+
+
+/* ============================================================
+   FONDOS AMBIENTALES ANIMADOS
+   ============================================================ */
+
+/* orbes de luz que derivan lentamente */
+@keyframes orb-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(7%, -5%) scale(1.14); }
+  66% { transform: translate(-6%, 6%) scale(0.92); }
+}
+@keyframes orb-b {
+  0%, 100% { transform: translate(0, 0) scale(1.05); }
+  40% { transform: translate(-8%, 4%) scale(0.9); }
+  70% { transform: translate(5%, -6%) scale(1.15); }
+}
+@keyframes orb-c {
+  0%, 100% { transform: translate(0, 0) scale(0.95); }
+  50% { transform: translate(4%, 7%) scale(1.2); }
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+.orb-a { animation: orb-a 26s ease-in-out infinite paused; }
+.orb-b { animation: orb-b 33s ease-in-out infinite paused; }
+.orb-c { animation: orb-c 21s ease-in-out infinite paused; }
+[data-inview="true"] .orb-a,
+[data-inview="true"] .orb-b,
+[data-inview="true"] .orb-c {
+  animation-play-state: running;
+}
+
+/* barrido de luz continuo dentro de las tarjetas */
+@keyframes card-sweep {
+  0% { transform: translateX(-130%) skewX(-18deg); }
+  55%, 100% { transform: translateX(340%) skewX(-18deg); }
+}
+.card-live { position: relative; overflow: hidden; }
+.card-live::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 42%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.09), transparent);
+  animation: card-sweep 7s ease-in-out infinite paused;
+  pointer-events: none;
+  will-change: transform;
+}
+.card-live-light::after {
+  background: linear-gradient(90deg, transparent, rgba(1, 183, 222, 0.13), transparent);
+}
+[data-inview="true"] .card-live::after {
+  animation-play-state: running;
+}
+
+/* respiración del borde — capa superpuesta con opacidad (GPU), no border-color */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+.border-breathe { position: relative; }
+.border-breathe::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid var(--cyan);
+  opacity: 0;
+  pointer-events: none;
+  animation: glow-pulse 5.5s ease-in-out infinite paused;
+  will-change: opacity;
+}
+[data-inview="true"] .border-breathe::before {
+  animation-play-state: running;
+}
+
+/* ============================================================
+   LOGO DEL NAVBAR
+   ============================================================ */
+@keyframes logo-glow {
+  0%, 100% { filter: drop-shadow(0 3px 12px rgba(1, 183, 222, 0.32)); }
+  50% { filter: drop-shadow(0 3px 22px rgba(1, 183, 222, 0.8)); }
+}
+@keyframes logo-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(-1.5deg); }
+}
+.logo-live { animation: logo-glow 4s ease-in-out infinite, logo-float 6s ease-in-out infinite; }
+
+/* brillo que cruza el wordmark */
+@keyframes wordmark-shine {
+  0% { background-position: -180% 0; }
+  55%, 100% { background-position: 280% 0; }
+}
+.wordmark-shine {
+  background-image: linear-gradient(
+    100deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.85) 50%,
+    transparent 65%
+  );
+  background-size: 220% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: wordmark-shine 6.5s ease-in-out infinite;
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  pointer-events: none;
+}
+
+/* ============================================================
+   TEXTO DEL HERO
+   ============================================================ */
+@keyframes hero-line-in {
+  from { opacity: 0; transform: translateY(36px); filter: blur(9px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.hero-line {
+  opacity: 0;
+  animation: hero-line-in 0.9s cubic-bezier(0.22, 0.85, 0.3, 1) forwards;
+  display: inline-block;
+}
+
+/* latido del contorno de "Falla sin sistema" */
+@keyframes stroke-pulse {
+  0%, 100% { -webkit-text-stroke-color: rgba(255, 255, 255, 0.32); }
+  50% { -webkit-text-stroke-color: rgba(1, 183, 222, 0.75); }
+}
+/* combinada con hero-line-in en una sola declaración: dos "animation" por
+   separado se pisan entre sí (el shorthand reemplaza, no se suma) */
+.hero-line.stroke-live {
+  animation:
+    hero-line-in 0.9s cubic-bezier(0.22, 0.85, 0.3, 1) forwards,
+    stroke-pulse 4.5s ease-in-out infinite;
+}
+
+/* ============================================================
+   PROCESO — línea de avance
+   ============================================================ */
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.draw-line {
+  transform-origin: left;
+  animation: draw-line 1.4s cubic-bezier(0.22, 0.85, 0.3, 1) forwards;
+}
+
+@keyframes node-pop {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.node-pop { animation: node-pop 0.6s cubic-bezier(0.22, 0.85, 0.3, 1) forwards; }
+
+@keyframes node-ring {
+  0% { box-shadow: 0 0 0 0 rgba(1, 183, 222, 0.5); }
+  70% { box-shadow: 0 0 0 14px rgba(1, 183, 222, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(1, 183, 222, 0); }
+}
+.node-ring { animation: node-ring 3s ease-out infinite; }
+
+
+/* el navegador deja de renderizar y animar contenido lejos del viewport */
+.cv-section {
+  content-visibility: auto;
+  /* `auto` hace que el navegador recuerde la altura real de la última vez
+     que renderizó la sección, en vez de asumir siempre 900px. Sin esto los
+     enlaces de ancla del menú calculan mal el destino y el visitante
+     aterriza lejos de la sección (llegaba a fallar por más de 5000px). */
+  contain-intrinsic-size: auto 900px;
+}
+
+
+/* ============================================================
+   HERO — BLOQUE DE 6 CAPAS
+   ============================================================ */
+
+/* ensamblaje: la capa entra desde más arriba y se asienta en su posición
+   final (--fy). Solo transform + opacity, sin filtros costosos. */
+@keyframes hero-layer-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--fy) - var(--sy))) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(var(--fy)) scale(1);
+  }
+}
+.hero-layer {
+  opacity: 0;
+  transform: translateY(calc(var(--fy) - var(--sy)));
+  animation: hero-layer-in 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* el parallax, la elevación al hover y el despliegue idle se escriben
+   directo por JS en style.transform (ver HeroBlock.tsx) — más preciso que
+   variables CSS porque necesita saber exactamente qué placa está bajo el
+   cursor, y evita que dos animation/transform distintos se pisen entre sí */
+.hero-layer-parallax {
+  position: relative;
+  will-change: transform;
+}
+
+/* giro ambiental muy sutil — vive en su propio div para no pisar el
+   transform que ya escribe JS en .hero-layer-parallax cada frame */
+@keyframes layer-spin {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(var(--spin, 1deg)); }
+}
+.hero-layer-spin {
+  animation: layer-spin 6.5s ease-in-out infinite paused;
+  transform-origin: 50% 60%;
+  will-change: transform;
+}
+[data-inview="true"] .hero-layer-spin {
+  animation-play-state: running;
+}
+
+/* glow: dos capas de degradado (halo amplio + núcleo más brillante) cuya
+   opacidad se anima — mucho más barato que filter:drop-shadow(), que
+   obliga a recalcular el contorno alfa completo en cada repintado de la
+   página (ya lo pagamos caro una vez con los orbes de fondo). */
+.hero-layer-parallax::before,
+.hero-layer-parallax::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  will-change: opacity;
+}
+.hero-layer-parallax::before {
+  inset: -14%;
+  border-radius: 18%;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(1, 183, 222, 0.4), transparent 74%);
+}
+.hero-layer-parallax::after {
+  inset: -5%;
+  border-radius: 12%;
+  background: radial-gradient(55% 55% at 50% 48%, rgba(154, 223, 252, 0.75), rgba(1, 183, 222, 0.35) 55%, transparent 75%);
+}
+.hero-layer-parallax.hero-layer-glow::before,
+.hero-layer-parallax.hero-layer-glow::after {
+  opacity: 1;
+}
+
+/* respiración ambiental del bloque ya ensamblado */
+@keyframes block-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-11px); }
+}
+.hero-block {
+  animation: block-float 7.5s ease-in-out infinite paused;
+}
+.hero-block[data-inview="true"] {
+  animation-play-state: running;
+}
+
+.hero-block-glow {
+  background:
+    radial-gradient(46% 40% at 52% 58%, rgba(1, 183, 222, 0.18), transparent 70%),
+    radial-gradient(60% 55% at 50% 62%, rgba(1, 35, 135, 0.28), transparent 72%);
+}
+
+/* partículas tecnológicas del fondo */
+@keyframes particle-drift {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  15%, 70% { opacity: 1; }
+  100% { transform: translate3d(20px, -110px, 0); opacity: 0; }
+}
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: particle-drift 11s linear infinite paused;
+  will-change: transform, opacity;
+}
+[data-inview="true"] .hero-particle {
+  animation-play-state: running;
+}
+
+/* etiquetas de capa: aparecen una vez ensamblado el bloque */
+@keyframes label-in {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: none; }
+}
+.hero-label {
+  opacity: 0;
+  animation: label-in 0.55s cubic-bezier(0.22, 0.85, 0.3, 1) forwards;
+}
+
+
+/* ============================================================
+   GRÁFICO DE BARRAS — animación de pulso + flotación suave
+   Tres efectos apilados sin filter ni backdrop:
+   1) flotación vertical suave (translateY)
+   2) escala mínima de "respiración" (scale)
+   3) glow cian pulsante del drop-shadow (opacity del pseudo)
+   ============================================================ */
+
+@keyframes grafico-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-10px) scale(1.018); }
+}
+@keyframes grafico-glow-pulse {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 0.75; }
+}
+
+.grafico-barras-img {
+  animation: grafico-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* halo cian animado debajo de la imagen — sin filter:blur en la imagen */
+.grafico-barras-wrap::before {
+  content: "";
+  position: absolute;
+  bottom: -10%;
+  left: 10%;
+  right: 10%;
+  height: 40%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(1,183,222,0.5), transparent 68%);
+  animation: grafico-glow-pulse 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grafico-barras-img { animation: none; }
+  .grafico-barras-wrap::before { animation: none; opacity: 0.4; }
+}
+
+
+/* ============================================================
+   PROCESO — animaciones del timeline
+   ============================================================ */
+
+/* 1) Nodo que hace pop al aparecer */
+@keyframes proceso-node-pop {
+  0%   { transform: scale(0.4); opacity: 0; }
+  60%  { transform: scale(1.14); opacity: 1; }
+  80%  { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* 2) Ring pulsante — corre en un pseudo-elemento para no pelear
+      con el transform del pop */
+@keyframes proceso-node-ring {
+  0%   { transform: scale(1);    opacity: .55; }
+  70%  { transform: scale(1.42); opacity: 0; }
+  100% { transform: scale(1.42); opacity: 0; }
+}
+
+/* 3) Punto intermedio de conexión que aparece y pulsa */
+@keyframes proceso-dot-in {
+  0%   { transform: translateX(-50%) scale(0);   opacity: 0; }
+  70%  { transform: translateX(-50%) scale(1.3); opacity: 1; }
+  100% { transform: translateX(-50%) scale(1);   opacity: 1; }
+}
+@keyframes proceso-dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(1,35,135,.45); }
+  50%      { box-shadow: 0 0 0 6px rgba(1,35,135,0); }
+}
+
+/* ---- Clases de aplicación ----
+   Cada elemento recibe su retardo por la custom property --d,
+   así el pop de TODOS los nodos ocurre cuando ya son visibles. */
+
+.proceso-node {
+  position: relative;
+}
+/* El opacity:0 inicial solo se aplica cuando de verdad vamos a animar.
+   Así, si el JS falla o el usuario pide menos movimiento, los nodos
+   quedan visibles en lugar de desaparecer. */
+@media (prefers-reduced-motion: no-preference) {
+  .proceso-node { opacity: 0; }
+  .is-on .proceso-node { opacity: 1; }
+}
+.is-on .proceso-node {
+  animation: proceso-node-pop 0.6s cubic-bezier(0.22, 0.85, 0.3, 1) var(--d, 0ms) both;
+}
+/* halo pulsante: mismo elemento, capa ::after, arranca después del pop */
+.proceso-node::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  border: 2px solid rgba(1, 35, 135, 0.45);
+  opacity: 0;
+  pointer-events: none;
+}
+.is-on .proceso-node::after {
+  animation: proceso-node-ring 2.4s ease-out calc(var(--d, 0ms) + 620ms) infinite;
+}
+
+.proceso-dot {
+  transform: translateX(-50%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .proceso-dot { opacity: 0; transform: translateX(-50%) scale(0); }
+  .is-on .proceso-dot { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+.is-on .proceso-dot {
+  animation:
+    proceso-dot-in 0.5s cubic-bezier(0.22, 0.85, 0.3, 1) var(--d, 0ms) both,
+    proceso-dot-pulse 2.6s ease-out calc(var(--d, 0ms) + 500ms) infinite;
+}
+
+/* Línea que se dibuja: la transición vive en CSS (no inline), de modo
+   que el cambio de scaleX al agregar .is-on sí interpola. */
+.proceso-line {
+  background: linear-gradient(90deg, #012387 0%, #013db5 55%, #0155cc 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.15s cubic-bezier(0.16, 1, 0.3, 1) 180ms;
+}
+.is-on .proceso-line {
+  transform: scaleX(1);
+}
+
+/* Cabeza luminosa que viaja con el trazo */
+.proceso-line::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(1,85,204,.85) 0%, rgba(1,85,204,0) 70%);
+  opacity: 0;
+  transition: opacity .3s ease 1.25s;
+}
+.is-on .proceso-line::after { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-layer {
+    opacity: 1;
+    transform: translateY(var(--fy));
+    animation: none;
+  }
+  .hero-label { opacity: 1; animation: none; }
+  .hero-layer-parallax { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  /* la línea del timeline debe quedar dibujada, no en scaleX(0) */
+  .proceso-line { transform: scaleX(1) !important; }
+  .proceso-node, .proceso-dot { opacity: 1 !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO BICOLOR
+   Izquierda clara (texto comercial) / derecha oscura (bloque técnico).
+   En móvil no hay dos columnas, así que el corte pasa a ser horizontal:
+   claro arriba donde está el texto, oscuro abajo donde está el bloque.
+   ═══════════════════════════════════════════════════════════ */
+
+.hero-split {
+  position: absolute;
+  inset: 0;
+  /* móvil: claro arriba, oscuro abajo */
+  background:
+    linear-gradient(
+      180deg,
+      #eef3f9 0%,
+      #e9eff7 42%,
+      #0a1730 62%,
+      #061024 100%
+    );
+}
+
+@media (min-width: 1024px) {
+  .hero-split {
+    /* desktop: corte vertical con una diagonal suave en el encuentro */
+    background:
+      radial-gradient(46% 54% at 78% 42%, rgba(1, 183, 222, 0.16), transparent 64%),
+      linear-gradient(
+        100deg,
+        #eef3f9 0%,
+        #eef3f9 40%,
+        #e6edf6 45%,
+        #0b1a36 52%,
+        #061024 72%,
+        #040d1e 100%
+      );
+  }
+}
+
+/* La cuadrícula de blueprint y las partículas solo tienen sentido sobre
+   el lado oscuro: sobre el claro se ven como suciedad. */
+.hero-dark-only {
+  position: absolute;
+  inset: 0;
+  /* móvil: solo la mitad inferior */
+  -webkit-mask-image: linear-gradient(180deg, transparent 58%, #000 68%);
+  mask-image: linear-gradient(180deg, transparent 58%, #000 68%);
+}
+
+@media (min-width: 1024px) {
+  .hero-dark-only {
+    -webkit-mask-image: linear-gradient(100deg, transparent 47%, #000 56%);
+    mask-image: linear-gradient(100deg, transparent 47%, #000 56%);
+  }
+}
+
+/* Eyebrow sobre fondo claro: el cyan no contrasta, usamos el azul de marca */
+.eyebrow-light {
+  color: var(--navy);
+}
+.eyebrow-light::before {
+  background: var(--navy);
+}
+
+/* Los <th> traen font-weight:bold (700) del navegador, pero de IBM Plex solo
+   cargamos hasta 600: el navegador engorda las letras artificialmente y se
+   ven sucias. Fijamos 600, que sí existe como archivo real. */
+th,
+strong,
+b {
+  font-weight: 600;
+}
+
+/* ═══════════ Bienvenida ═══════════ */
+@keyframes intro-entrada {
+  from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+.intro-marca {
+  animation: intro-entrada 0.85s cubic-bezier(0.22, 0.85, 0.3, 1) 0.25s both;
+}
+.intro-lema {
+  animation: intro-entrada 0.9s cubic-bezier(0.22, 0.85, 0.3, 1) 0.75s both;
+}
+@keyframes intro-progreso { from { width: 0 } to { width: 100% } }
+.intro-barra {
+  animation: intro-progreso 5.1s linear both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-marca, .intro-lema, .intro-barra { animation: none; }
+}
