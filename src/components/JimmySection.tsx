@@ -251,7 +251,7 @@ export function JimmySection({ onAskJ1MMY }: { onAskJ1MMY: (mensaje?: string) =>
                 aria-hidden="true"
               />
               <J1MMYAnimado />
-              <div className="absolute right-0 top-0 z-10 -translate-y-full -translate-x-4 mb-3 flex items-center gap-1.5 rounded-full border border-navy/[.14] bg-white px-2.5 py-1.25 shadow-[0_8px_20px_-8px_rgba(1,35,135,.35)]">
+              <div className="absolute left-full top-[18%] z-10 ml-5 flex items-center gap-1.5 rounded-full border border-navy/[.14] bg-white px-2.5 py-1.25 shadow-[0_8px_20px_-8px_rgba(1,35,135,.35)] whitespace-nowrap">
                 <span className="dot-live" />
                 <span className="font-mono-adi whitespace-nowrap text-[12px] uppercase tracking-[0.08em] text-ink-soft">
                   J1MMY en línea
