@@ -116,7 +116,7 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
         aria-label="Preguntarle a J1MMY"
         className={`fixed bottom-5.5 right-5.5 z-90 flex flex-col items-end gap-3 transition-all duration-300 ${
           open ? "pointer-events-none scale-90 opacity-0" : ""
-        } ${pulse ? "animate-jimmy-attention" : ""}`}
+        }`}
       >
         {/* Rótulo flotante encima del casco */}
         <span className="rounded-full border border-cyan/30 bg-navy/95 px-3.5 py-1.5 text-right shadow-[0_8px_24px_-8px_rgba(1,35,135,.7)] backdrop-blur-sm">
@@ -124,7 +124,7 @@ export const JimmyWidget = forwardRef<JimmyWidgetHandle>(function JimmyWidget(_,
           <small className="font-mono-adi block text-[10px] uppercase tracking-[0.13em] text-sky">Técnico en línea</small>
         </span>
         {/* Avatar compacto */}
-        <span className="relative h-[50px] w-[50px] flex-none rounded-full border border-cyan/40 bg-navy shadow-[0_18px_44px_-16px_rgba(1,35,135,.95)]">
+        <span className={`relative h-[50px] w-[50px] flex-none rounded-full border border-cyan/40 bg-navy shadow-[0_18px_44px_-16px_rgba(1,35,135,.95)] ${pulse ? "animate-jimmy-attention" : ""}`}>
           <Image src="/images/jimmy-face.png" alt="" fill sizes="50px" className="rounded-full object-cover" />
           <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-navy bg-[#25D07A]" />
         </span>

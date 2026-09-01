@@ -192,20 +192,6 @@ export function Selector() {
                 cotización.
               </p>
             </Reveal>
-
-            <Reveal
-              as="div"
-              index={1}
-              className="hidden flex-none items-center gap-2.5 rounded-full border border-navy/[.14] bg-white px-4 py-2.5 shadow-[0_10px_26px_-18px_rgba(1,35,135,.35)] lg:flex"
-            >
-              <span className="dot-live" />
-              <span>
-                <strong className="font-display block text-[12px] uppercase tracking-[0.02em] text-ink">
-                  J1MMY en línea
-                </strong>
-                <span className="block text-[12px] text-ink-soft">Respuestas al instante</span>
-              </span>
-            </Reveal>
           </div>
 
           {/* ---- dos columnas ---- */}

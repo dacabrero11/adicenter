@@ -139,7 +139,7 @@ export function Header() {
               ▶ Intro
             </button>
             <span className="hidden min-[1101px]:inline-flex">
-              <Button href="#cotizar" size="sm" className="whitespace-nowrap">
+              <Button onClick={() => scrollToHash("#cotizar")} size="sm" className="whitespace-nowrap">
                 Cotizar proyecto
               </Button>
             </span>
