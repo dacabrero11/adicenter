@@ -13,6 +13,7 @@ import { ProgramaObra } from "@/components/ProgramaObra";
 import { FieldBand } from "@/components/FieldBand";
 import { Proyectos } from "@/components/Proyectos";
 import { Proceso } from "@/components/Proceso";
+import { Nosotros } from "@/components/Nosotros";
 import { ProgramaObraCallout } from "@/components/ProgramaObraCallout";
 import { Cotizar } from "@/components/Cotizar";
 import { Footer } from "@/components/Footer";
@@ -40,6 +41,7 @@ export default function Home() {
       <Proyectos onAskJ1MMY={abrirJ1MMY} />
       <ProgramaObraCallout />
       <Proceso />
+      <Nosotros />
       <Cotizar />
       <Footer />
       <JimmyWidget ref={jimmyRef} />

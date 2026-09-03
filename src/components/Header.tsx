@@ -14,6 +14,7 @@ const LINKS = [
   { href: "#obra", label: "Obra" },
   { href: "#proyectos", label: "Proyectos" },
   { href: "#proceso", label: "Proceso" },
+  { href: "#nosotros", label: "Nosotros" },
   { href: "#cotizar", label: "Contacto" },
 ];
 
